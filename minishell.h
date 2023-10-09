@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/09 16:26:44 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:31:53 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include "libft/libft.h"
 
 # include <stdbool.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <stdio.h>
 
 /* ************************************************************************** */
 /*                            Defines & enums                                 */
