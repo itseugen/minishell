@@ -6,7 +6,7 @@
 #    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 13:58:27 by eweiberl          #+#    #+#              #
-#    Updated: 2023/10/09 16:33:05 by eweiberl         ###   ########.fr        #
+#    Updated: 2023/10/09 18:36:34 by eweiberl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,10 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 LINKS = -lreadline
+LINKS += -L./libft -lft
 
 SOURCE = main.c
+SOURCE += setup/get_prompt.c
 
 LIBFT_GIT = https://github.com/itseugen/c_library
 LIBFT_DIR = ./libft
@@ -31,7 +33,7 @@ all: $(NAME)
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJS) $(LIBFT)
+$(NAME): $(LIBFT) $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(LIBFT) $(OBJS) $(LINKS)
 
 dataraces: CFLAGS += -fsanitize=thread
@@ -56,6 +58,6 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 
-re: fclean all
+re: fclean libclean all
 
 .PHONY: re all clean
