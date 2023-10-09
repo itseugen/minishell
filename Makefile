@@ -6,7 +6,7 @@
 #    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 13:58:27 by eweiberl          #+#    #+#              #
-#    Updated: 2023/10/09 16:22:15 by eweiberl         ###   ########.fr        #
+#    Updated: 2023/10/09 16:33:05 by eweiberl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@ NAME = minishell
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+
+LINKS = -lreadline
 
 SOURCE = main.c
 
@@ -30,7 +32,7 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) -o $(NAME) $(LIBFT) $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(LIBFT) $(OBJS) $(LINKS)
 
 dataraces: CFLAGS += -fsanitize=thread
 dataraces: re
