@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:26:58 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/10 16:35:14 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:48:42 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	execute_cmd(char **cmd, char **envp)
 	char	*path;
 
 	path = get_cmd_path(cmd[0], envp);
-	printf("%s\n", path);
+	if (path == NULL)
+		return (perror("no path"), 1);
 	if (execve(path, cmd, envp) == -1)
 		return (free(path), perror("execv"), 1);
 	free(path);
