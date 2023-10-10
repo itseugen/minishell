@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:26:58 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/10 15:58:06 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:35:14 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,31 @@
 
 static char	*get_cmd_path(char *cmd, char **envp);
 static char	*get_cmd(char *path, char *cmd);
+static void	free_split(char **strings);
 
-int	execute_cmd(char *cmd, char **envp)
+/// @brief Executes a command via path
+/// @param cmd NULL terminated array of strings
+/// @param envp the envp
+/// @return 1 on fail, 0 on success
+int	execute_cmd(char **cmd, char **envp)
 {
-	char	*cmds[4];
 	char	*path;
 
-	path = get_cmd_path(cmd, envp);
+	path = get_cmd_path(cmd[0], envp);
 	printf("%s\n", path);
-	// cmds[0] = path;
-	// cmds[1] = "-c";
-	// cmds[2] = cmd;
-	// cmds[3] = NULL;
-	// if (execve(path, cmds, envp) == -1)
-	// 	return (free(path), perror("execv"), 1);
+	if (execve(path, cmd, envp) == -1)
+		return (free(path), perror("execv"), 1);
 	free(path);
 	return (0);
 }
 
+/// @brief Gets the Path variable, calls another func
+/// @param cmd the identifier of the cmd array
+/// @param envp 
+/// @return returns the path to the command or NULL
 static char	*get_cmd_path(char *cmd, char **envp)
 {
 	char	*path;
-	char	*cmd_first;
 	char	*cmd_path;
 	int		i;
 
@@ -52,14 +55,14 @@ static char	*get_cmd_path(char *cmd, char **envp)
 	}
 	if (path == NULL)
 		return (NULL);
-	cmd_first = ft_split(cmd, ' ');
-	if (cmd_first == NULL)
-		return (perror("ft_split fail"), NULL);
-	cmd_path = get_cmd(path, cmd_first[0]);
-	free(cmd_first);
+	cmd_path = get_cmd(path, cmd);
 	return (cmd_path);
 }
 
+/// @brief Searches the path variable to a path to command
+/// @param path 
+/// @param cmd 
+/// @return Path to command or NULL
 static char	*get_cmd(char *path, char *cmd)
 {
 	char	**dir;
@@ -73,6 +76,7 @@ static char	*get_cmd(char *path, char *cmd)
 	if (dir == NULL || cmd_dir == NULL)
 		return (perror("ft_split fail"), NULL);
 	i = 0;
+	cmd_path = NULL;
 	while (dir[i] != NULL)
 	{
 		ft_strlcpy(buf, dir[i], 1024);
@@ -84,7 +88,18 @@ static char	*get_cmd(char *path, char *cmd)
 		}
 		i++;
 	}
-	free(cmd_dir);
-	free(dir);
-	return (cmd_path);
+	return (free(cmd_dir), free_split(dir), cmd_path);
+}
+
+static void	free_split(char **strings)
+{
+	size_t	i;
+
+	i = 0;
+	while (strings[i] != NULL)
+	{
+		free(strings[i]);
+		i++;
+	}
+	free(strings);
 }
