@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/10 15:26:10 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:29:35 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
-	(void)envp;
 	prompt = get_prompt();
 	test = readline(prompt);
 	printf("%s\n", test);
+	execute_cmd(ft_split(test, ' '), envp);
 	free(prompt);
 	free(test);
-	// system("leaks minishell");
+	system("leaks minishell");
 	return (0);
 }
