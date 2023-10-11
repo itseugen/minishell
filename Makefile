@@ -6,7 +6,7 @@
 #    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 13:58:27 by eweiberl          #+#    #+#              #
-#    Updated: 2023/10/10 15:27:17 by eweiberl         ###   ########.fr        #
+#    Updated: 2023/10/11 17:24:09 by eweiberl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ LINKS += -L./libft -lft
 SOURCE = main.c
 SOURCE += setup/get_prompt.c
 SOURCE += execution/execute.c
+SOURCE += builtins/env.c
 
 LIBFT_GIT = https://github.com/itseugen/c_library
 LIBFT_DIR = ./libft

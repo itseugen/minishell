@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/11 17:30:40 by eweiberl         ###   ########.fr       */
+/*   Created: 2023/10/11 17:23:40 by eweiberl          #+#    #+#             */
+/*   Updated: 2023/10/11 17:29:15 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+int	builtin_env(char **envp)
 {
-	char	*test;
-	char	*prompt;
+	int	i;
 
-	(void)argc;
-	(void)argv;
-	prompt = get_prompt();
-	test = readline(prompt);
-	printf("%s\n", test);
-	if (ft_strncmp(test, "env", 4) == 0)
-		builtin_env(envp);
-	else
+	i = 0;
+	while (envp[i] != NULL)
 	{
-		execute_cmd(ft_split(test, ' '), envp);
-		free(prompt);
-		free(test);
+		printf("%s\n", envp[i]);
+		i++;
 	}
-	// system("leaks minishell");
 	return (0);
 }
