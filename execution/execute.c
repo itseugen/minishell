@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:26:58 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/10 16:48:42 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/11 17:37:20 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	*get_cmd_path(char *cmd, char **envp)
 
 	path = NULL;
 	i = 0;
-	while (envp[i] != 0)
+	while (envp[i] != NULL)
 	{
 		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
 		{
