@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/11 18:26:42 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/13 13:58:30 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ int	main(int argc, char **argv, char **envp)
 		builtin_env(envp);
 	else if (ft_strncmp(test, "pwd", 4) == 0)
 		builtin_pwd(envp);
+	else if (ft_strncmp(test, "cd ", 3) == 0)
+	{
+		builtin_cd("/Users/eweiberl/Docker");
+		builtin_pwd(envp);
+	}
 	else
 	{
 		execute_cmd(ft_split(test, ' '), envp);

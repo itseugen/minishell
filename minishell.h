@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/11 18:16:13 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/13 13:55:18 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int		execute_cmd(char **cmd, char **envp);
 
 int		builtin_env(char **envp);
 int		builtin_pwd(char **envp);
+int		builtin_cd(char *path);
 
 /* ************************************************************************** */
 /*                                  Utils                                     */
