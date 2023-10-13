@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/13 14:09:17 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/13 16:42:01 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,22 @@ Display a prompt when waiting for a new command.
 • Have a working history.
 • Search and launch the right executable (based on the PATH variable or using a
 relative or an absolute path).
-• Avoid using more than one global variable to indicate a received signal. Consider
-the implications: this approach ensures that your signal handler will not access your
-main data structures.1
+• Avoid using more than one global variable to indicate a received signal.
+Consider the implications: this approach ensures that your signal handler
+will not access your main data structures.1
 
-! Not interpret unclosed quotes or special characters which are not required by the
-! subject such as \ (backslash) or ; (semicolon).
-• Handle ’ (single quote) which should prevent the shell from interpreting the meta-
-characters in the quoted sequence.
-• Handle " (double quote) which should prevent the shell from interpreting the meta-
-characters in the quoted sequence except for $ (dollar sign).
+! Not interpret unclosed quotes or special characters which are not required
+!by the subject such as \ (backslash) or ; (semicolon).
+• Handle ’ (single quote) which should prevent the shell from
+interpreting the meta-characters in the quoted sequence.
+• Handle " (double quote) which should prevent the shell from interpreting
+the meta-characters in the quoted sequence except for $ (dollar sign).
 
 ! • Implement redirections:
 ◦ < should redirect input.
 ◦ > should redirect output.
-◦ << should be given a delimiter, then read the input until a line containing the
-delimiter is seen. However, it doesn’t have to update the history!
+◦ << should be given a delimiter, then read the input until a line containing
+the delimiter is seen. However, it doesn’t have to update the history!
 ◦ >> should redirect output in append mode.
 
 ! • Implement pipes (| character). The output of each command in the pipeline is
@@ -81,7 +81,7 @@ delimiter is seen. However, it doesn’t have to update the history!
 
 • Your shell must implement the following builtins:
 ! ◦ echo with option -n
-! ◦ cd with only a relative or absolute path
+* DONE ◦ cd with only a relative or absolute path (Doesnt set PATH-Var)
 * DONE ◦ pwd with no options
 ! ◦ export with no options
 ! ◦ unset with no options
