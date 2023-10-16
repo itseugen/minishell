@@ -6,7 +6,7 @@
 #    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 13:58:27 by eweiberl          #+#    #+#              #
-#    Updated: 2023/10/16 14:31:58 by eweiberl         ###   ########.fr        #
+#    Updated: 2023/10/16 17:18:15 by eweiberl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ LINKS += -L./libft -lft
 SOURCE = main.c
 SOURCE += setup/get_prompt.c
 SOURCE += execution/execute.c
-SOURCE += builtins/env.c builtins/pwd.c builtins/cd.c
+SOURCE += builtins/env.c builtins/pwd.c builtins/cd.c builtins/is_builtin.c
 SOURCE += operations/pipe.c
 SOURCE += utils/ft_split_minishell.c
 

@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/16 17:07:56 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/16 17:13:13 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,31 +21,22 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	prompt = get_prompt();
 	test = readline(prompt);
-	char **split = ft_split_minishell(test, ' ');
-	int i = 0;
-	while (split[i] != NULL)
+	printf("%s\n", test);
+	if (ft_strncmp(test, "env", 4) == 0)
+		builtin_env(envp);
+	else if (ft_strncmp(test, "pwd", 4) == 0)
+		builtin_pwd(envp);
+	else if (ft_strncmp(test, "cd ", 3) == 0)
 	{
-		printf("%s|\n", split[i]);
-		i++;
+		builtin_cd(test + 3);
+		builtin_pwd(envp);
 	}
-	printf("%s\n", split[i]);
-	
-	// printf("%s\n", test);
-	// if (ft_strncmp(test, "env", 4) == 0)
-	// 	builtin_env(envp);
-	// else if (ft_strncmp(test, "pwd", 4) == 0)
-	// 	builtin_pwd(envp);
-	// else if (ft_strncmp(test, "cd ", 3) == 0)
-	// {
-	// 	builtin_cd(test + 3);
-	// 	builtin_pwd(envp);
-	// }
-	// else
-	// {
-	// 	execute_cmd(ft_split(test, ' '), envp);
-	// 	free(prompt);
-	// 	free(test);
-	// }
+	else
+	{
+		execute_cmd(ft_split(test, ' '), envp);
+		free(prompt);
+		free(test);
+	}
 	// system("leaks minishell");
 	return (0);
 }
