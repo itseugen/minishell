@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/13 13:55:18 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:02:28 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ int		builtin_cd(char *path);
 /* ************************************************************************** */
 
 char	*get_prompt(void);
+char	**ft_split_minishell(char const *s, char c);
 
 #endif

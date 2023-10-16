@@ -6,7 +6,7 @@
 #    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 13:58:27 by eweiberl          #+#    #+#              #
-#    Updated: 2023/10/13 13:46:31 by eweiberl         ###   ########.fr        #
+#    Updated: 2023/10/16 14:31:58 by eweiberl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SOURCE = main.c
 SOURCE += setup/get_prompt.c
 SOURCE += execution/execute.c
 SOURCE += builtins/env.c builtins/pwd.c builtins/cd.c
+SOURCE += operations/pipe.c
+SOURCE += utils/ft_split_minishell.c
 
 LIBFT_GIT = https://github.com/itseugen/c_library
 LIBFT_DIR = ./libft
