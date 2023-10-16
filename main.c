@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/16 15:03:16 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/16 17:07:56 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,15 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	prompt = get_prompt();
 	test = readline(prompt);
-	ft_split_minishell(test, ' ');
+	char **split = ft_split_minishell(test, ' ');
+	int i = 0;
+	while (split[i] != NULL)
+	{
+		printf("%s|\n", split[i]);
+		i++;
+	}
+	printf("%s\n", split[i]);
+	
 	// printf("%s\n", test);
 	// if (ft_strncmp(test, "env", 4) == 0)
 	// 	builtin_env(envp);

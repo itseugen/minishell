@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:06 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/16 15:47:53 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/16 17:07:03 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static int		count_substr(char const *s, char c);
 static void		free_strings(void **strings, size_t size);
 static int		skip_quotes(char const *s, int i);
+static char		*getstr(char const *s, int *old_i, char c);
 
 /// @brief Split for minishell
 /// @param s 
@@ -22,13 +23,55 @@ static int		skip_quotes(char const *s, int i);
 /// @return array of split commands or NULL
 char	**ft_split_minishell(char const *s, char c)
 {
-	int	substr_ctr;
+	int		substr_ctr;
+	char	**strings;
+	int		substr_fnd;
+	int		i;
 
-	if (s == NULL)
-		return (NULL);
+	i = 0;
+	substr_fnd = 0;
 	substr_ctr = count_substr(s, c);
-	printf("Count: %d\n", substr_ctr);
-	return (NULL);
+	if (substr_ctr == -1)
+		return (NULL); //! handle unfinished quotes later
+	strings = (char **)ft_calloc(substr_ctr + 1, sizeof(char *));
+	if (strings == NULL)
+		return (NULL);
+	while (substr_fnd < substr_ctr)
+	{
+		strings[substr_fnd] = getstr(s, &i, c);
+		if (strings[substr_fnd] == NULL)
+		{
+			free_strings((void **)strings, substr_fnd);
+			return (NULL);
+		}
+		substr_fnd++;
+	}
+	return (strings);
+}
+
+static char	*getstr(char const *s, int *old_i, char c)
+{
+	int		start;
+	char	*str;
+	int		i;
+
+	i = *old_i;
+	while (s[i] == c && s[i] != '\0')
+		i++;
+	start = i;
+	if (s[i] != '\0' && (s[i] == '"' || s[i] == '\''))
+	{
+		i = skip_quotes(s, i);
+		i++;
+	}
+	else
+	{
+		while (s[i] != c && s[i] != '\0')
+			i++;
+	}
+	str = ft_substr(s, start, (i - start));
+	*old_i = i;
+	return (str);
 }
 
 /// @brief Counts substring and quotes
@@ -42,6 +85,8 @@ static int	count_substr(char const *s, char c)
 
 	i = 0;
 	ctr = 0;
+	if (s == NULL)
+		return (-1);
 	while (s[i] != '\0')
 	{
 		while (s[i] == c && s[i] != '\0')
