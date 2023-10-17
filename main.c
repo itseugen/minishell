@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/16 17:33:56 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/17 16:05:24 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	char	*test;
 	char	*prompt;
+	char	**split;
 
 	(void)argc;
 	(void)argv;
@@ -23,8 +24,11 @@ int	main(int argc, char **argv, char **envp)
 	test = readline(prompt);
 	printf("%s\n", test);
 	// Split test or whatever its called with minishellsplit, tokenize, execute after
-	if (is_builtin(test, NULL, envp) == true);
-		//do stuff i need to do
+	split = ft_split(test, ' ');
+	if (split == NULL)
+		return (1);
+	// if (is_builtin(test, NULL, envp) == true);
+	// 	//do stuff i need to do
 	else
 	{
 		execute_cmd(ft_split(test, ' '), envp);

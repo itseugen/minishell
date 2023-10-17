@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/16 17:27:57 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/17 16:11:36 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,15 @@ enum e_token
 /*                          Typedefs and globals                              */
 /* ************************************************************************** */
 
+/// Example:
+/// Cmd = "input.txt"
+/// Args = NULL
+/// operation = OPEN
+/// next = pipe;
 typedef struct s_token
 {
 	char			*cmd;
+	char			**args;
 	int				operation;
 	struct s_token	*next;
 }	t_token;
@@ -57,7 +63,8 @@ int		execute_cmd(char **cmd, char **envp);
 /*                                builtins                                    */
 /* ************************************************************************** */
 
-bool	is_builtin(char *str, char *args, char **envp);
+bool	is_builtin(char *str);
+int		execute_builtin(char *str, char *args, char **envp);
 int		builtin_env(char **envp);
 int		builtin_pwd(char **envp);
 int		builtin_cd(char *path);
