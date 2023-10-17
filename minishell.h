@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/17 16:11:36 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/17 16:33:42 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ enum e_token
 /* ************************************************************************** */
 
 /// Example:
-/// Cmd = "input.txt"
-/// Args = NULL
+/// Cmd = "<"
+/// Args = token->next
 /// operation = OPEN
-/// next = pipe;
+/// next = "wc";
 typedef struct s_token
 {
 	char			*cmd;
