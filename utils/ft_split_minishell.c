@@ -6,14 +6,13 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:06 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/18 13:47:38 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/18 15:06:43 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 static int		count_substr(char const *s, char c);
-static void		free_strings(void **strings, size_t size);
 static int		skip_quotes(char const *s, int i);
 static char		*getstr(char const *s, int *old_i, char c);
 
@@ -42,7 +41,7 @@ char	**ft_split_minishell(char const *s, char c)
 		strings[substr_fnd] = getstr(s, &i, c);
 		if (strings[substr_fnd] == NULL)
 		{
-			free_strings((void **)strings, substr_fnd);
+			free_strings((void **)strings);
 			return (NULL);
 		}
 		substr_fnd++;
@@ -125,12 +124,12 @@ static int	skip_quotes(char const *s, int i)
 	return (i);
 }
 
-static void	free_strings(void **strings, size_t size)
+void	free_strings(void **strings)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < size)
+	while (strings[i] != NULL)
 	{
 		free(strings[i]);
 		i++;

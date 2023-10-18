@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/18 14:47:13 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/18 15:09:10 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int		builtin_cd(char *path);
 /*                                  Lexer                                     */
 /* ************************************************************************** */
 
-t_token	*get_tokens(char *input);
+t_token	*get_tokens(char **split);
 void	free_tokens(t_token **token_list);
 
 /* ************************************************************************** */
@@ -85,5 +85,6 @@ void	free_tokens(t_token **token_list);
 
 char	*get_prompt(void);
 char	**ft_split_minishell(char const *s, char c);
+void	free_strings(void **strings);
 
 #endif

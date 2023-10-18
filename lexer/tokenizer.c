@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 16:29:17 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/18 14:48:50 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/18 15:09:32 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,13 @@
 static int	add_new(t_token **token_list);
 static int	assign_tokens(t_token **token_list, char **split);
 
-t_token	*get_tokens(char *input)
+t_token	*get_tokens(char **split)
 {
-	char	**split;
 	int		i;
 	t_token	*token_list;
 
 	i = 0;
 	token_list = NULL;
-	split = ft_split_minishell(input, ' ');
-	if (split == NULL)
-		return (NULL);
 	while (split[i] != NULL)
 	{
 		if (add_new(&token_list) == 1)
