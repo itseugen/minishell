@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/17 16:33:42 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/18 14:47:13 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,13 @@
 
 enum e_token
 {
-	EMPTY = 0,
+	CMD = 0,
+	BUILTIN,
+	ARGUMENT,
+	CONTENT,
+	REDIRECT,
 	PIPE,
-	HERE_DOC,
-	OPEN_FILE
+	FD
 };
 
 /* ************************************************************************** */
@@ -48,9 +51,9 @@ enum e_token
 typedef struct s_token
 {
 	char			*cmd;
-	char			**args;
 	int				operation;
 	struct s_token	*next;
+	struct s_token	*prev;
 }	t_token;
 
 /* ************************************************************************** */
@@ -68,6 +71,13 @@ int		execute_builtin(char *str, char *args, char **envp);
 int		builtin_env(char **envp);
 int		builtin_pwd(char **envp);
 int		builtin_cd(char *path);
+
+/* ************************************************************************** */
+/*                                  Lexer                                     */
+/* ************************************************************************** */
+
+t_token	*get_tokens(char *input);
+void	free_tokens(t_token **token_list);
 
 /* ************************************************************************** */
 /*                                  Utils                                     */

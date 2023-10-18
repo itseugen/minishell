@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/17 16:05:24 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/18 14:47:28 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	char	*test;
 	char	*prompt;
-	char	**split;
+	t_token	*tokens;
 
 	(void)argc;
 	(void)argv;
@@ -24,17 +24,22 @@ int	main(int argc, char **argv, char **envp)
 	test = readline(prompt);
 	printf("%s\n", test);
 	// Split test or whatever its called with minishellsplit, tokenize, execute after
-	split = ft_split(test, ' ');
-	if (split == NULL)
-		return (1);
+	tokens = get_tokens(test);
+	while (tokens != NULL)
+	{
+		printf("%s\n", tokens->cmd);
+		printf("%d\n", tokens->operation);
+		tokens = tokens->next;
+	}
+	free_tokens(&tokens);
 	// if (is_builtin(test, NULL, envp) == true);
 	// 	//do stuff i need to do
-	else
-	{
-		execute_cmd(ft_split(test, ' '), envp);
-		free(prompt);
-		free(test);
-	}
+	// else
+	// {
+	// 	execute_cmd(ft_split(test, ' '), envp);
+	// 	free(prompt);
+	// 	free(test);
+	// }
 	// system("leaks minishell");
 	return (0);
 }

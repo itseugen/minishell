@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:06 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/16 17:07:03 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/18 13:47:38 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void		free_strings(void **strings, size_t size);
 static int		skip_quotes(char const *s, int i);
 static char		*getstr(char const *s, int *old_i, char c);
 
+//! No need to handle unclosed quotes
 /// @brief Split for minishell
 /// @param s 
 /// @param c just if needed, should always be space
