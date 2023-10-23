@@ -6,11 +6,21 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/18 15:11:21 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:47:46 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/*
+* TODO:
+* - Parser
+* - executing
+* - missing builtins
+* - Syntax tree / command table
+* - Signals
+* - ctrl inputs
+*/
 
 int	main(int argc, char **argv, char **envp)
 {
