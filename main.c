@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/24 18:18:02 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/24 18:26:26 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 * - ctrl inputs
 */
 
+/*
+!Idea: Pass a pointer to the string returned by readline instead of using split
+*/
 int	main(int argc, char **argv, char **envp)
 {
 	char	*test;
