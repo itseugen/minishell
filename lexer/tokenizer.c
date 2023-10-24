@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 16:29:17 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/24 17:19:21 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/24 17:52:39 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,3 @@ void	free_tokens(t_token **token_list)
 	}
 	*token_list = NULL;
 }
-
-// bool	is_file(char *str)
-// {
-// 	if (access(str, R_OK) == 0 || access(str, W_OK) == 0)
-// 		return (true);
-// 	return (false);
-// }
