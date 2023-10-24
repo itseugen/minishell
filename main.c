@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/23 15:47:46 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/24 18:18:02 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,28 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
-	prompt = get_prompt();
-	test = readline(prompt);
-	printf("%s\n", test);
-	// Split test or whatever its called with minishellsplit, tokenize, execute after
-	split = ft_split_minishell(test, ' ');
-	if (split == NULL)
-		return (1);
-	tokens = get_tokens(split);
-	while (tokens != NULL)
+	while (1)
 	{
-		printf("%s\n", tokens->cmd);
-		printf("%d\n", tokens->operation);
-		tokens = tokens->next;
+		prompt = get_prompt();
+		test = readline(prompt);
+		// Split test or whatever its called with minishellsplit, tokenize, execute after
+		if (test != NULL && test[0] != '\0')
+			add_history(test);
+		if (ft_strncmp(test, "exit", 5) == 0)
+			return (0);
+		split = ft_split_minishell(test, ' ');
+		if (split == NULL)
+			return (1);
+		tokens = get_tokens(split);
+		while (tokens != NULL)
+		{
+			printf("%s\n", tokens->cmd);
+			printf("%d\n", tokens->operation);
+			tokens = tokens->next;
+		}
+		free_strings((void **)split);
+		free_tokens(&tokens);
 	}
-	free_strings((void **)split);
-	free_tokens(&tokens);
 	// if (is_builtin(test, NULL, envp) == true);
 	// 	//do stuff i need to do
 	// else
