@@ -6,7 +6,7 @@
 #    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 13:58:27 by eweiberl          #+#    #+#              #
-#    Updated: 2023/10/17 16:29:07 by eweiberl         ###   ########.fr        #
+#    Updated: 2023/10/24 16:43:41 by eweiberl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SOURCE += execution/execute.c
 SOURCE += builtins/env.c builtins/pwd.c builtins/cd.c builtins/is_builtin.c builtins/echo.c
 SOURCE += operations/pipe.c
 SOURCE += utils/ft_split_minishell.c
-SOURCE += lexer/tokenizer.c
+SOURCE += lexer/tokenizer.c lexer/check_token.c
 
 LIBFT_GIT = https://github.com/itseugen/c_library
 LIBFT_DIR = ./libft

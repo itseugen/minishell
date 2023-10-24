@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 16:29:17 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/18 15:09:32 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/24 16:52:11 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ static int	assign_tokens(t_token **token_list, char **split)
 			current->operation = BUILTIN;
 		else if (ft_strncmp(current->cmd, "|", 2) == 0)
 			current->operation = PIPE;
-		else if (ft_strncmp(current->cmd, ">", 2) == 0
-			|| ft_strncmp(current->cmd, "<", 2) == 0)
+		else if (is_redirect(current->cmd) == true)
 			current->operation = REDIRECT;
 		else if (current->cmd[0] == '-')
 			current->operation = ARGUMENT;
