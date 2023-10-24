@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 16:29:17 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/24 16:52:11 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/24 17:19:21 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ static int	assign_tokens(t_token **token_list, char **split)
 			current->operation = ARGUMENT;
 		else if (current->prev != NULL && current->prev->operation == REDIRECT)
 			current->operation = FD;
+		else if (ft_strncmp(current->cmd, "<<", 3) == 0)
+			current->operation = HERE_DOC;
+		else if (current->prev != NULL && current->prev->operation == HERE_DOC)
+			current->operation = LIMITER;
 		else
 			current->operation = CMD;
 		current = current->next;
