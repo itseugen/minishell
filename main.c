@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/25 18:00:46 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:06:38 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,10 +121,8 @@ the delimiter is seen. However, it doesn’t have to update the history!
 * DONE ◦ cd with only a relative or absolute path (Doesnt set PATH-Var)
 * DONE ◦ pwd with no options
 ! ◦ export with no options
-TODO: For export, env but sorted and with something before
-(maybe just use the builtin env, pipe into sort and use awk to apply
-something in front)
 ! ◦ unset with no options
+TODO: GO through env and bzero the string equaling the var
 * DONE ◦ env with no options or arguments
 ! ◦ exit with no options
 

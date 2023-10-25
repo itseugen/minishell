@@ -6,7 +6,7 @@
 #    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 13:58:27 by eweiberl          #+#    #+#              #
-#    Updated: 2023/10/24 16:43:41 by eweiberl         ###   ########.fr        #
+#    Updated: 2023/10/25 18:05:35 by eweiberl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SOURCE = main.c
 SOURCE += setup/get_prompt.c
 SOURCE += execution/execute.c
 SOURCE += builtins/env.c builtins/pwd.c builtins/cd.c builtins/is_builtin.c builtins/echo.c
+SOURCE += builtins/unset.c
 SOURCE += operations/pipe.c
 SOURCE += utils/ft_split_minishell.c
 SOURCE += lexer/tokenizer.c lexer/check_token.c
