@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/24 18:26:26 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:40:22 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,16 @@ int	main(int argc, char **argv, char **envp)
 		{
 			printf("%s\n", tokens->cmd);
 			printf("%d\n", tokens->operation);
+			if (tokens->operation == BUILTIN)
+			{
+				if (tokens->next != NULL && tokens->next->operation == CMD)
+				{
+					execute_builtin(tokens->cmd, tokens->next->cmd, envp);
+					tokens = tokens->next;
+				}
+				else
+					execute_builtin(tokens->cmd, NULL, envp);
+			}
 			tokens = tokens->next;
 		}
 		free_strings((void **)split);
