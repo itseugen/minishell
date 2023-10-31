@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:26:58 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/31 16:59:42 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/10/31 17:01:38 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	execute_cmd(char **cmd, char **envp)
 	if (path == NULL)
 		return (perror("no path"), 1);
 	if (execve(path, cmd, envp) == -1)
-		return (free(path), fprintf(STDERR_FILENO,
-				"minishell: cmd not found: %s", cmd[0]), 1);
+		return (free(path), ft_fprintf(STDERR_FILENO,
+				"minishell: cmd not found: %s\n", cmd[0]), 1);
 	free(path);
 	return (0);
 }
