@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:06 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/19 12:17:09 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/02 17:40:58 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 static int		count_substr(char const *s, char c);
 static int		skip_quotes(char const *s, int i);
 static char		*getstr(char const *s, int *old_i, char c);
+
+//! Go through string and split on pipes/redirects
 
 //! No need to handle unclosed quotes
 //! Add semicolon
