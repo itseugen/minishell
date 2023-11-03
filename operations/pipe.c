@@ -6,9 +6,13 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:11:54 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/16 14:30:35 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/03 17:17:38 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+int	pipe(void *arg1, void *arg2)
+{
+
+}
