@@ -6,7 +6,7 @@
 #    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 13:58:27 by eweiberl          #+#    #+#              #
-#    Updated: 2023/11/05 13:31:17 by eweiberl         ###   ########.fr        #
+#    Updated: 2023/11/05 14:14:53 by eweiberl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ dataraces: CFLAGS += -fsanitize=thread
 dataraces: re
 
 nflag: CFLAGS =
-nflag: re
+nflag: all
 
 debug: CFLAGS += -g -arch x86_64
 debug: re

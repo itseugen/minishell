@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/05 14:11:23 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/05 14:16:28 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ int	main(int argc, char **argv, char **envp)
 		// split = ft_split_minishell(test, ' ');
 		// if (split == NULL)
 		// 	return (1);
-		tokens = get_tokens(split);
+		// tokens = get_tokens(split);
+		tokens = tokenizer(test);
 		while (tokens != NULL)
 		{
 			printf("Command: %s\n", tokens->cmd);
