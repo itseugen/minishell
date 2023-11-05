@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/05 15:20:50 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/05 15:47:59 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ int	main(int argc, char **argv, char **envp)
 			tokens = tokens->next;
 		}
 		// free_strings((void **)split);
-		free_tokens(&tokens);
+		if (tokens != NULL)
+			free_tokens(&tokens);
 	}
 	// if (is_builtin(test, NULL, envp) == true);
 	// 	//do stuff i need to do

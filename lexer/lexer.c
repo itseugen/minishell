@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 13:30:19 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/05 15:24:48 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/05 15:47:11 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,15 @@ static int	add_new(t_token **token_list);
 static char	*get_tok_str(int *old_i, char *input);
 static int	skip_quotes(char const *s, int i);
 
+//* The idea behind it is, to just split the string using my
+//* minishell split. For execve we can then just pass the split
+//* to the execve, same for the builtins (that have to be reworked slightly)
+//* (echo has to split the string itself to print the spaces correctly)
+
+
+/// @brief Splits the input into tokens
+/// @param input 
+/// @return a list of tokens or NULL in case of fail
 t_token	*tokenizer(char *input)
 {
 	t_token	*token_list;
@@ -151,10 +160,11 @@ void	free_tokens(t_token **token_list)
 	if (*token_list == NULL)
 		return ;
 	cur_token = *token_list;
-	while (token_list != NULL)
+	while (cur_token != NULL)
 	{
 		next_token = cur_token->next;
-		free(cur_token->cmd);
+		if (cur_token->cmd != NULL)
+			free(cur_token->cmd);
 		free(cur_token);
 		cur_token = next_token;
 	}
