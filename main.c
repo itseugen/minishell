@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/31 17:00:58 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/05 14:11:23 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,27 @@ int	main(int argc, char **argv, char **envp)
 			add_history(test);
 		if (ft_strncmp(test, "exit", 5) == 0)
 			return (0);
-		split = ft_split_minishell(test, ' ');
-		if (split == NULL)
-			return (1);
+		// split = ft_split_minishell(test, ' ');
+		// if (split == NULL)
+		// 	return (1);
 		tokens = get_tokens(split);
 		while (tokens != NULL)
 		{
-			printf("%s\n", tokens->cmd);
-			printf("%d\n", tokens->operation);
-			if (tokens->operation == BUILTIN)
-			{
-				if (tokens->next != NULL && tokens->next->operation == CMD)
-				{
-					execute_builtin(tokens->cmd, tokens->next->cmd, envp);
-					tokens = tokens->next;
-				}
-				else
-					execute_builtin(tokens->cmd, NULL, envp);
-			}
+			printf("Command: %s\n", tokens->cmd);
+			// printf("%d\n", tokens->operation);
+			// if (tokens->operation == BUILTIN)
+			// {
+			// 	if (tokens->next != NULL && tokens->next->operation == CMD)
+			// 	{
+			// 		execute_builtin(tokens->cmd, tokens->next->cmd, envp);
+			// 		tokens = tokens->next;
+			// 	}
+			// 	else
+			// 		execute_builtin(tokens->cmd, NULL, envp);
+			// }
 			tokens = tokens->next;
 		}
-		free_strings((void **)split);
+		// free_strings((void **)split);
 		free_tokens(&tokens);
 	}
 	// if (is_builtin(test, NULL, envp) == true);

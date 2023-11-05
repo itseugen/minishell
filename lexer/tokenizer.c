@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 16:29:17 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/24 17:52:39 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/05 14:11:32 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,19 +90,19 @@ static int	add_new(t_token **token_list)
 	return (0);
 }
 
-void	free_tokens(t_token **token_list)
-{
-	t_token	*cur_token;
-	t_token	*next_token;
+// void	free_tokens(t_token **token_list)
+// {
+// 	t_token	*cur_token;
+// 	t_token	*next_token;
 
-	if (*token_list == NULL)
-		return ;
-	cur_token = *token_list;
-	while (token_list != NULL)
-	{
-		next_token = cur_token->next;
-		free(cur_token);
-		cur_token = next_token;
-	}
-	*token_list = NULL;
-}
+// 	if (*token_list == NULL)
+// 		return ;
+// 	cur_token = *token_list;
+// 	while (token_list != NULL)
+// 	{
+// 		next_token = cur_token->next;
+// 		free(cur_token);
+// 		cur_token = next_token;
+// 	}
+// 	*token_list = NULL;
+// }

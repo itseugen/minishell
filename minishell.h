@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/03 17:07:34 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/05 14:05:40 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ int		builtin_cd(char *path);
 t_token	*get_tokens(char **split);
 void	free_tokens(t_token **token_list);
 bool	is_redirect(char *cmd);
+
+t_token	*tokenizer(char *input);
 
 /* ************************************************************************** */
 /*                                  Utils                                     */
