@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 13:30:19 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/05 15:47:11 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/05 15:57:33 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ static int	skip_quotes(char const *s, int i);
 //* minishell split. For execve we can then just pass the split
 //* to the execve, same for the builtins (that have to be reworked slightly)
 //* (echo has to split the string itself to print the spaces correctly)
-
+//* For example cd takes a char **, checks if char **[2] == NULL
+//* Fails if it isnt otherwise just executes as usual with
+//* char **[1] (char **[0] should be "cd")
 
 /// @brief Splits the input into tokens
 /// @param input 
