@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 16:29:17 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/05 14:11:32 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/05 14:57:19 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static int	add_new(t_token **token_list);
 static int	assign_tokens(t_token **token_list, char **split);
+
+//! OLD VERSION-> LOOK lexer.c
 
 t_token	*get_tokens(char **split)
 {
