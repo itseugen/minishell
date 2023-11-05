@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 13:30:19 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/05 14:56:14 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/05 15:16:54 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,31 @@ t_token	*tokenizer(char *input)
 	while (input[i] != '\0')
 	{
 		if (add_new(&token_list) == 1)
-			return (printf("exit 0\n"), NULL);
+			return (free_tokens(&token_list), NULL);
 		current = token_list;
 		while (current->next != NULL)
 			current = current->next;
 		current->cmd = get_tok_str(&i, input);
-		printf("Old_i: %d\n", i);
 		if (current->cmd == NULL)
-			return (printf("exit 1\n"), NULL);
+			return (free_tokens(&token_list), NULL);
 		current = current->next;
 	}
+	// assign_id(&token_list);
 	return (token_list);
 }
+
+// void	assign_id(t_token **token_list)
+// {
+// 	t_token	*current;
+
+// 	current = *token_list;
+// 	while (current != NULL)
+// 	{
+// 		if (ft_strncmp(current->cmd, "|", 2) == 0)
+// 			current->operation = PIPE;
+// 		if (current->cmd[0])
+// 	}
+// }
 
 static char	*get_tok_str(int *old_i, char *input)
 {
@@ -47,7 +60,6 @@ static char	*get_tok_str(int *old_i, char *input)
 
 	start = *old_i;
 	i = *old_i;
-	printf("i: %d\n", i);
 	if (input[i] == '|')
 		return ((*old_i)++, ft_strdup("|"));
 	if (input[i] == '<' || input[i] == '>')
@@ -62,6 +74,9 @@ static char	*get_tok_str(int *old_i, char *input)
 	}
 	else
 	{
+		while (input[i] == ' ' && input[i] != '\0')
+			i++;
+		start = i;
 		while (input[i] != '\0' && input[i] != '|'
 			&& input[i] != '<' && input[i] != '>')
 		{
@@ -133,6 +148,7 @@ void	free_tokens(t_token **token_list)
 	while (token_list != NULL)
 	{
 		next_token = cur_token->next;
+		free(cur_token->cmd);
 		free(cur_token);
 		cur_token = next_token;
 	}
