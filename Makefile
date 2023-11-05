@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+         #
+#    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 13:58:27 by eweiberl          #+#    #+#              #
-#    Updated: 2023/11/02 18:03:09 by adhaka           ###   ########.fr        #
+#    Updated: 2023/11/05 13:31:17 by eweiberl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SOURCE += builtins/env.c builtins/pwd.c builtins/cd.c builtins/is_builtin.c buil
 SOURCE += builtins/unset.c
 SOURCE += operations/pipe.c
 SOURCE += utils/ft_split_minishell.c
-SOURCE += lexer/tokenizer.c lexer/check_token.c
+SOURCE += lexer/tokenizer.c lexer/check_token.c lexer/lexer.c
 
 LIBFT_GIT = https://github.com/itseugen/c_library
 LIBFT_DIR = ./libft
