@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/05 14:16:28 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/05 15:20:50 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	main(int argc, char **argv, char **envp)
 		while (tokens != NULL)
 		{
 			printf("Command: %s\n", tokens->cmd);
+			printf("ID: %d\n", tokens->operation);
 			// printf("%d\n", tokens->operation);
 			// if (tokens->operation == BUILTIN)
 			// {

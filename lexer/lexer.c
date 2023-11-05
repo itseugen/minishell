@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 13:30:19 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/05 15:16:54 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/05 15:24:48 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,28 @@ t_token	*tokenizer(char *input)
 			return (free_tokens(&token_list), NULL);
 		current = current->next;
 	}
-	// assign_id(&token_list);
+	assign_id(&token_list);
 	return (token_list);
 }
 
-// void	assign_id(t_token **token_list)
-// {
-// 	t_token	*current;
+void	assign_id(t_token **token_list)
+{
+	t_token	*current;
 
-// 	current = *token_list;
-// 	while (current != NULL)
-// 	{
-// 		if (ft_strncmp(current->cmd, "|", 2) == 0)
-// 			current->operation = PIPE;
-// 		if (current->cmd[0])
-// 	}
-// }
+	current = *token_list;
+	while (current != NULL)
+	{
+		if (current->cmd[0] == '|')
+			current->operation = PIPE;
+		else if (current->cmd[0] == '<' && current->cmd[1] == '<')
+			current->operation = HERE_DOC;
+		else if (current->cmd[0] == '<' || current->cmd[0] == '>')
+			current->operation = REDIRECT;
+		else
+			current->operation = CMD;
+		current = current->next;
+	}
+}
 
 static char	*get_tok_str(int *old_i, char *input)
 {
