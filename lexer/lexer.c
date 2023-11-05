@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 13:30:19 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/05 14:38:23 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/05 14:56:14 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,28 +50,29 @@ static char	*get_tok_str(int *old_i, char *input)
 	printf("i: %d\n", i);
 	if (input[i] == '|')
 		return ((*old_i)++, ft_strdup("|"));
-	if (input[i] == '<')
+	if (input[i] == '<' || input[i] == '>')
 	{
-		if (input[i + 1] == '<')
-			return ((*old_i) += 2, ft_strdup("<<"));
-		return ((*old_i)++, ft_strdup("<"));
-	}
-	if (input[i] == '>')
-	{
-		if (input[i + 1] == '>')
-			return ((*old_i) += 2, ft_strdup(">>"));
-		return ((*old_i)++, ft_strdup(">"));
-	}
-	while (input[i] != '\0' && input[i] != '|'
-		&& input[i] != '<' && input[i] != '>')
-	{
-		i = skip_quotes(input, i);
-		if (i == -1)
-			return (NULL);
 		i++;
+		if (input[i] == '<' || input[i] == '>')
+			i++;
+		while (input[i] == ' ' && input[i] != '\0')
+			i++;
+		while (input[i] != ' ' && input[i] != '\0')
+			i++;
+	}
+	else
+	{
+		while (input[i] != '\0' && input[i] != '|'
+			&& input[i] != '<' && input[i] != '>')
+		{
+			i = skip_quotes(input, i);
+			if (i == -1)
+				return (NULL);
+			i++;
+		}
 	}
 	*old_i = i;
-	return (ft_substr(input, start, i - start - 1));
+	return (ft_substr(input, start, i - start));
 }
 
 static int	skip_quotes(char const *s, int i)
