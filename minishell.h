@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/05 15:25:05 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/06 14:36:55 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ bool	is_builtin(char *str);
 int		execute_builtin(char *str, char *args, char **envp);
 int		builtin_env(char **envp);
 int		builtin_pwd(char **envp);
-int		builtin_cd(char *path);
+// int		builtin_cd(char *path);
+
+int		builtin_cd(char **cmds);
 
 /* ************************************************************************** */
 /*                                  Lexer                                     */
