@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 13:30:19 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/05 15:57:33 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/06 14:46:11 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	assign_id(t_token **token_list)
 			current->operation = HERE_DOC;
 		else if (current->cmd[0] == '<' || current->cmd[0] == '>')
 			current->operation = REDIRECT;
+		else if (current->cmd[0] == ';')
+			current->operation = SEMICOLON;
 		else
 			current->operation = CMD;
 		current = current->next;
@@ -79,6 +81,8 @@ static char	*get_tok_str(int *old_i, char *input)
 	i = *old_i;
 	if (input[i] == '|')
 		return ((*old_i)++, ft_strdup("|"));
+	if (input[i] == ';')
+		return ((*old_i)++, ft_strdup(";"));
 	if (input[i] == '<' || input[i] == '>')
 	{
 		i++;
@@ -94,12 +98,12 @@ static char	*get_tok_str(int *old_i, char *input)
 		while (input[i] == ' ' && input[i] != '\0')
 			i++;
 		start = i;
-		while (input[i] != '\0' && input[i] != '|'
+		while (input[i] != '\0' && input[i] != '|' && input[i] != ';'
 			&& input[i] != '<' && input[i] != '>')
 		{
 			i = skip_quotes(input, i);
 			if (i == -1)
-				return (NULL);
+				return (ft_fprintf(2, "Unclosed quotes: aborting\n"), NULL);
 			i++;
 		}
 	}
