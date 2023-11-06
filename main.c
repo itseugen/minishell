@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/05 15:47:59 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/06 16:21:17 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,23 @@
 
 /*
 !Idea: Pass a pointer to the string returned by readline instead of using split
+/*
+**
+** char **cmd_table[]
+** each index represents a command, the space between means to pipe
+** we use minishell split to split the command, we can then
+** check for </>/>> to pipe to file
+** 
 */
+
+/*
+** For the expander:
+** IDEA: It take a string, checks for expandable variables
+** if it finds any it expands them,
+** frees the old string and returns a new one with the expanded variable
+** else it just returns the old string
+*/
+
 int	main(int argc, char **argv, char **envp)
 {
 	char	*test;
