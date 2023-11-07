@@ -6,13 +6,14 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 14:47:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/07 17:56:06 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/07 20:23:10 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 static char	*expand_var(char *input, int *old_i);
+static int	skip_quotes(char *s, int i);
 
 //* Variables can contain alphanumeric + _
 //* Variables can't start with a number
@@ -24,9 +25,11 @@ static char	*expand_var(char *input, int *old_i);
 /// @return 
 char	*expander(char *arg, char**envp)
 {
-	int	i;
+	int		i;
+	bool	in_quotes;
 
 	i = 0;
+	in_quotes = false;
 	while (arg[i] != '\0')
 	{
 		if (ft_strchr(arg, '$') == NULL)
@@ -40,12 +43,17 @@ char	*expander(char *arg, char**envp)
 			while (ft_isalnum(arg[i]) != 0 || arg[i] == '_')
 				i++;
 		}
-		else if (arg[i] == '\'')
+		else if (arg[i] == '"')
 		{
-			i++;
-			while (arg[i] != '\'' && arg[i] != '\0')
-				i++;
+			if (in_quotes == false)
+				in_quotes = true;
+			else
+				in_quotes = false;
 		}
+		else if (arg[i] == '\'' && in_quotes == false)
+			i = skip_quotes(arg, i);
+		if (i == -1)
+			return (ft_fprintf(2, "malloc fail in expander\n"), NULL);
 		i++;
 	}
 	return (arg);
@@ -88,4 +96,14 @@ static char	*expand_var(char *input, int *old_i)
 		input = ft_strjoin(after_var, input + i);
 		return (free(after_var), free(before_var), input);
 	}
+}
+
+static int	skip_quotes(char *s, int i)
+{
+	i++;
+	while (s[i] != '\'' && s[i] != '\0')
+		i++;
+	if (s[i] == '\0')
+		return (-1);
+	return (i);
 }
