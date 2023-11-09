@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/09 16:32:55 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:10:35 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	main(int argc, char **argv, char **envp)
 		tokens = tokenizer(test);
 		t_print_tokens(tokens);
 		expand_tokens(envp, tokens);
+		assign_id(tokens);
 		printf("Command after expand:\n");
 		t_print_tokens(tokens);
 			// printf("%d\n", tokens->operation);
