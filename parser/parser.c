@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 04:13:05 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/07 04:13:06 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/09 12:11:40 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 // Function prototypes
 t_token *tokenizer(char *input);
 void free_tokens(t_token *token_list);
 void parse(char *input, char **envp);
 
-t_token *tokenizer(char *input)
+t_token	*tokenizer(char *input)
 {
-    t_token *token_list = NULL;
-    t_token *current = NULL;
+	t_token *token_list = NULL;
+	t_token *current = NULL;
 
     // tokenization logic goes here
     // This is a simplified version
