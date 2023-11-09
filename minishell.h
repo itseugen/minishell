@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/09 17:05:01 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:12:25 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int		builtin_cd(char **cmds);
 void	free_tokens(t_token **token_list);
 bool	is_redirect(char *cmd);
 t_token	*tokenizer(char *input);
-void	assign_id(t_token **token_list);
+void	assign_id(t_token *token_list);
 bool	is_builtin(char *cmd);
 
 /* ************************************************************************** */
