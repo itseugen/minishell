@@ -74,25 +74,43 @@ void parse(char *input, char **envp)
 {
     t_token *tokens = tokenizer(input);
 
-    // Your parsing logic goes here
     while (tokens != NULL)
     {
-        // Handle different token types and execute commands accordingly
-        // For simplicity, just printing the content here
+        // Print the command and operation ID
         printf("Command: %s\n", tokens->cmd);
         printf("ID: %d\n", tokens->operation);
 
+        // Expand environment variables in the command
         tokens->cmd = expander(tokens->cmd, envp);
         printf("Command after expand: %s\n", tokens->cmd);
 
         // Execute commands based on token types
+        if (tokens->operation == COMMAND) 
+        {
+            // Replace the following line with the actual command execution logic
+            printf("Executing command: %s\n", tokens->cmd);
+        } 
+        else if (tokens->operation == REDIRECTION_IN) 
+        {
+            // Handle input redirection
+            // Example: freopen(tokens->cmd, "r", stdin);
+            printf("Input redirection: %s\n", tokens->cmd);
+        } 
+        else if (tokens->operation == REDIRECTION_OUT) 
+        {
+            // Handle output redirection
+            // Example: freopen(tokens->cmd, "w", stdout);
+            printf("Output redirection: %s\n", tokens->cmd);
+        }
 
+        // Move to the next token
         tokens = tokens->next;
     }
 
     // Free tokens after parsing
     free_tokens(tokens);
 }
+
 
 // Main function
 int main(int argc, char **argv, char **envp)
