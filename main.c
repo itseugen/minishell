@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/07 16:14:08 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/09 16:32:55 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,16 @@ int	main(int argc, char **argv, char **envp)
 		if (test != NULL && test[0] != '\0')
 			add_history(test);
 		if (ft_strncmp(test, "exit", 5) == 0)
-			return (0);
+			break ;
 		// split = ft_split_minishell(test, ' ');
 		// if (split == NULL)
 		// 	return (1);
 		// tokens = get_tokens(split);
 		tokens = tokenizer(test);
-		while (tokens != NULL)
-		{
-			printf("Command: %s\n", tokens->cmd);
-			printf("ID: %d\n", tokens->operation);
-			tokens->cmd = expander(tokens->cmd, envp);
-			printf("Command after expand: %s\n", tokens->cmd);
+		t_print_tokens(tokens);
+		expand_tokens(envp, tokens);
+		printf("Command after expand:\n");
+		t_print_tokens(tokens);
 			// printf("%d\n", tokens->operation);
 			// if (tokens->operation == BUILTIN)
 			// {
@@ -81,12 +79,14 @@ int	main(int argc, char **argv, char **envp)
 			// 	else
 			// 		execute_builtin(tokens->cmd, NULL, envp);
 			// }
-			tokens = tokens->next;
-		}
 		// free_strings((void **)split);
 		if (tokens != NULL)
 			free_tokens(&tokens);
+			free(test);
 	}
+	free_tokens(&tokens);
+	free(prompt);
+	system("leaks minishell");
 	// if (is_builtin(test, NULL, envp) == true);
 	// 	//do stuff i need to do
 	// else
