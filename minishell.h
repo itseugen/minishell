@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/09 19:58:15 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/09 21:03:04 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 /* ************************************************************************** */
 
 # include "libft/libft.h"
+# include "libmock/mock_functions.h"
 
 # include <stdbool.h>
 # include <stdio.h>

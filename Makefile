@@ -6,7 +6,7 @@
 #    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 13:58:27 by eweiberl          #+#    #+#              #
-#    Updated: 2023/11/09 18:02:38 by eweiberl         ###   ########.fr        #
+#    Updated: 2023/11/09 21:28:43 by eweiberl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 LINKS = -lreadline
 LINKS += -L./libft -lft
+LINKS += -L./libmock -lmock
 
 SOURCE = main.c
 SOURCE += setup/get_prompt.c
@@ -34,6 +35,10 @@ LIBFT_DIR = ./libft
 LIBFT_LIB = libft.a
 LIBFT	  = $(LIBFT_DIR)/$(LIBFT_LIB)
 
+LIBMOCK_DIR = ./libmock
+LIBMOCK_LIB = libmock.a
+LIBMOCK = $(LIBMOCK_DIR)/$(LIBMOCK_LIB)
+
 OBJS = $(SOURCE:.c=.o)
 
 all: $(NAME)
@@ -41,7 +46,7 @@ all: $(NAME)
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(LIBFT) $(OBJS)
+$(NAME): $(LIBFT) $(OBJS) $(LIBMOCK)
 	$(CC) $(CFLAGS) -o $(NAME) $(LIBFT) $(OBJS) $(LINKS)
 
 dataraces: CFLAGS += -fsanitize=thread
@@ -56,12 +61,16 @@ debug: re
 $(LIBFT):
 	git clone $(LIBFT_GIT) $(LIBFT_DIR); make -C $(LIBFT_DIR)
 
+$(LIBMOCK):
+	@cd $(LIBMOCK_DIR); make
+
 libclean:
 	rm -rf $(LIBFT_DIR)
 
 clean:
 	@rm -f $(OBJS)
 	@cd libft && make clean
+	@cd $(LIBMOCK_DIR) && make clean
 
 fclean: clean
 	@rm -f $(NAME)
