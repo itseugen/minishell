@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/09 17:12:25 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/09 18:05:40 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,13 @@ bool	is_redirect(char *cmd);
 t_token	*tokenizer(char *input);
 void	assign_id(t_token *token_list);
 bool	is_builtin(char *cmd);
+
+/* ************************************************************************** */
+/*                                  Parser                                    */
+/* ************************************************************************** */
+
+int		parser(t_token *tokens, char **envp);
+int		executor(int *pipfd, t_token *tokens, char **envp);
 
 /* ************************************************************************** */
 /*                                  Expander                                  */
