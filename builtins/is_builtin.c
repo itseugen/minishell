@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 17:17:58 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/09 16:55:40 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:11:37 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,25 +38,26 @@
 // 	return (true);
 // }
 
-int	execute_builtin(char *str, char *args, char **envp)
-{
-	if (str == NULL)
-		return (1);
-	if (ft_strncmp(str, "cd", 3) == 0)
-		return (builtin_cd(args));
-	// else if (ft_strncmp(str, "echo", 5) == 0)
-	// 	return (builtin_echo(str, args));
-	else if (ft_strncmp(str, "pwd", 4) == 0)
-		return (builtin_pwd(envp));
-	// else if (ft_strncmp(str, "export", 7) == 0)
-	// 	return (builtin_export(envp));
-	// else if (ft_strncmp(str, "unset", 6) == 0)
-	// 	return (builtin_unset(envp));
-	else if (ft_strncmp(str, "env", 4) == 0)
-		return (builtin_env(envp));
-	// else if (ft_strncmp(str, "exit", 5) == 0)
-	// 	return (builtin_exit(envp));
-	else
-		return (1);
-	return (0);
-}
+//! Old function, needs to be redone!!!
+// int	execute_builtin(char *str, char *args, char **envp)
+// {
+// 	if (str == NULL)
+// 		return (1);
+// 	if (ft_strncmp(str, "cd", 3) == 0)
+// 		return (builtin_cd(args));
+// 	// else if (ft_strncmp(str, "echo", 5) == 0)
+// 	// 	return (builtin_echo(str, args));
+// 	else if (ft_strncmp(str, "pwd", 4) == 0)
+// 		return (builtin_pwd(envp));
+// 	// else if (ft_strncmp(str, "export", 7) == 0)
+// 	// 	return (builtin_export(envp));
+// 	// else if (ft_strncmp(str, "unset", 6) == 0)
+// 	// 	return (builtin_unset(envp));
+// 	else if (ft_strncmp(str, "env", 4) == 0)
+// 		return (builtin_env(envp));
+// 	// else if (ft_strncmp(str, "exit", 5) == 0)
+// 	// 	return (builtin_exit(envp));
+// 	else
+// 		return (1);
+// 	return (0);
+// }
