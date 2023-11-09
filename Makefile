@@ -6,7 +6,7 @@
 #    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 13:58:27 by eweiberl          #+#    #+#              #
-#    Updated: 2023/11/07 16:13:11 by eweiberl         ###   ########.fr        #
+#    Updated: 2023/11/09 16:03:41 by eweiberl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SOURCE += builtins/unset.c
 SOURCE += operations/pipe.c
 SOURCE += utils/ft_split_minishell.c
 SOURCE += lexer/check_token.c lexer/lexer.c
-SOURCE += expander/expander.c
+SOURCE += expander/expander.c expander/expand_tokens.c
 
 LIBFT_GIT = https://github.com/itseugen/c_library
 LIBFT_DIR = ./libft
