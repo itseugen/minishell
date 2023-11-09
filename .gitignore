@@ -54,3 +54,4 @@ minishell
 *.txt
 libft
 .DS_Store
+valgrind*
