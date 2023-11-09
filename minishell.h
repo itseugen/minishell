@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/09 16:30:07 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:05:01 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int		execute_cmd(char **cmd, char **envp);
 /*                                builtins                                    */
 /* ************************************************************************** */
 
-bool	is_builtin(char *str);
+// bool	is_builtin(char *str);
 int		execute_builtin(char *str, char *args, char **envp);
 int		builtin_env(char **envp);
 int		builtin_pwd(char **envp);
@@ -86,6 +86,7 @@ void	free_tokens(t_token **token_list);
 bool	is_redirect(char *cmd);
 t_token	*tokenizer(char *input);
 void	assign_id(t_token **token_list);
+bool	is_builtin(char *cmd);
 
 /* ************************************************************************** */
 /*                                  Expander                                  */
