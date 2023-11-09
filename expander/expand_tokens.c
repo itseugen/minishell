@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:02:45 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/09 16:28:39 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/09 16:33:50 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	expand_tokens(char **envp, t_token *tokens)
 	return (0);
 }
 
+/// @brief Prints the token list
+/// @param tokens the list to print
 void	t_print_tokens(t_token *tokens)
 {
 	t_token	*current;
