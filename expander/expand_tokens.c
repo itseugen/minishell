@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:02:45 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/09 16:24:07 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/09 16:28:39 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,16 @@ int	expand_tokens(char **envp, t_token *tokens)
 		current = current->next;
 	}
 	return (0);
+}
+
+void	t_print_tokens(t_token *tokens)
+{
+	t_token	*current;
+
+	current = tokens;
+	while (current != NULL)
+	{
+		printf("Command: %s. ID: %d\n", tokens->cmd, tokens->operation);
+		current = current->next;
+	}
 }

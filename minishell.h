@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/09 16:25:48 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/09 16:30:07 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,14 @@ int		expand_tokens(char **envp, t_token *tokens);
 char	*get_prompt(void);
 char	**ft_split_minishell(char const *s, char c);
 void	free_strings(void **strings);
+
+/* ************************************************************************** */
+/*                               test_fuctions                                */
+/* ************************************************************************** */
+
+/*
+** functions needed for testing purposes, name should start with t_
+*/
+void	t_print_tokens(t_token *tokens);
 
 #endif
