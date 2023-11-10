@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 13:30:19 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/10 01:43:43 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/10 01:46:03 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static int	skip_quotes(char const *s, int i);
 
 /// @brief Splits the input into tokens
 /// @param input the input to split
+/// @throws Fails on unclosed quotes and malloc fails
 /// @return a list of tokens or NULL in case of fail
 t_token	*tokenizer(char *input)
 {

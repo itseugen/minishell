@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 20:18:04 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/09 21:25:00 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/10 01:47:09 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 /// @brief Fails malloc on the FAILTIMEth call
 /// @param size
+/// @throw malloc could still fail
 /// @return NULL on the FAILTIMEth try
 void	*t_malloc(size_t size)
 {
@@ -25,8 +26,9 @@ void	*t_malloc(size_t size)
 }
 
 /// @brief Fails ft_calloc on the FAILTIMEth call
-/// @param nmemb 
-/// @param size 
+/// @param nmemb
+/// @param size
+/// @throw malloc could still fail
 /// @return NULL on the FAILTIMEth call otherwise ft_calloc
 void *t_ft_calloc(size_t nmemb, size_t size)
 {
@@ -38,7 +40,8 @@ void *t_ft_calloc(size_t nmemb, size_t size)
 }
 
 /// @brief Fails pipe on the FAILTIMEth call
-/// @param pipefd 
+/// @param pipefd
+/// @throw pipe could still fail
 /// @return -1 on the FAILTIMEth call otherwise pipe
 int	t_pipe(int pipefd[2])
 {
