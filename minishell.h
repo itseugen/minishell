@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/09 21:03:04 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:44:21 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ bool	is_builtin(char *cmd);
 /* ************************************************************************** */
 
 int		parser(t_token *tokens, char **envp);
-int		executor(int *pipfd, t_token *tokens, char **envp);
+int		executor(t_token *tokens, char **envp);
 
 /* ************************************************************************** */
 /*                                  Expander                                  */
