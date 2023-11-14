@@ -6,7 +6,7 @@
 #    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 13:58:27 by eweiberl          #+#    #+#              #
-#    Updated: 2023/11/14 15:54:59 by eweiberl         ###   ########.fr        #
+#    Updated: 2023/11/14 16:01:41 by eweiberl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SOURCE += utils/ft_split_minishell.c
 SOURCE += lexer/check_token.c lexer/lexer.c
 SOURCE += expander/expander.c expander/expand_tokens.c
 SOURCE += parser/parser_test.c parser/children.c
-SOURCE += environment/env_init.c
+SOURCE += environment/env_init.c environment/env_utils.c
 
 LIBFT_GIT = https://github.com/itseugen/c_library
 LIBFT_DIR = ./libft
