@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:57:07 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/14 17:59:34 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/14 18:02:25 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	add_env_var(char *name, char *value, t_env *env_list);
 
 /// @brief Replaces the value of a variable
-/// @param name the name of the variable to replace
+/// @param name the name of the variable to replace (WITH =)
 /// @param value the new value
 /// @param env_list the list of variables
 /// @return 0 on succes, 1 on malloc fail
@@ -43,6 +43,11 @@ int	replace_env_var(char *name, char *value, t_env *env_list)
 	return (0);
 }
 
+/// @brief Adds the variable to the end of the env list
+/// @param name the name of the variable (with =)
+/// @param value the content of the var
+/// @param env_list the list to add to
+/// @return 1 on malloc fail, otherwise 0
 static int	add_env_var(char *name, char *value, t_env *env_list)
 {
 	t_env	*current;
