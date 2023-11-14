@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/14 17:02:58 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/14 17:13:18 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct s_env
 {
 	char			*var;
 	struct s_env	*next;
-} t_env;
+}	t_env;
 
 /* ************************************************************************** */
 /*                                Functions                                   */
@@ -117,6 +117,7 @@ int		expand_tokens(char **envp, t_token *tokens);
 t_env	*env_init(char **envp);
 void	free_env_struct(t_env **env_list);
 int		env_size(t_env *env_list);
+int		rem_env_var(char *name, t_env **env_list);
 
 /* ************************************************************************** */
 /*                                  Utils                                     */
