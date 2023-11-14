@@ -6,11 +6,13 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:57:07 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/14 17:37:44 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/14 17:59:34 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+static int	add_env_var(char *name, char *value, t_env *env_list);
 
 /// @brief Replaces the value of a variable
 /// @param name the name of the variable to replace
@@ -36,7 +38,28 @@ int	replace_env_var(char *name, char *value, t_env *env_list)
 		}
 		current = current->next;
 	}
-	return (1);
+	if (add_env_var(name, value, env_list) == 1)
+		return (1);
+	return (0);
+}
+
+static int	add_env_var(char *name, char *value, t_env *env_list)
+{
+	t_env	*current;
+	t_env	*new_env;
+
+	new_env = ft_calloc(1, sizeof(t_env));
+	if (new_env == NULL)
+		return (ft_fprintf(2, "Malloc fail in add_env\n"), 1);
+	new_env->next = NULL;
+	new_env->var = ft_strjoin(name, value);
+	if (new_env->var == NULL)
+		return (free(new_env), ft_fprintf(2, "Malloc fail in add_env\n"), 1);
+	current = env_list;
+	while (current->next != NULL)
+		current = current->next;
+	current->next = new_env;
+	return (0);
 }
 
 /// @brief removes an element from the env list

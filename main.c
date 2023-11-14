@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/14 17:37:27 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/14 17:48:55 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(int argc, char **argv, char **envp)
 	env_list = env_init(envp);
 	// t_print_env_struct(env_list);
 	// rem_env_var("GOPATH=", &env_list);
-	replace_env_var("TERM_PROGRAM=", "EUGEN", env_list);
+	replace_env_var("TERM_PROGRA=", "EUGEEEE", env_list);
 	t_print_env_struct(env_list);
 	free_env_struct(&env_list);
 	// while (1)
