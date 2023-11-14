@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/14 14:53:52 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:59:16 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct s_env
 {
 	char			*var;
 	struct s_env	*next;
-}
+} t_env;
 
 /* ************************************************************************** */
 /*                                Functions                                   */
@@ -127,5 +127,6 @@ void	free_strings(void **strings);
 ** functions needed for testing purposes, name should start with t_
 */
 void	t_print_tokens(t_token *tokens);
+void	t_print_env_struct(t_env *environment_list);
 
 #endif
