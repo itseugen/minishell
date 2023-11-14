@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:00:56 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/14 16:24:30 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/14 17:01:49 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,23 @@ void	t_print_env_struct(t_env *environment_list)
 		printf("%s\n", current->var);
 		current = current->next;
 	}
+}
+
+/// @brief Returns the elements in the linked list
+/// @param env_list the list
+/// @throw a listsize > INT_MAX returns incorrect sizes
+/// @return the amount of elements in the list
+int	env_size(t_env *env_list)
+{
+	int		size;
+	t_env	*current;
+
+	current = env_list;
+	size = 0;
+	while (current != NULL)
+	{
+		size++;
+		current = current->next;
+	}
+	return (size);
 }
