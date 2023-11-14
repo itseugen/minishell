@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:00:56 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/14 16:11:37 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:24:30 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	free_env_struct(t_env **env_list)
 	t_env	*next_env;
 
 	if (*env_list == NULL)
-		return (NULL);
+		return ;
 	cur_env = *env_list;
 	while (cur_env != NULL)
 	{
