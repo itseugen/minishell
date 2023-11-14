@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/13 15:44:21 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/14 14:53:52 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,12 @@ typedef struct s_token
 	struct s_token	*next;
 	struct s_token	*prev;
 }	t_token;
+
+typedef struct s_env
+{
+	char			*var;
+	struct s_env	*next;
+}
 
 /* ************************************************************************** */
 /*                                Functions                                   */
