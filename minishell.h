@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/14 15:59:16 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:21:14 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,12 @@ int		executor(t_token *tokens, char **envp);
 
 char	*expander(char *arg, char**envp);
 int		expand_tokens(char **envp, t_token *tokens);
+
+/* ************************************************************************** */
+/*                                 Environment                                */
+/* ************************************************************************** */
+t_env	*env_init(char **envp);
+void	free_env_struct(t_env **env_list);
 
 /* ************************************************************************** */
 /*                                  Utils                                     */
