@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/13 14:34:17 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:46:39 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,49 +47,53 @@ int	main(int argc, char **argv, char **envp)
 	char	*prompt;
 	t_token	*tokens;
 	char	**split;
+	t_env	*env_list;
 
 	(void)argc;
 	(void)argv;
-	while (1)
-	{
-		prompt = get_prompt();
-		test = readline(prompt);
-		// Split test or whatever its called with minishellsplit, tokenize, execute after
-		if (test != NULL && test[0] != '\0')
-			add_history(test);
-		if (ft_strncmp(test, "exit", 5) == 0)
-			break ;
-		// split = ft_split_minishell(test, ' ');
-		// if (split == NULL)
-		// 	return (1);
-		// tokens = get_tokens(split);
-		tokens = tokenizer(test);
-		t_print_tokens(tokens);
-		assign_id(tokens);
-		// ! ID should happen before expansion since expanded Values should NOT be executed
-		expand_tokens(envp, tokens);
-		printf("Command after expand:\n");
-		t_print_tokens(tokens);
-		parser(tokens, envp);
-			// printf("%d\n", tokens->operation);
-			// if (tokens->operation == BUILTIN)
-			// {
-			// 	if (tokens->next != NULL && tokens->next->operation == CMD)
-			// 	{
-			// 		execute_builtin(tokens->cmd, tokens->next->cmd, envp);
-			// 		tokens = tokens->next;
-			// 	}
-			// 	else
-			// 		execute_builtin(tokens->cmd, NULL, envp);
-			// }
-		// free_strings((void **)split);
-		if (tokens != NULL)
-			free_tokens(&tokens);
-			free(test);
-	}
-	free_tokens(&tokens);
-	free(prompt);
-	system("leaks minishell");
+	env_list = env_init(envp);
+	t_print_env_struct(env_list);
+	free_env_struct(&env_list);
+	// while (1)
+	// {
+	// 	prompt = get_prompt();
+	// 	test = readline(prompt);
+	// 	// Split test or whatever its called with minishellsplit, tokenize, execute after
+	// 	if (test != NULL && test[0] != '\0')
+	// 		add_history(test);
+	// 	if (ft_strncmp(test, "exit", 5) == 0)
+	// 		break ;
+	// 	// split = ft_split_minishell(test, ' ');
+	// 	// if (split == NULL)
+	// 	// 	return (1);
+	// 	// tokens = get_tokens(split);
+	// 	tokens = tokenizer(test);
+	// 	t_print_tokens(tokens);
+	// 	assign_id(tokens);
+	// 	// ! ID should happen before expansion since expanded Values should NOT be executed
+	// 	expand_tokens(envp, tokens);
+	// 	printf("Command after expand:\n");
+	// 	t_print_tokens(tokens);
+	// 	parser(tokens, envp);
+	// 		// printf("%d\n", tokens->operation);
+	// 		// if (tokens->operation == BUILTIN)
+	// 		// {
+	// 		// 	if (tokens->next != NULL && tokens->next->operation == CMD)
+	// 		// 	{
+	// 		// 		execute_builtin(tokens->cmd, tokens->next->cmd, envp);
+	// 		// 		tokens = tokens->next;
+	// 		// 	}
+	// 		// 	else
+	// 		// 		execute_builtin(tokens->cmd, NULL, envp);
+	// 		// }
+	// 	// free_strings((void **)split);
+	// 	if (tokens != NULL)
+	// 		free_tokens(&tokens);
+	// 		free(test);
+	// }
+	// free_tokens(&tokens);
+	// free(prompt);
+
 	// if (is_builtin(test, NULL, envp) == true);
 	// 	//do stuff i need to do
 	// else
