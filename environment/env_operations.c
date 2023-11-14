@@ -6,13 +6,38 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:57:07 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/14 18:02:25 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:07:18 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 static int	add_env_var(char *name, char *value, t_env *env_list);
+
+/// @brief Like getenv for the t_env struct
+/// @param name the variable to look for (without the =)
+/// @param env_list the list to look in
+/// @return A pointer to the variable if existent (DO NOT FREE), NULL
+char	*get_env_var(char *name, t_env *env_list)
+{
+	t_env	*current;
+	char	*full_name;
+	size_t	name_len;
+
+	current = env_list;
+	full_name = ft_strjoin(name, "=");
+	if (full_name == NULL)
+		return (ft_fprintf(2, "Malloc fail in get_env_var\n"), NULL);
+	name_len = ft_strlen(full_name);
+	while (current != NULL)
+	{
+		if (ft_strncmp(full_name, current->var, name_len) == 0)
+			return (free(full_name), current->var + name_len);
+		current = current->next;
+	}
+	free(full_name);
+	return (NULL);
+}
 
 /// @brief Replaces the value of a variable
 /// @param name the name of the variable to replace (WITH =)
