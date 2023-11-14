@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/14 17:35:09 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/14 17:36:25 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ t_env	*env_init(char **envp);
 void	free_env_struct(t_env **env_list);
 int		env_size(t_env *env_list);
 int		rem_env_var(char *name, t_env **env_list);
-int		replace_env_var(char *name, char *value, t_env *env_list),
+int		replace_env_var(char *name, char *value, t_env *env_list);
 
 /* ************************************************************************** */
 /*                                  Utils                                     */

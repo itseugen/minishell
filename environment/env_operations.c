@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:57:07 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/14 17:34:47 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/14 17:37:44 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ int	replace_env_var(char *name, char *value, t_env *env_list)
 			free(current->var);
 			current->var = ft_strjoin(name, value);
 			if (current->var == NULL)
-				return (ft_fprintf(2, "Malloc fail in replace_env\n"), 1)
+				return (ft_fprintf(2, "Malloc fail in replace_env\n"), 1);
 			return (0);
 		}
 		current = current->next;
 	}
-	return (1)
+	return (1);
 }
 
 /// @brief removes an element from the env list
