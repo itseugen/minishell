@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:23:40 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/15 17:20:40 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:23:49 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	builtin_echo(char **split, char *str)
 	if (split[1] == NULL)
 		return (write(1, "\n", 1), 0);
 	i_str = skip_whitespaces(str, 4);
-	if (ft_strncmp(str + i_str, "-n ", 3) == 0 || ft_strncmp(str + i_str, "-n", 3) == 0)
+	if (!ft_strncmp(str + i_str, "-n ", 3) || !ft_strncmp(str + i_str, "-n", 3))
 		i_str = i_str + 3;
 	output = ft_calloc(ft_strlen(str) + 2 - i_str, sizeof(char));
 	if (output == NULL)
