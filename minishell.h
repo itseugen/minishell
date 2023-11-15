@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/15 15:50:41 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:08:35 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int		execute_builtin(char *str, char *args, char **envp);
 int		builtin_env(t_env *env_list);
 int		builtin_pwd(t_env *env_list);
 int		builtin_cd(char **cmds, t_env *env_list);
+int		builtin_echo(char **split, char *str);
 
 /* ************************************************************************** */
 /*                                  Lexer                                     */
@@ -126,6 +127,8 @@ char	*get_env_var(char *name, t_env *env_list);
 char	*get_prompt(void);
 char	**ft_split_minishell(char const *s, char c);
 void	free_strings(void **strings);
+int		ft_is_blank(char c);
+int		ft_is_quote(char c);
 
 /* ************************************************************************** */
 /*                               test_fuctions                                */
