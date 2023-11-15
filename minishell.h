@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/15 15:29:32 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:50:41 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,8 @@ int		execute_cmd(char **cmd, char **envp);
 
 // bool	is_builtin(char *str);
 int		execute_builtin(char *str, char *args, char **envp);
-int		builtin_env(char **envp);
+int		builtin_env(t_env *env_list);
 int		builtin_pwd(t_env *env_list);
-// int		builtin_cd(char *path);
-
 int		builtin_cd(char **cmds, t_env *env_list);
 
 /* ************************************************************************** */
