@@ -6,41 +6,17 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:46:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/15 15:36:03 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:55:02 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// int	builtin_cd(char **cmds, t_env *env_list)
-// {
-// 	int		ret;
-// 	char	*home_dir;
-
-// 	if (cmds[0] == NULL)
-// 		return (1);
-// 	if (cmds[1] == NULL || ft_strncmp(cmds[1], "~", 2) == 0)
-// 	{
-// 		home_dir = get_env_var("HOME", env_list);
-// 		if (home_dir == NULL)
-// 			return (perror("HOME variable not set"), 1);
-// 		ret = chdir(home_dir);
-// 	}
-// 	else if (cmds[2] != NULL)
-// 	{
-// 		ft_fprintf(2, "CD: too many arguments!\n");
-// 		return (1);
-// 	}
-// 	else
-// 		ret = chdir(cmds[1]);
-// 	return (ret);
-// }
-
-/// @brief 
-/// @param cmds 
-/// @param env_list 
+/// @brief Changes the directory and updates OLDPWD and PWD
+/// @param cmds the arguments to cd
+/// @param env_list the environment list
 /// @throw Could segfault if PWD doesnt exist
-/// @return 
+/// @return 0 on succes, 1 on malloc fail or wrong command
 int	builtin_cd(char **cmds, t_env *env_list)
 {
 	char	*path;

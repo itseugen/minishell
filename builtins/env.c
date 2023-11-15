@@ -6,12 +6,15 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 17:23:40 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/15 15:50:04 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:53:49 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+/// @brief Prints the entire env list
+/// @param env_list the list to print
+/// @return 0 on success, 1 if list is empty
 int	builtin_env(t_env *env_list)
 {
 	t_env	*current;
