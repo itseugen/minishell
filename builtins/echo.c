@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:23:40 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/15 17:23:49 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:26:14 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 static int	skip_whitespaces(char *str, int i);
 static char	*copy_quotes(char *str, char *output, int *i_str, int *i_output);
-// int	builtin_echo(char)
-//! For echo: go through original string
-//!(from after "echo " till you find a pipe or sum that would stop echo)
-//!Use write as printf buffer managment causes issues
 
 /// @brief Prints the input str
 /// @param split the splitted string
@@ -83,6 +79,11 @@ static char	*copy_quotes(char *str, char *output, int *i_str, int *i_output)
 	return (output);
 }
 
+/// @brief Skips the whitespaces
+/// @param str the string to skip in
+/// @param i the position in string
+/// @throw isnt NULL protected
+/// @return the first non whitespace position after i
 static int	skip_whitespaces(char *str, int i)
 {
 	while (str[i] != '\0' && (str[i] == ' ' || str[i] == '\t'))
