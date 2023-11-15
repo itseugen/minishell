@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:46:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/15 15:29:18 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:36:03 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	builtin_cd(char **cmds, t_env *env_list)
 	chdir(path);
 	new_pwd = getcwd(NULL, 0);
 	if (replace_env_var("PWD=", new_pwd, env_list) == 1)
-		return (1);
+		return (free(new_pwd), 1);
+	free(new_pwd);
 	return (0);
 }
