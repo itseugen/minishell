@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/15 15:52:17 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:23:47 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int	main(int argc, char **argv, char **envp)
 			builtin_pwd(env_list);
 		if (ft_strncmp(split[0], "env", 4) == 0)
 			builtin_env(env_list);
+		if (ft_strncmp(split[0], "echo", 5) == 0)
+			builtin_echo(split, test);
 		free(prompt);
 		free_strings((void **)split);
 		free(test);
