@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:23:40 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/15 17:07:54 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:20:40 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,11 @@ int	builtin_echo(char **split, char *str)
 	while (str[i_str] != '\0')
 	{
 		i_str = skip_whitespaces(str, i_str);
-		while (str[i_str] != '\0' && (str[i_str] != '\'' && str[i_str] != '"'))
+		while (str[i_str] && !ft_isblank(str[i_str]) && !ft_isquote(str[i_str]))
 			output[i_output++] = str[i_str++];
-		if (str[i_str] != '\0' && (str[i_str] == '\'' || str[i_str] == '"'))
+		if (str[i_str] && ft_isblank(str[i_str]) == 1)
+			output[i_output++] = str[i_str++];
+		if (str[i_str] != '\0' && ft_isquote(str[i_str]) != 0)
 			output = copy_quotes(str, output, &i_str, &i_output);
 	}
 	write(1, output, ft_strlen(output));
