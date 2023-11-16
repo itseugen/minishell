@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/15 16:23:47 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/16 11:50:18 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ the delimiter is seen. However, it doesn’t have to update the history!
 ! ◦ ctrl-\ does nothing.
 
 • Your shell must implement the following builtins:
-! ◦ echo with option -n
+* DONE ◦ echo with option -n
 * DONE ◦ cd with only a relative or absolute path (Doesnt set PATH-Var)
 * DONE ◦ pwd with no options
 ! ◦ export with no options
