@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:06 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/02 17:40:58 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/16 11:55:05 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	**ft_split_minishell(char const *s, char c)
 	substr_fnd = 0;
 	substr_ctr = count_substr(s, c);
 	if (substr_ctr == -1)
-		return (NULL); //! handle unfinished quotes later
+		return (NULL);
 	strings = (char **)ft_calloc(substr_ctr + 1, sizeof(char *));
 	if (strings == NULL)
 		return (NULL);
