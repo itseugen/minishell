@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:06 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/16 13:38:29 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:21:01 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ char	**ft_split_minishell2(char const *s, char c)
 	i = 0;
 	substr_fnd = 0;
 	substr_ctr = count_substr(s, c);
+	printf("%d\n", substr_ctr);
 	if (substr_ctr == -1)
 		return (NULL);
 	strings = (char **)ft_calloc(substr_ctr + 1, sizeof(char *));
@@ -64,6 +65,8 @@ static char	*getstr(char const *s, int *old_i, char c)
 		{
 			i = skip_quotes(s, i);
 			i++;
+			while (s[i] != '\0' && s[i] != c && s[i] != '"' && s[i] != '\'')
+				i++;
 		}
 	}
 	while (s[i] != c && s[i] != '\0')
@@ -92,14 +95,14 @@ static int	count_substr(char const *s, char c)
 			i++;
 		if (s[i] != '\0')
 			ctr++;
-		if (s[i] != '\0' && (s[i] == '"' || s[i] == '\''))
-			i = skip_quotes(s, i);
-		while ((s[i + 1] == '\'' || s[i + 1] == '"') && i != -1)
-			i = skip_quotes(s, i + 1);
-		if (i == -1)
-			return (-1);
 		while (s[i] != c && s[i] != '\0')
+		{
+			if (s[i] != '\0' && (s[i] == '"' || s[i] == '\''))
+				i = skip_quotes(s, i);
+			if (i == -1)
+				return (-1);
 			i++;
+		}
 	}
 	return (ctr);
 }
