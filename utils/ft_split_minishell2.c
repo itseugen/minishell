@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_minishell.c                               :+:      :+:    :+:   */
+/*   ft_split_minishell2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:06 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/16 11:55:05 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/16 12:56:57 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,11 @@ static int		count_substr(char const *s, char c);
 static int		skip_quotes(char const *s, int i);
 static char		*getstr(char const *s, int *old_i, char c);
 
-//! Go through string and split on pipes/redirects
-
-//! No need to handle unclosed quotes
-//! Add semicolon
 /// @brief Split for minishell
 /// @param s 
 /// @param c just if needed, should always be space
 /// @return array of split commands or NULL
-char	**ft_split_minishell(char const *s, char c)
+char	**ft_split_minishell2(char const *s, char c)
 {
 	int		substr_ctr;
 	char	**strings;
@@ -64,8 +60,11 @@ static char	*getstr(char const *s, int *old_i, char c)
 	start = i;
 	if (s[i] != '\0' && (s[i] == '"' || s[i] == '\''))
 	{
-		i = skip_quotes(s, i);
-		i++;
+		while (s[i] != '\0' && (s[i] == '"' || s[i] == '\''))
+		{
+			i = skip_quotes(s, i);
+			i++;
+		}
 	}
 	else
 	{
@@ -98,10 +97,10 @@ static int	count_substr(char const *s, char c)
 			ctr++;
 		if (s[i] != '\0' && (s[i] == '"' || s[i] == '\''))
 			i = skip_quotes(s, i);
-		while ((s[i + 1] == '\'' || s[i + 1] == '"') && i != -1 && ctr++)
+		while ((s[i + 1] == '\'' || s[i + 1] == '"') && i != -1)
 			i = skip_quotes(s, i + 1);
 		if (i == -1)
-			return (-1); //!handle finishing the quote later (maybe call strjoin on this and the next line)
+			return (-1);
 		while (s[i] != c && s[i] != '\0')
 			i++;
 	}
@@ -125,17 +124,4 @@ static int	skip_quotes(char const *s, int i)
 	if (s[i] == '\0')
 		return (-1);
 	return (i);
-}
-
-void	free_strings(void **strings)
-{
-	size_t	i;
-
-	i = 0;
-	while (strings[i] != NULL)
-	{
-		free(strings[i]);
-		i++;
-	}
-	free(strings);
 }

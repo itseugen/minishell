@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/16 11:50:18 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/16 12:40:41 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,24 +56,46 @@ int	main(int argc, char **argv, char **envp)
 	// rem_env_var("GOPATH=", &env_list);
 	// t_print_env_struct(env_list);
 	// printf("%s\n", get_env_var("PWD", env_list));
+	// while (1)
+	// {
+	// 	prompt = get_prompt();
+	// 	test = readline(prompt);
+	// 	if (test != NULL && test[0] != '\0')
+	// 		add_history(test);
+	// 	split = ft_split_minishell(test, ' ');
+	// 	if (ft_strncmp(split[0], "cd", 3) == 0)
+	// 		builtin_cd(split, env_list);
+	// 	if (ft_strncmp(split[0], "pwd", 4) == 0)
+	// 		builtin_pwd(env_list);
+	// 	if (ft_strncmp(split[0], "env", 4) == 0)
+	// 		builtin_env(env_list);
+	// 	if (ft_strncmp(split[0], "echo", 5) == 0)
+	// 		builtin_echo(split, test);
+	// 	free(prompt);
+	// 	free_strings((void **)split);
+	// 	free(test);
+	// }
 	while (1)
 	{
 		prompt = get_prompt();
 		test = readline(prompt);
 		if (test != NULL && test[0] != '\0')
 			add_history(test);
-		split = ft_split_minishell(test, ' ');
-		if (ft_strncmp(split[0], "cd", 3) == 0)
-			builtin_cd(split, env_list);
-		if (ft_strncmp(split[0], "pwd", 4) == 0)
-			builtin_pwd(env_list);
-		if (ft_strncmp(split[0], "env", 4) == 0)
-			builtin_env(env_list);
-		if (ft_strncmp(split[0], "echo", 5) == 0)
-			builtin_echo(split, test);
-		free(prompt);
+		split = ft_split_minishell2(test, ' ');
+		int	i = 0;
+		while (split[i] != NULL)
+		{
+			printf("%s\n", split[i]);
+			i++;
+		}
+		i = 0;
+		rem_quotes(split);
+		while (split[i] != NULL)
+		{
+			printf("%s\n", split[i]);
+			i++;
+		}
 		free_strings((void **)split);
-		free(test);
 	}
 	free_env_struct(&env_list);
 	// while (1)
