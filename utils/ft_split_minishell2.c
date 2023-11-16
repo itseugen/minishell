@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:06 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/16 12:56:57 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/16 13:38:29 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,8 @@ static char	*getstr(char const *s, int *old_i, char c)
 			i++;
 		}
 	}
-	else
-	{
-		while (s[i] != c && s[i] != '\0')
-			i++;
-	}
+	while (s[i] != c && s[i] != '\0')
+		i++;
 	str = ft_substr(s, start, (i - start));
 	*old_i = i;
 	return (str);
