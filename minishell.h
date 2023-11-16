@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/15 17:11:04 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:13:47 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include "parser/parser.h"
 
 /* ************************************************************************** */
 /*                            Defines & enums                                 */
@@ -68,6 +69,11 @@ typedef struct s_env
 	char			*var;
 	struct s_env	*next;
 }	t_env;
+
+typedef struct s_mshell
+{
+	t_node	*ast;
+}	t_mshell;
 
 /* ************************************************************************** */
 /*                                Functions                                   */
