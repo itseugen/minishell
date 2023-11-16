@@ -6,7 +6,11 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/11/16 14:13:47 by adhaka           ###   ########.fr       */
+=======
+/*   Updated: 2023/11/16 12:36:13 by eweiberl         ###   ########.fr       */
+>>>>>>> 3e629ffc833ea3d76db592e4a4ee0b6b292980cc
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,10 +136,11 @@ char	*get_env_var(char *name, t_env *env_list);
 
 char	*get_prompt(void);
 char	**ft_split_minishell(char const *s, char c);
+char	**ft_split_minishell2(char const *s, char c);
 void	free_strings(void **strings);
 int		ft_isblank(char c);
 int		ft_isquote(char c);
-
+int		rem_quotes(char **split);
 /* ************************************************************************** */
 /*                               test_fuctions                                */
 /* ************************************************************************** */
