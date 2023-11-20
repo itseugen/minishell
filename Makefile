@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
+#    By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 13:58:27 by eweiberl          #+#    #+#              #
-#    Updated: 2023/11/16 14:12:58 by eweiberl         ###   ########.fr        #
+#    Updated: 2023/11/19 16:00:44 by adhaka           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ $(NAME): $(LIBFT) $(OBJS) $(LIBMOCK)
 dataraces: CFLAGS += -fsanitize=thread
 dataraces: re
 
-nflag: CFLAGS = 
+nflag: CFLAGS =
 nflag: all
 
 debug: CFLAGS += -g -arch x86_64

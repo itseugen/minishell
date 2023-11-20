@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:54:28 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/14 16:45:44 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/18 14:35:12 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_env	*env_init(char **envp)
 	int		i;
 	t_env	*env_list;
 	t_env	*current;
+
 	if (envp == NULL || envp[0] == NULL)
 		return (NULL);
 	i = 1;
