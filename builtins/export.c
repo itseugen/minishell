@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:45:39 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/20 13:50:24 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/20 16:21:02 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static void	print_export(t_env *env_list);
 static int	check_name(char *str);
 
-/// @brief adds a variable to the env list
-/// @param split
-/// @param env_list
-/// @return 
+/// @brief adds a variable to the env list or overwrites existing variable
+/// @param split the arguments
+/// @param env_list the env list
+/// @return 0 on success, 1 on fail
 int	builtin_export(char **split, t_env *env_list)
 {
 	char	*name;
@@ -69,7 +69,7 @@ static int	check_name(char *str)
 	int	i;
 
 	i = 1;
-	if (ft_isalpha(str[0]) == 0)
+	if (ft_isalpha(str[0]) == 0 && str[0] != '_')
 		return (ft_fprintf(2, "'%s': Not a valid identifier\n", str), 1);
 	while (str[i] != '=' && str[i] != '\0')
 	{
