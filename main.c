@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/19 16:00:52 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/20 12:23:11 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,100 +52,32 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	env_list = env_init(envp);
-	// t_print_env_struct(env_list);
-	// rem_env_var("GOPATH=", &env_list);
-	// t_print_env_struct(env_list);
-	// printf("%s\n", get_env_var("PWD", env_list));
-	// while (1)
-	// {
-	// 	prompt = get_prompt();
-	// 	test = readline(prompt);
-	// 	if (test != NULL && test[0] != '\0')
-	// 		add_history(test);
-	// 	split = ft_split_minishell(test, ' ');
-	// 	if (ft_strncmp(split[0], "cd", 3) == 0)
-	// 		builtin_cd(split, env_list);
-	// 	if (ft_strncmp(split[0], "pwd", 4) == 0)
-	// 		builtin_pwd(env_list);
-	// 	if (ft_strncmp(split[0], "env", 4) == 0)
-	// 		builtin_env(env_list);
-	// 	if (ft_strncmp(split[0], "echo", 5) == 0)
-	// 		builtin_echo(split, test);
-	// 	free(prompt);
-	// 	free_strings((void **)split);
-	// 	free(test);
-	// }
 	while (1)
 	{
 		prompt = get_prompt();
 		test = readline(prompt);
+		// Split test or whatever its called with minishellsplit, tokenize, execute after
 		if (test != NULL && test[0] != '\0')
 			add_history(test);
-		split = ft_split_minishell2(test, ' ');
-		int	i = 0;
-		while (split[i] != NULL)
-		{
-			printf("%s\n", split[i]);
-			i++;
-		}
-		i = 0;
-		rem_quotes(split);
-		while (split[i] != NULL)
-		{
-			printf("%s\n", split[i]);
-			i++;
-		}
-		free_strings((void **)split);
+		tokens = tokenizer(test);
+		if (tokens == NULL)
+			printf("Error\n");
+		// t_print_tokens(tokens);
+		assign_id(tokens);
+		expand_tokens(envp, tokens);
+		// printf("Command after expand:\n");
+		// t_print_tokens(tokens);
+		if (tokens != NULL)
+			free_tokens(&tokens);
+		free(test);
+		//! now call parser
+		//! use ft_split_minishell2
+		//! use rem_quotes after
+		free(prompt);
 	}
+	free_tokens(&tokens);
+	free(prompt);
 	free_env_struct(&env_list);
-	// while (1)
-	// {
-	// 	prompt = get_prompt();
-	// 	test = readline(prompt);
-	// 	// Split test or whatever its called with minishellsplit, tokenize, execute after
-	// 	if (test != NULL && test[0] != '\0')
-	// 		add_history(test);
-	// 	if (ft_strncmp(test, "exit", 5) == 0)
-	// 		break ;
-	// 	// split = ft_split_minishell(test, ' ');
-	// 	// if (split == NULL)
-	// 	// 	return (1);
-	// 	// tokens = get_tokens(split);
-	// 	tokens = tokenizer(test);
-	// 	t_print_tokens(tokens);
-	// 	assign_id(tokens);
-	// 	// ! ID should happen before expansion since expanded Values should NOT be executed
-	// 	expand_tokens(envp, tokens);
-	// 	printf("Command after expand:\n");
-	// 	t_print_tokens(tokens);
-	// 	parser(tokens, envp);
-	// 		// printf("%d\n", tokens->operation);
-	// 		// if (tokens->operation == BUILTIN)
-	// 		// {
-	// 		// 	if (tokens->next != NULL && tokens->next->operation == CMD)
-	// 		// 	{
-	// 		// 		execute_builtin(tokens->cmd, tokens->next->cmd, envp);
-	// 		// 		tokens = tokens->next;
-	// 		// 	}
-	// 		// 	else
-	// 		// 		execute_builtin(tokens->cmd, NULL, envp);
-	// 		// }
-	// 	// free_strings((void **)split);
-	// 	if (tokens != NULL)
-	// 		free_tokens(&tokens);
-	// 		free(test);
-	// }
-	// free_tokens(&tokens);
-	// free(prompt);
-
-	// if (is_builtin(test, NULL, envp) == true);
-	// 	//do stuff i need to do
-	// else
-	// {
-	// 	execute_cmd(ft_split(test, ' '), envp);
-	// 	free(prompt);
-	// 	free(test);
-	// }
 	// system("leaks minishell");
 	return (0);
 }
