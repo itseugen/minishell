@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/20 12:23:11 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/20 13:27:43 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,23 +59,23 @@ int	main(int argc, char **argv, char **envp)
 		// Split test or whatever its called with minishellsplit, tokenize, execute after
 		if (test != NULL && test[0] != '\0')
 			add_history(test);
-		tokens = tokenizer(test);
-		if (tokens == NULL)
-			printf("Error\n");
-		// t_print_tokens(tokens);
-		assign_id(tokens);
-		expand_tokens(envp, tokens);
-		// printf("Command after expand:\n");
-		// t_print_tokens(tokens);
-		if (tokens != NULL)
-			free_tokens(&tokens);
+		builtin_export(ft_split_minishell2(test, ' '), env_list);
+		// tokens = tokenizer(test);
+		// if (tokens == NULL)
+		// 	printf("Error\n");
+		// // t_print_tokens(tokens);
+		// assign_id(tokens);
+		// expand_tokens(envp, tokens);
+		// // printf("Command after expand:\n");
+		// // t_print_tokens(tokens);
+		// if (tokens != NULL)
+		// 	free_tokens(&tokens);
 		free(test);
 		//! now call parser
 		//! use ft_split_minishell2
 		//! use rem_quotes after
 		free(prompt);
 	}
-	free_tokens(&tokens);
 	free(prompt);
 	free_env_struct(&env_list);
 	// system("leaks minishell");
