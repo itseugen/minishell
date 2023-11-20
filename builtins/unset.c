@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 18:05:18 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/20 16:46:12 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/20 16:50:19 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ int	builtin_unset(char **split, t_env *env_list)
 		}
 		name = ft_strjoin(split[i], "=");
 		if (name == NULL)
+		{
 			ft_fprintf(2, "unset: malloc fail\n");
+			continue ;
+		}
 		rem_env_var(name, &env_list);
 		if (name != NULL)
 			free(name);
