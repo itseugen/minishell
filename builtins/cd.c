@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:46:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/20 13:56:52 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/20 13:59:03 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	builtin_cd(char **cmds, t_env *env_list)
 	if (get_env_var("PWD", env_list) == NULL)
 		return (0);
 	new_pwd = getcwd(NULL, 0);
+	if (new_pwd == NULL)
+		return (ft_fprintf(2, "cd: getcwd fail\n"), 1);
 	if (replace_env_var("PWD=", new_pwd, env_list) == 1)
 		return (free(new_pwd), 1);
 	free(new_pwd);
