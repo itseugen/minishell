@@ -6,11 +6,13 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:46:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/15 15:55:02 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/20 13:20:09 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+//! CHANGE SO IT WORKS WITH PWD UNSET. IT SHOULD ONLY CHANGE PWD/OLDPWD IF THEY EXIST
 
 /// @brief Changes the directory and updates OLDPWD and PWD
 /// @param cmds the arguments to cd

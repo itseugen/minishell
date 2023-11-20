@@ -6,11 +6,13 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 17:35:08 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/15 15:56:06 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/20 13:18:42 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+//! CHANGE USING GETCWD, PWD HAS TO WORK WITH PWD UNSER
 
 /// @brief Prints the current working directory
 /// @param env_list the environment list
