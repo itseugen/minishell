@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:45:39 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/20 13:30:17 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/20 13:45:07 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	builtin_export(char **split, t_env *env_list)
 	if (name == NULL)
 		return (ft_fprintf(2, "Malloc fail in builtin export\n"), 1);
 	ft_strlcpy(name, split[1], i + 2);
-	printf("%s\n", name);
+	if (replace_env_var(name, split[1] + i + 1, env_list) == 1)
+		return (free(name), 1);
 	return (free(name), 0);
 }
 
