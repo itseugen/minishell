@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:57:07 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/14 19:07:18 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/20 16:44:42 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int	rem_env_var(char *name, t_env **env_list)
 	size_t	name_len;
 
 	name_len = ft_strlen(name);
+	current = *env_list;
 	if (ft_strncmp(name, current->var, name_len) == 0)
 	{
 		*env_list = current->next;
