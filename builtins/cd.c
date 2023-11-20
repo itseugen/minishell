@@ -6,13 +6,13 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:46:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/20 14:00:14 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/20 14:02:04 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-//! CHANGE SO IT WORKS WITH PWD UNSET. IT SHOULD ONLY CHANGE PWD/OLDPWD IF THEY EXIST
+//! Think if we should continue the cd if setting of a env fails
 
 static int	set_oldpwd(t_env *env_list);
 
