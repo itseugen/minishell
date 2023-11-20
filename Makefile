@@ -6,7 +6,7 @@
 #    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 13:58:27 by eweiberl          #+#    #+#              #
-#    Updated: 2023/11/20 12:45:33 by eweiberl         ###   ########.fr        #
+#    Updated: 2023/11/20 16:30:18 by eweiberl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,9 +50,6 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS) $(LIBMOCK)
 	$(CC) $(CFLAGS) -o $(NAME) $(LIBFT) $(OBJS) $(LINKS)
-
-dataraces: CFLAGS += -fsanitize=thread
-dataraces: re
 
 nflag: CFLAGS =
 nflag: all
