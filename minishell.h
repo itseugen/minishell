@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/16 13:50:45 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/20 13:27:15 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int		builtin_env(t_env *env_list);
 int		builtin_pwd(t_env *env_list);
 int		builtin_cd(char **cmds, t_env *env_list);
 int		builtin_echo(char **split, char *str);
+int		builtin_export(char **split, t_env *env_list);
 
 /* ************************************************************************** */
 /*                                  Lexer                                     */
@@ -119,6 +120,7 @@ int		expand_tokens(char **envp, t_token *tokens);
 /* ************************************************************************** */
 /*                                 Environment                                */
 /* ************************************************************************** */
+
 t_env	*env_init(char **envp);
 void	free_env_struct(t_env **env_list);
 int		env_size(t_env *env_list);
