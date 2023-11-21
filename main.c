@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/21 18:37:17 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/21 18:48:08 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,23 +91,23 @@ will not access your main data structures.1
 
 ! Not interpret unclosed quotes or special characters which are not required
 !by the subject such as \ (backslash) or ; (semicolon).
-• Handle ’ (single quote) which should prevent the shell from
-interpreting the meta-characters in the quoted sequence.
-• Handle " (double quote) which should prevent the shell from interpreting
-the meta-characters in the quoted sequence except for $ (dollar sign).
+* DONE • Handle ’ (single quote) which should prevent the shell from
+* interpreting the meta-characters in the quoted sequence. interpreting
+* DONE • Handle " (double quote) which should prevent the shell from
+* the meta-characters in the quoted sequence except for $ (dollar sign).
 
 ! • Implement redirections:
-◦ < should redirect input.
-◦ > should redirect output.
-◦ << should be given a delimiter, then read the input until a line containing
-the delimiter is seen. However, it doesn’t have to update the history!
-◦ >> should redirect output in append mode.
+! ◦ < should redirect input.
+! ◦ > should redirect output.
+! ◦ << should be given a delimiter, then read the input until a line containing
+! the delimiter is seen. However, it doesn’t have to update the history!
+! ◦ >> should redirect output in append mode.
 
 ! • Implement pipes (| character). The output of each command in the pipeline is
 ! connected to the input of the next command via a pipe.
 
-! • Handle environment variables ($ followed by a sequence of characters) which
-! should expand to their values.
+* DONE • Handle environment variables ($ followed by a sequence of characters) which
+* should expand to their values.
 
 ! • Handle $? which should expand to the exit status of the most recently
 ! executed foreground pipeline.
@@ -122,9 +122,8 @@ the delimiter is seen. However, it doesn’t have to update the history!
 * DONE ◦ echo with option -n
 * DONE ◦ cd with only a relative or absolute path (Doesnt set PATH-Var)
 * DONE ◦ pwd with no options
-! ◦ export with no options
-! ◦ unset with no options
-TODO: GO through env and bzero the string equaling the var
+* DONE ◦ export with no options
+* DONE ◦ unset with no options
 * DONE ◦ env with no options or arguments
 ! ◦ exit with no options
 
