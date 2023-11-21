@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 20:18:04 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/10 01:47:09 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/21 18:40:19 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 /// @return NULL on the FAILTIMEth try
 void	*t_malloc(size_t size)
 {
-	static int	i=1;
+	static int	i = 1;
 
 	if (i == FAIL_TIME)
 		return (NULL);
@@ -32,7 +32,7 @@ void	*t_malloc(size_t size)
 /// @return NULL on the FAILTIMEth call otherwise ft_calloc
 void *t_ft_calloc(size_t nmemb, size_t size)
 {
-	static int	i=1;
+	static int	i = 1;
 
 	if (i == FAIL_TIME)
 		return (NULL);
@@ -45,7 +45,7 @@ void *t_ft_calloc(size_t nmemb, size_t size)
 /// @return -1 on the FAILTIMEth call otherwise pipe
 int	t_pipe(int pipefd[2])
 {
-	static int	i=1;
+	static int	i = 1;
 
 	if (i == FAIL_TIME)
 		return (-1);
@@ -57,9 +57,9 @@ int	t_pipe(int pipefd[2])
 /// @param flags 
 /// @param mode 
 /// @return -1 on the FAILTIMEth call otherwise open
-int t_open(const char *pathname, int flags, mode_t mode)
+int	t_open(const char *pathname, int flags, mode_t mode)
 {
-	static int	i=0;
+	static int	i = 0;
 
 	if (i == FAIL_TIME)
 		return (-1);
