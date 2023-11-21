@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/21 18:32:15 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/21 18:43:22 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ char	**env_get_envp(t_env *env_list);
 
 char	*get_prompt(void);
 char	**ft_split_minishell(char const *s, char c);
-char	**ft_split_minishell2(char const *s, char c);
 void	free_strings(void **strings);
 int		ft_isblank(char c);
 int		ft_isquote(char c);

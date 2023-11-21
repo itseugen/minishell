@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:06 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/16 11:55:05 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/21 18:43:08 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,6 @@ static int		count_substr(char const *s, char c);
 static int		skip_quotes(char const *s, int i);
 static char		*getstr(char const *s, int *old_i, char c);
 
-//! Go through string and split on pipes/redirects
-
-//! No need to handle unclosed quotes
-//! Add semicolon
 /// @brief Split for minishell
 /// @param s 
 /// @param c just if needed, should always be space
@@ -64,14 +60,16 @@ static char	*getstr(char const *s, int *old_i, char c)
 	start = i;
 	if (s[i] != '\0' && (s[i] == '"' || s[i] == '\''))
 	{
-		i = skip_quotes(s, i);
-		i++;
-	}
-	else
-	{
-		while (s[i] != c && s[i] != '\0')
+		while (s[i] != '\0' && (s[i] == '"' || s[i] == '\''))
+		{
+			i = skip_quotes(s, i);
 			i++;
+			while (s[i] != '\0' && s[i] != c && s[i] != '"' && s[i] != '\'')
+				i++;
+		}
 	}
+	while (s[i] != c && s[i] != '\0')
+		i++;
 	str = ft_substr(s, start, (i - start));
 	*old_i = i;
 	return (str);
@@ -96,14 +94,14 @@ static int	count_substr(char const *s, char c)
 			i++;
 		if (s[i] != '\0')
 			ctr++;
-		if (s[i] != '\0' && (s[i] == '"' || s[i] == '\''))
-			i = skip_quotes(s, i);
-		while ((s[i + 1] == '\'' || s[i + 1] == '"') && i != -1 && ctr++)
-			i = skip_quotes(s, i + 1);
-		if (i == -1)
-			return (-1); //!handle finishing the quote later (maybe call strjoin on this and the next line)
 		while (s[i] != c && s[i] != '\0')
+		{
+			if (s[i] != '\0' && (s[i] == '"' || s[i] == '\''))
+				i = skip_quotes(s, i);
+			if (i == -1)
+				return (-1);
 			i++;
+		}
 	}
 	return (ctr);
 }
@@ -126,6 +124,7 @@ static int	skip_quotes(char const *s, int i)
 		return (-1);
 	return (i);
 }
+
 
 void	free_strings(void **strings)
 {
