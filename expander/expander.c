@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 14:47:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/07 20:23:10 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/21 18:26:34 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static int	skip_quotes(char *s, int i);
 //* Variables can contain alphanumeric + _
 //* Variables can't start with a number
 //*
+
+//! Implement $? once signals are handled
 
 /// @brief Expands all variables in the args
 /// @param arg input to expand
