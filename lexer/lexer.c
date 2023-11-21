@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 13:30:19 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/10 01:46:03 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/21 18:37:06 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_token	*tokenizer(char *input)
 			return (free_tokens(&token_list), NULL);
 		current = current->next;
 	}
-	// assign_id(&token_list);
+	assign_id(&token_list);
 	return (token_list);
 }
 

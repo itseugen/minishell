@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/21 18:33:33 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/21 18:37:17 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	main(int argc, char **argv, char **envp)
 		if (tokens == NULL)
 			printf("Error\n");
 		// t_print_tokens(tokens);
-		assign_id(tokens);
 		expand_tokens(env_list, tokens);
 		// printf("Command after expand:\n");
 		// t_print_tokens(tokens);
