@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:43:15 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/09 17:14:33 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/21 18:35:54 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void	assign_id(t_token *token_list)
 			current->operation = REDIRECT;
 		else if (current->cmd[0] == ';')
 			current->operation = SEMICOLON;
-		else if (is_builtin(current->cmd) == true)
-			current->operation = BUILTIN;
 		else
 			current->operation = CMD;
 		current = current->next;
