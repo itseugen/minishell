@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:57:07 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/20 16:44:42 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/21 18:07:54 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,7 @@ int	rem_env_var(char *name, t_env **env_list)
 	if (ft_strncmp(name, current->var, name_len) == 0)
 	{
 		*env_list = current->next;
-		free(current->var);
-		free(current);
-		return (0);
+		return (free(current->var), free(current), 0);
 	}
 	while (current->next != NULL)
 	{
@@ -117,9 +115,7 @@ int	rem_env_var(char *name, t_env **env_list)
 		{
 			free_me = current->next;
 			current->next = free_me->next;
-			free(free_me->var);
-			free(free_me);
-			return (0);
+			return (free(free_me->var), free(free_me), 0);
 		}
 		current = current->next;
 	}
