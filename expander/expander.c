@@ -6,13 +6,13 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 14:47:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/21 18:26:34 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/21 18:33:17 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static char	*expand_var(char *input, int *old_i);
+static char	*expand_var(char *input, int *old_i, t_env *env_list);
 static int	skip_quotes(char *s, int i);
 
 //* Variables can contain alphanumeric + _
@@ -25,7 +25,7 @@ static int	skip_quotes(char *s, int i);
 /// @param arg input to expand
 /// @param envp finding the environent variables
 /// @return 
-char	*expander(char *arg, char**envp)
+char	*expander(char *arg, t_env *env_list)
 {
 	int		i;
 	bool	in_quotes;
@@ -39,7 +39,7 @@ char	*expander(char *arg, char**envp)
 		if (arg[i] == '$')
 		{
 			i++;
-			arg = expand_var(arg, &i);
+			arg = expand_var(arg, &i, env_list);
 			if (arg == NULL)
 				return (ft_fprintf(2, "malloc fail in expander\n"), NULL);
 			while (ft_isalnum(arg[i]) != 0 || arg[i] == '_')
@@ -61,7 +61,7 @@ char	*expander(char *arg, char**envp)
 	return (arg);
 }
 
-static char	*expand_var(char *input, int *old_i)
+static char	*expand_var(char *input, int *old_i, t_env *env_list)
 {
 	int		i;
 	char	*before_var;
@@ -85,14 +85,14 @@ static char	*expand_var(char *input, int *old_i)
 		i++;
 	ft_strlcpy(var_name, input + start, i - start + 1);
 	*old_i = i;
-	if (getenv(var_name) == NULL)
+	if (get_env_var(var_name, env_list) == NULL)
 	{
 		after_var = ft_strjoin(before_var, input + i);
 		return (free(input), free(before_var), after_var);
 	}
 	else
 	{
-		after_var = ft_strjoin(before_var, getenv(var_name));
+		after_var = ft_strjoin(before_var, get_env_var(var_name, env_list));
 		free(before_var);
 		before_var = input;
 		input = ft_strjoin(after_var, input + i);

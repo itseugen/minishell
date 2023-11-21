@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:02:45 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/09 16:35:12 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/21 18:32:31 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 /// @param envp 
 /// @param tokens the token list
 /// @return 1 if the expander fails (malloc) otherwise 0
-int	expand_tokens(char **envp, t_token *tokens)
+int	expand_tokens(t_env *env_list, t_token *tokens)
 {
 	t_token	*current;
 
 	current = tokens;
 	while (current != NULL)
 	{
-		current->cmd = expander(current->cmd, envp);
+		current->cmd = expander(current->cmd, env_list);
 		if (current->cmd == NULL)
 			return (1);
 		current = current->next;
