@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:45:39 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/20 16:21:02 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/21 18:05:43 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	builtin_export(char **split, t_env *env_list)
 {
 	char	*name;
 	int		i;
+
 	if (split[0] == NULL)
 		return (1);
 	if (split[1] == NULL)
@@ -39,7 +40,11 @@ int	builtin_export(char **split, t_env *env_list)
 	if (replace_env_var(name, split[1] + i + 1, env_list) == 1)
 		return (free(name), 1);
 	if (split[2] != NULL)
-		ft_fprintf(2, "Export: too many args, input after %s will be ignored\n", split[1]);
+	{
+		ft_putstr_fd("Export: too many args, input after ", 2);
+		ft_putstr_fd(split[2], 2);
+		ft_putstr_fd(" will be ignored\n", 2);
+	}
 	return (free(name), 0);
 }
 
