@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:31:06 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/21 18:43:08 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/21 18:45:27 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ static int	skip_quotes(char const *s, int i)
 		return (-1);
 	return (i);
 }
-
 
 void	free_strings(void **strings)
 {
