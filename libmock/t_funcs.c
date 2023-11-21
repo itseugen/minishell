@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 20:18:04 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/21 18:40:19 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/21 18:44:37 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	*t_malloc(size_t size)
 /// @param size
 /// @throw malloc could still fail
 /// @return NULL on the FAILTIMEth call otherwise ft_calloc
-void *t_ft_calloc(size_t nmemb, size_t size)
+void	*t_ft_calloc(size_t nmemb, size_t size)
 {
 	static int	i = 1;
 
