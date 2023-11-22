@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 04:13:05 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/22 04:51:12 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/22 12:27:37 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+//! Why make arguments a list if every function need char **?
 typedef struct s_argument
 {
 	char				*arg;
@@ -40,7 +41,6 @@ int	parse_tokens(t_env *env_list, t_token *tokens)
 	command_table = NULL;
 	current_command = NULL;
 	current_token = tokens;
-
 	while (current_token)
 	{
 		if (handle_token(env_list, current_token, &current_command) != 0)
@@ -57,20 +57,25 @@ static int	handle_token(t_env *env_list, t_token *current_token, t_command **cur
 {
 	t_command	*next_command;
 
+	//! Why not just check for == CMD since BUILTIN doesnt exist yet and ARGUMENT is a part of CMD
 	if (current_token->operation == CMD || current_token->operation == BUILTIN || current_token->operation == ARGUMENT)
 	{
+		//! Why expand here -> using expand before parser saves lines
 		current_token->cmd = expander(current_token->cmd, env_list);
 		if (!current_token->cmd)
 			return (1);
 		if (*current_command == NULL)
 			*current_command = create_command(current_token->cmd);
+		//! Why do the arguments here? More allocation out of scope -> more memmory management -> splitting the command into arguments before execve/builtins saves lots of memory management
 		else
 			add_argument(*current_command, current_token->cmd);
 	}
 	else if (current_token->operation == PIPE)
 		return (handle_pipe_token(current_command));
+		//! Not even a function -> handle redirection meant???
 	else if (current_token->operation == REDIRECT)
 		return (handle_redirect_token(env_list, current_token, current_command));
+	//! what does this function even do? If we choose to implement semicolons -> create a second command table / call parser with other half of lexer after executing before semicolon
 	else if (current_token->operation == SEMICOLON)
 		return (handle_semicolon_token(current_command));
 	return (0);
@@ -78,11 +83,16 @@ static int	handle_token(t_env *env_list, t_token *current_token, t_command **cur
 
 static int	handle_redirection(t_env *env_list, t_token *current_token, t_command *current_command)
 {
+	//! lexer puts redirect and file name / limiter in one string -> why not handle it via this instead of recoding the lexer
 	if (!current_token->next || (current_token->next->operation != CMD && current_token->next->operation != ARGUMENT))
 		return (1);
+	//! Again why not just expand before parser
 	current_token->next->cmd = expander(current_token->next->cmd, env_list);
 	if (!current_token->next->cmd)
 		return (1);
+	//! is it good to handle the logic here instead of later? if so, what should this function handle?
+	//! Should it do opens or dup2 (wouldnt work since there might be redirects before it)
+	//! Might make sense if function only handles open since open fail->dont do anything else
 	if (handle_redirection_logic(current_token->operation, current_token->next->cmd, &current_command) != 0)
 		return (1);
 	return (0);
@@ -111,6 +121,8 @@ static int	handle_semicolon_token(t_command **current_command)
 }
 
 // Function to free the command table
+//! Doesnt free input/output strings
+//! also if you want to comment functions use @brief instead of normal comments
 void	free_command_table(t_command *command_table)
 {
 	t_command	*current;
