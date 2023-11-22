@@ -6,11 +6,26 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 04:13:05 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/22 12:27:37 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:26:44 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+/*
+* The parser:
+* 1.	check for wrong pipes etc (I could also make a lexer expansion)
+*		to take care of such errors
+*
+* 2.	open files -> if one open fails, do nothing and return to main
+*
+* 3.	initialise a command table if needed (if not we can just use the t_token)
+*
+* 4.	the parser/executor should also
+*		- let the executor know what to pipe and what not to pipe
+*		- When to redirect and when not
+*		- have a clean structure the executor can use
+*/
 
 //! Why make arguments a list if every function need char **?
 typedef struct s_argument

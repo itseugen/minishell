@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/21 18:48:08 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:20:07 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,11 @@ will not access your main data structures.1
 * DONE • Handle environment variables ($ followed by a sequence of characters) which
 * should expand to their values.
 
+TODO: Change expander to handle it, use signal/global/getter function
 ! • Handle $? which should expand to the exit status of the most recently
 ! executed foreground pipeline.
 
+TODO: Part of signal handling
 ! • Handle ctrl-C, ctrl-D and ctrl-\ which should behave like in bash.
 • In interactive mode:
 ! ◦ ctrl-C displays a new prompt on a new line.
@@ -125,6 +127,7 @@ will not access your main data structures.1
 * DONE ◦ export with no options
 * DONE ◦ unset with no options
 * DONE ◦ env with no options or arguments
+TODO: Same as ctrl-D -> handle together
 ! ◦ exit with no options
 
 */
