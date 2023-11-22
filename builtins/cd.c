@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:46:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/20 14:02:04 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:17:09 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,5 @@ static int	set_oldpwd(t_env *env_list)
 		return (ft_fprintf(2, "cd: set_oldpwd: getcwd fail\n"), 1);
 	if (replace_env_var("OLDPWD=", pwd_str, env_list) == 1)
 		return (free(pwd_str), 1);
+	return (0);
 }

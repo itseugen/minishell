@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:59:38 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/13 16:00:56 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:18:39 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	parser(t_token *tokens, char **envp)
 int	executor(t_token *tokens, char **envp)
 {
 	char	**split;
-	pid_t	pro_id;
+	// pid_t	pro_id;
 
 	if (tokens->operation == CMD)
 	{

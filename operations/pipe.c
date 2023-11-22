@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:11:54 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/05 14:13:50 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:17:47 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 int	piping(void *arg1, void *arg2)
 {
-
+	(void)arg1;
+	(void)arg2;
+	return (0);
 }
