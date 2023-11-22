@@ -6,7 +6,7 @@
 #    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 13:58:27 by eweiberl          #+#    #+#              #
-#    Updated: 2023/11/21 18:51:38 by eweiberl         ###   ########.fr        #
+#    Updated: 2023/11/22 13:30:49 by eweiberl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,4 +76,4 @@ fclean: clean
 
 re: fclean libclean all
 
-.PHONY: re all clean
+.PHONY: re all clean nflag debug fclean libclean
