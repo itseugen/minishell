@@ -6,155 +6,187 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 04:13:05 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/20 11:20:19 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/22 04:51:12 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// Structure to represent a command
+typedef struct s_argument
+{
+	char				*arg;
+	struct s_argument	*next;
+}	t_argument;
+
 typedef struct s_command
 {
-	char				*cmd;
-	char				*args[100];
-	char				*input;
-	char				*output;
-	bool				append;
-	char				*heredoc;
-	struct s_command	*pipe;
+	char				*cmd_name;			// Command or executable name
+	t_argument			*args;		// List of command arguments
+	char				*input_file;		// Input file for redirection (NULL if not used)
+	char				*output_file;		// Output file for redirection (NULL if not used)
+	int					append_output;		// Flag indicating whether to append to output file
+	struct s_command	*next; // Pointer to the next command in a pipeline
 }	t_command;
 
-// Function to free memory allocated for a command
-void	free_command(t_command *cmd)
+// Function to parse the token list and build a command table
+int	parse_tokens(t_env *env_list, t_token *tokens)
 {
-	int	i;
+	t_command	*command_table;
+	t_command	*current_command;
+	t_token		*current_token;
 
-	i = 0;
-	free(cmd->cmd);
-	while (cmd->args[i] != NULL)
+	if (!tokens)
+		return (1);
+	command_table = NULL;
+	current_command = NULL;
+	current_token = tokens;
+
+	while (current_token)
 	{
-		free(cmd->args[i]);
-		i++;
+		if (handle_token(env_list, current_token, &current_command) != 0)
+		{
+			free_command_table(command_table);
+			return (1);
+		}
+		current_token = current_token->next;
 	}
-
-	free(cmd->input);
-	free(cmd->output);
-	free(cmd->heredoc);
-	free(cmd);
+	return (0);
 }
 
-// Function to parse a command
-t_command	*parse_command(char *command)
+static int	handle_token(t_env *env_list, t_token *current_token, t_command **current_command)
 {
-	t_command	*cmd;
-	char		*token;
-	int			arg_count;
+	t_command	*next_command;
 
-	cmd = (t_command *)malloc(sizeof(t_command));
-	cmd->cmd = NULL;
-	cmd->input = NULL;
-	cmd->output = NULL;
-	cmd->append = false;
-	cmd->heredoc = NULL;
-	cmd->pipe = NULL;
-
-	token = strtok(command, " ");
-	arg_count = 0;
-
-	while (token != NULL)
+	if (current_token->operation == CMD || current_token->operation == BUILTIN || current_token->operation == ARGUMENT)
 	{
-		if (strcmp(token, "|") == 0)
-		{
-			// Handle pipes
-			cmd->pipe = parse_command(NULL);
-			break;
-		}
-		else if (strcmp(token, ">") == 0)
-		{
-			// Handle output redirection
-			cmd->output = strdup(strtok(NULL, " "));
-		}
-		else if (strcmp(token, ">>") == 0)
-		{
-			// Handle append output redirection
-			cmd->output = strdup(strtok(NULL, " "));
-			cmd->append = true;
-		}
-		else if (strcmp(token, "<") == 0)
-		{
-			// Handle input redirection
-			cmd->input = strdup(strtok(NULL, " "));
-		}
-		else if (strcmp(token, "<<") == 0)
-		{
-			// Handle heredoc
-			cmd->heredoc = strdup(strtok(NULL, " "));
-		}
+		current_token->cmd = expander(current_token->cmd, env_list);
+		if (!current_token->cmd)
+			return (1);
+		if (*current_command == NULL)
+			*current_command = create_command(current_token->cmd);
 		else
-		{
-			// Handle command and arguments
-			if (cmd->cmd == NULL)
-			{
-				cmd->cmd = strdup(token);
-			}
-			else
-			{
-				cmd->args[arg_count++] = strdup(token);
-				cmd->args[arg_count] = NULL;
-			}
-		}
-
-		token = strtok(NULL, " ");
+			add_argument(*current_command, current_token->cmd);
+	}
+	else if (current_token->operation == PIPE)
+		return (handle_pipe_token(current_command));
+	else if (current_token->operation == REDIRECT)
+		return (handle_redirect_token(env_list, current_token, current_command));
+	else if (current_token->operation == SEMICOLON)
+		return (handle_semicolon_token(current_command));
+	return (0);
 	}
 
-	return (cmd);
+static int	handle_redirection(t_env *env_list, t_token *current_token, t_command *current_command)
+{
+	if (!current_token->next || (current_token->next->operation != CMD && current_token->next->operation != ARGUMENT))
+		return (1);
+	current_token->next->cmd = expander(current_token->next->cmd, env_list);
+	if (!current_token->next->cmd)
+		return (1);
+	if (handle_redirection_logic(current_token->operation, current_token->next->cmd, &current_command) != 0)
+		return (1);
+	return (0);
 }
 
-// Function to free the memory of the entire command chain
-void	free_commandchain(t_command *cmd)
+static int	handle_pipe_token(t_command **current_command)
 {
-	if (cmd == NULL)
-	{
-		exit(1);
-	}
-	free_commandchain(cmd->pipe);
-	free_command(cmd);
+	t_command	*next_command;
+
+	if (*current_command == NULL)
+		return (1);
+	next_command = create_command(NULL);
+	(*current_command)->next = next_command;
+	*current_command = next_command;
+
+	return (0);
 }
 
-// Function to print a command and its arguments
-void	print_command(t_command *cmd)
+static int	handle_semicolon_token(t_command **current_command)
 {
-	int	i;
-
-	i = 0;
-	printf("Command: %s\n", cmd->cmd);
-	printf("Arguments: ");
-	while (cmd->args[i] != NULL)
+	if (*current_command != NULL)
 	{
-		printf("%s ", cmd->args[i]);
-		i++;
+		*current_command = NULL;
 	}
-	printf("\n");
-	printf("Input: %s\n", cmd->input);
-	printf("Output: %s\n", cmd->output);
-	if (cmd->append)
+	return (0);
+}
+
+// Function to free the command table
+void	free_command_table(t_command *command_table)
+{
+	t_command	*current;
+	t_command	*next;
+
+	current = command_table;
+	while (current != NULL)
 	{
-		printf("Append: true\n");
+		next = current->next;
+		free_arguments(current->args);
+		free(current);
+		current = next;
+	}
+}
+
+// Function to create a new command with a given command name
+t_command	*create_command(char *cmd_name)
+{
+	t_command	*command;
+
+	command = malloc(sizeof(t_command));
+	if (!command)
+		return (NULL);
+	command->cmd_name = cmd_name;
+	command->args = NULL;
+	command->input_file = NULL;
+	command->output_file = NULL;
+	command->next = NULL;
+	return (command);
+}
+
+// Function to add an argument to a command
+void	add_argument(t_command *command, char *arg)
+{
+	t_argument	*argument;
+	t_argument	*current;
+
+	argument = malloc(sizeof(t_argument));
+	if (!argument)
+		return (NULL);
+	argument->arg = arg;
+	argument->next = NULL;
+	if (command->args == NULL)
+	{
+		command->args = argument;
 	}
 	else
 	{
-		printf("Append: false\n");
+		current = command->args;
+		while (current->next != NULL)
+		{
+			current = current->next;
+		}
+		current->next = argument;
 	}
-	printf("Heredoc: %s\n", cmd->heredoc);
-	printf("\n");
 }
 
-int	main(void)
+// Function to free the arguments of a command
+void	free_arguments(t_argument *args)
 {
-	char command[] = "ls -l < input.txt | grep py > output.txt";
-	t_command *cmd = parse_command(command);
-	print_command(cmd);
-	free_commandchain(cmd);
+	t_argument	*next;
+	t_argument	*current;
 
-	return (0);
+	current = args;
+	while (current != NULL)
+	{
+		next = current->next;
+		free(current->arg);
+		free(current);
+		current = next;
+	}
+}
+// Function to execute the command table
+void execute_command_table(t_command *command_table)
+{
+	// TODO: Implement command execution logic
+	// Traverse the command table and execute each command
+	// may need to create processes, handle pipes, and set up file descriptors for redirection
 }
