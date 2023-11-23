@@ -63,6 +63,7 @@ static int	maker(char *str, int i, char **tmp, int x)
 }
 
 //! Again why this split? Whats the reasoning behind it?
+//Answer: This is used when there are mixed spaces and tabs is the string for example "			ls -l 		 | wc >" which was complicated to handle with your split, so just wrote it as a util.
 char	**my_split(char *str)
 {
 	int		i;

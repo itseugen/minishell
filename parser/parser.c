@@ -56,10 +56,10 @@ int	cmd_maker(t_token *tokens)
 	tab = (t_command *)malloc(sizeof(t_command));
 	if (!tab)
 		return (-1);
-	//! Whats the difference between the split_minishell and this? Do you remove the quotes?
 	tab->cmd = my_split(tokens->cmd);
 	//! Malloc not protected
 	//! Why duplicate the string and not pass the pointer?
+	//Answer : passing the pointer was segfaulting so duplicating fixed that issue
 	tab->cmd_name = ft_strdup(tab->cmd[0]);
 	//! Malloc not protected
 	tab->in_fd = STDIN;
@@ -131,6 +131,7 @@ int	ft_open(char *str, int flag)
 	if (flag == 0)
 	{
 		//! Why access if you could try open anyway? Why call access twice? (F_OK | R_OK)
+		//Answer : we need to know if it's both readable and accessable for the input. It, would still be alright without it but it's better to have the check here.
 		if (access(str, F_OK) == 0 && access(str, R_OK) == 0)
 		{
 			fd = open(str, O_RDONLY);

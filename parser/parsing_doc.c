@@ -1,35 +1,87 @@
-A Recursive Descent Parser is a type of top-down parser used in computer science and programming to analyze the syntax
-of a given input, typically a sequence of tokens, such as a programming language source code. This parsing technique is called 
-"recursive descent" because it involves recursive function calls to process the input, with each function handling a specific grammar rule or production.
+1. //mainpars Function:
 
-Key characteristics of a recursive descent parser:
+Purpose: This is the main parser function that iterates through the token list and calls specific functions based on the type of operation in each token.
+Functionality:
+For CMD tokens, it calls the cmd_maker function.
+For REDIRECT tokens, it calls the red_maker function.
 
-Top-Down Parsing: Recursive descent parsers start from the highest-level grammar rule (usually the start symbol) 
-and work their way down to the terminal symbols (tokens) by applying grammar rules.
+Returns: Returns 0 if the parsing is successful, -1 if there is an error.
 
-Predictive Parsing: These parsers are also known as "predictive parsers" because they 
-predict which production to use based on the current input. They typically use the next token or a lookahead token to make this prediction.
+2. //cmd_maker Function:
 
-Separate Functions: Each non-terminal symbol in the grammar corresponds to a separate function in the parser. 
-These functions are recursively called to handle different parts of the input.
+Purpose: Creates a command structure (t_command) and populates it with information from the CMD token.
+Functionality:
+Allocates memory for the t_command structure.
+Splits the command string into an array of strings.
+Duplicates the first string (the command name) and stores it in the cmd_name field.
+Sets default values for input and output file descriptors.
+Attaches the t_command structure to the token.
 
-Terminal and Non-Terminal Symbols: Terminal symbols are the actual tokens from the input,
- while non-terminal symbols are higher-level syntactic constructs in the grammar.
+Returns: Returns 0 if successful, -1 if there is a memory allocation error.
 
-Error Handling: Recursive descent parsers can be designed to handle syntax errors gracefully, 
-providing clear and meaningful error messages.
+3. //red_maker Function:
 
-Advantages: Recursive descent parsers are relatively easy to implement and understand, 
-especially for LL(1) grammars (grammars that can be parsed with one symbol of lookahead).
+Purpose: Handles redirection tokens and sets up the input and output file descriptors for a command.
+Functionality:
+Iterates backward through the tokens to find the CMD token associated with the redirection.
+If it's an input redirection (<), calls in_out to extract and set the input file.
+If it's an output redirection (>), calls in_out to extract and set the output file.
+Opens the input or output file using ft_open.
 
-However, there are limitations to recursive descent parsing:
+Returns: Returns 0 if successful, -1 if there is an error opening the file.
 
-It may not handle left-recursive grammars without modification.
-Handling left-factoring in grammars can be more complex.
-It may not be suitable for some grammars with ambiguity or conflicts.
-To create a recursive descent parser, you typically define a set of parsing functions, each corresponding to a non-terminal 
-symbol in the grammar. These functions are responsible for recognizing the structure defined by the grammar rules and may call other parsing functions as needed.
+4. //in_out Function:
 
-Overall, recursive descent parsing is a fundamental and widely used technique for building parsers in compilers and interpreters for
- programming languages. It's especially useful for simpler, LL(1) grammars, 
- where it can provide a straightforward and efficient way to analyze and understand the structure of code.
+Purpose: Extracts the input or output file name from the redirection token.
+Functionality:
+Takes a string containing the redirection token.
+Allocates memory for the input or output file name.
+Copies the file name from the token to the allocated memory.
+Sets the input or output file name in the associated t_command structure.
+
+Returns: Returns 0 if successful, -1 if there is a memory allocation error.
+
+5. //ft_open Function:
+
+Purpose: Opens a file with specific flags based on the provided parameters.
+Functionality:
+Takes a file name (str) and a flag (0 for input, 1 for output).
+Checks if the file exists and is readable for input files.
+Opens the file with appropriate flags for output files.
+Returns the file descriptor if successful, -1 if there is an error.
+
+Returns: Returns the file descriptor if successful, -1 if there is an error opening the file.
+
+Execution_command_table functions :-
+
+1. //cmd_counter Function:
+Purpose:
+Counts the number of commands in a given token list.
+Assumes that pipes (|) are used as command separators.
+Functionality:
+Initializes n_cmds to 1 (at least one command is present).
+Iterates through the token list.
+If a pipe token is encountered (|), increments n_cmds.
+
+Returns the total count of commands.
+
+2. //commands_for_exec Function:
+Purpose:
+Allocates an array of t_exec* pointers to represent individual commands for execution.
+Functionality:
+Calls cmd_counter to determine the number of commands (n_cmds).
+Allocates memory for an array of t_exec* pointers using malloc.
+Iterates through the token list:
+If the token represents a command, allocates memory for a t_exec structure.
+Calls the fill function to populate the t_exec structure.
+Increments the index i.
+Adds a NULL pointer at the end of the array to indicate the end.
+
+Returns the array of t_exec* pointers.
+
+3. //fill Function:
+Purpose:
+Populates a t_exec structure with information from a t_token structure.
+Functionality:
+Takes a t_exec structure and a t_token structure as parameters.
+Assigns the cmds, in_fd, and out_fd fields in the t_exec structure using information from the t_token structure.
