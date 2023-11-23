@@ -6,7 +6,7 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/23 06:21:00 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/23 06:28:33 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 // {
 // 	system("leaks minishell");
 // }
+//! please dont work without fix token, complete documention would be written tommorow.
 
 int	main(int argc, char **argv, char **envp)
 {
