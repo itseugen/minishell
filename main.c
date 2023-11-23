@@ -6,7 +6,7 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/23 06:28:33 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/23 19:36:42 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	main(int argc, char **argv, char **envp)
 		fix_tokens(tokens);
 		expand_tokens(env_list, tokens);
 		// printf("Command after expand:\n");
-		// t_print_tokens(tokens);
+		t_print_tokens(tokens);
 		if (mainpars(tokens) == -1)
 			return (ft_fprintf(2, "parse error\n"), -1);
 		exec = commands_for_exec(tokens);
