@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 04:13:05 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/23 06:22:48 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/23 11:03:28 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,12 @@ int	cmd_maker(t_token *tokens)
 	tab = (t_command *)malloc(sizeof(t_command));
 	if (!tab)
 		return (-1);
+	//! Whats the difference between the split_minishell and this? Do you remove the quotes?
 	tab->cmd = my_split(tokens->cmd);
+	//! Malloc not protected
+	//! Why duplicate the string and not pass the pointer?
 	tab->cmd_name = ft_strdup(tab->cmd[0]);
+	//! Malloc not protected
 	tab->in_fd = STDIN;
 	tab->out_fd = STDOUT;
 	tokens->table = tab;
@@ -102,6 +106,7 @@ int	in_out(char *str, t_token *tmp, int flag)
 	j = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
+	//! Why malloc and not ft_calloc?
 	l = (char *)malloc(sizeof(char) * (word_len(str, i) + 1));
 	if (!l)
 		return (-1);
@@ -125,6 +130,7 @@ int	ft_open(char *str, int flag)
 
 	if (flag == 0)
 	{
+		//! Why access if you could try open anyway? Why call access twice? (F_OK | R_OK)
 		if (access(str, F_OK) == 0 && access(str, R_OK) == 0)
 		{
 			fd = open(str, O_RDONLY);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmds.c                                             :+:      :+:    :+:   */
+/*   exec_cmds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 04:21:25 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/23 06:16:12 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/23 11:05:33 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	cmd_counter(t_token *tokens)
 	n_cmds = 1;
 	while (tokens)
 	{
+		//! Potential wrong use of strncmp (len = 2), also lexer identifies pipes -> in this case expanded variables containing a pipe symbol could be identified wrong
 		if (!ft_strncmp(tokens->cmd, "|", 1))
 			n_cmds++;
 		tokens = tokens->next;
@@ -34,6 +35,7 @@ t_exec	**commands_for_exec(t_token *tokens)
 
 	n_cmds = cmd_counter(tokens);
 	i = 0;
+	//! Why not calloc?
 	exec = malloc(sizeof(t_exec *) * n_cmds + 1);
 	if (!exec)
 		return (NULL);
