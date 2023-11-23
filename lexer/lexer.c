@@ -6,7 +6,7 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 13:30:19 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/22 23:50:53 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/23 19:26:57 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,6 @@ static char	*get_tok_str(int *old_i, char *input)
 	}
 	if (input[i] == ';')
 		return ((*old_i)++, ft_strdup(";"));
-	if ((input[i] == '<' && input[i + 1] == '>')
-		|| (input[i] == '>' && input[i + 1] == '<'))
-		return (NULL);
 	if (input[i] == '<' || input[i] == '>')
 	{
 		i++;
