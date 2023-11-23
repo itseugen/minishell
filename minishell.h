@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/22 15:14:26 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/23 06:06:44 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-# include "parser/parser.h"
 
 /* ************************************************************************** */
 /*                            Defines & enums                                 */
@@ -47,6 +46,9 @@ enum e_token
 	SEMICOLON
 };
 
+# define STDIN 0
+# define STDOUT 1
+
 /* ************************************************************************** */
 /*                          Typedefs and globals                              */
 /* ************************************************************************** */
@@ -56,13 +58,31 @@ enum e_token
 /// Args = token->next
 /// operation = OPEN
 /// next = "wc";
+typedef struct s_command
+{
+	int		in_fd;
+	int		out_fd;
+	char	*cmd_name;		// Command or executable name
+	char	**cmd;
+	char	*input_file;		// Input file for redirection (NULL if not used)
+	char	*output_file;		// Output file for redirection (NULL if not used)
+}	t_command;
+
 typedef struct s_token
 {
 	char			*cmd;
 	int				operation;
+	t_command		*table;
 	struct s_token	*next;
 	struct s_token	*prev;
 }	t_token;
+
+typedef struct s_exec
+{
+	char				**cmds;
+	int					in_fd;
+	int					out_fd;
+}	t_exec;
 
 typedef struct s_env
 {
@@ -70,17 +90,15 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
-typedef struct s_mshell
-{
-	t_node	*ast;
-}	t_mshell;
-
 /* ************************************************************************** */
 /*                                Executing                                   */
 /* ************************************************************************** */
 
+t_exec	**commands_for_exec(t_token *tokens);
 int		execute_cmd(char **cmd, char **envp);
 int		here_doc(t_env *env_list, int *pipe_fd, char **split);
+void	fill(t_exec *exec, t_token *tokens);
+int		cmd_counter(t_token *tokens);
 
 /* ************************************************************************** */
 /*                                builtins                                    */
@@ -104,13 +122,20 @@ bool	is_redirect(char *cmd);
 t_token	*tokenizer(char *input);
 void	assign_id(t_token *token_list);
 bool	is_builtin(char *cmd);
+int		pipe_checker(char *tmp, int i);
+void	fix_tokens(t_token *tokens);
 
 /* ************************************************************************** */
 /*                                  Parser                                    */
 /* ************************************************************************** */
 
-int		parser(t_token *tokens, char **envp);
-int		executor(t_token *tokens, char **envp);
+int		mainpars(t_token *tokens);
+char	**my_split(char *str);
+int		word_len(char *str, int i);
+int		ft_open(char *str, int flag);
+int		cmd_maker(t_token *tokens);
+int		red_maker(t_token *tokens);
+int		in_out(char *str, t_token *tmp, int flag);
 
 /* ************************************************************************** */
 /*                                  Expander                                  */

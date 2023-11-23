@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/22 15:16:05 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/23 06:21:00 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 * TODO:
-* - Parser
+* - Parser - done
 * - executing
 * - missing builtins
 * - Syntax tree / command table
@@ -40,15 +40,25 @@
 ** else it just returns the old string
 */
 
+// void	leaks()
+// {
+// 	system("leaks minishell");
+// }
+
 int	main(int argc, char **argv, char **envp)
 {
 	char	*test;
 	char	*prompt;
 	t_token	*tokens;
 	t_env	*env_list;
+	t_exec	**exec;
+	int		i;
 
+	// atexit(leaks);
 	(void)argc;
 	(void)argv;
+	exec = NULL;
+	i = 0;
 	env_list = env_init(envp);
 	while (1)
 	{
@@ -61,9 +71,28 @@ int	main(int argc, char **argv, char **envp)
 		if (tokens == NULL)
 			printf("Error\n");
 		// t_print_tokens(tokens);
+		fix_tokens(tokens);
 		expand_tokens(env_list, tokens);
 		// printf("Command after expand:\n");
 		// t_print_tokens(tokens);
+		if (mainpars(tokens) == -1)
+			return (ft_fprintf(2, "parse error\n"), -1);
+		exec = commands_for_exec(tokens);
+		if (!exec)
+			return (ft_fprintf(2, "Execution command initialization error\n"), -1);
+		// i = 0;
+		// while (exec[i])
+		// {
+		// 	printf("%s------%d\n", exec[i]->cmds[0], exec[i]->in_fd);
+		// 	i++;
+		// }
+		// i = 0;
+		// while (tokens)
+		// {
+		// 	printf("%d -- %s\n", i, tokens->cmd);
+		// 	tokens = tokens->next;
+		// 	i++;
+		// }
 		if (tokens != NULL)
 			free_tokens(&tokens);
 		free(test);
@@ -74,7 +103,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	free(prompt);
 	free_env_struct(&env_list);
-	// system("leaks minishell");
+	system("leaks minishell");
 	return (0);
 }
 

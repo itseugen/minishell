@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 13:30:19 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/21 18:52:34 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/22 23:50:53 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,16 @@ static char	*get_tok_str(int *old_i, char *input)
 	start = *old_i;
 	i = *old_i;
 	if (input[i] == '|')
+	{
+		if (pipe_checker(input, i) == -1)
+			return (NULL);
 		return ((*old_i)++, ft_strdup("|"));
+	}
 	if (input[i] == ';')
 		return ((*old_i)++, ft_strdup(";"));
+	if ((input[i] == '<' && input[i + 1] == '>')
+		|| (input[i] == '>' && input[i + 1] == '<'))
+		return (NULL);
 	if (input[i] == '<' || input[i] == '>')
 	{
 		i++;
@@ -70,7 +77,7 @@ static char	*get_tok_str(int *old_i, char *input)
 			i++;
 		while (input[i] == ' ' && input[i] != '\0')
 			i++;
-		while (input[i] != ' ' && input[i] != '\0')
+		while (input[i] != ' ' && input[i] != '\0' && input[i] != '|')
 			i++;
 	}
 	else

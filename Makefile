@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
+#    By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 13:58:27 by eweiberl          #+#    #+#              #
-#    Updated: 2023/11/22 13:30:49 by eweiberl         ###   ########.fr        #
+#    Updated: 2023/11/23 06:23:40 by adhaka           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,9 @@ SOURCE += builtins/env.c builtins/pwd.c builtins/cd.c builtins/is_builtin.c buil
 SOURCE += builtins/unset.c builtins/export.c
 SOURCE += operations/pipe.c
 SOURCE += utils/ft_split_minishell.c utils/ft_is.c utils/rem_quotes.c
-SOURCE += lexer/check_token.c lexer/lexer.c
+SOURCE += lexer/check_token.c lexer/lexer.c lexer/lexer_utils.c
 SOURCE += expander/expander.c expander/expand_tokens.c
-SOURCE += parser/parser_test.c parser/children.c
+SOURCE += parser/parser.c parser/parser_utils.c parser/exec_cmds.c
 SOURCE += environment/env_init.c environment/env_utils.c environment/env_operations.c
 SOURCE += environment/env_get_envp.c
 
