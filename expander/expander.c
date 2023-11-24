@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 14:47:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/24 15:23:30 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/24 22:37:47 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*expand_var(char *input, int *old_i, t_env *env_list);
 static int	skip_quotes(char *s, int i);
-static char	*expand_question_mark(char *input, int *old_i);
+// static char	*expand_question_mark(char *input, int *old_i);
 
 //* Variables can contain alphanumeric + _
 //* Variables can't start with a number
@@ -29,7 +29,7 @@ static char	*expand_question_mark(char *input, int *old_i);
 /// @brief Expands all variables in the args
 /// @param arg input to expand
 /// @param envp finding the environent variables
-/// @return 
+/// @return
 char	*expander(char *arg, t_env *env_list)
 {
 	int		i;

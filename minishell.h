@@ -6,7 +6,7 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/23 06:06:44 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/25 00:18:25 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@
 # include "libft/libft.h"
 # include "libmock/mock_functions.h"
 
-# include <stdbool.h>
 # include <stdio.h>
+# include <stdbool.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <fcntl.h>
+# include <signal.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 
