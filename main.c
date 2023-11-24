@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/23 19:36:42 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/24 14:20:31 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,26 +74,20 @@ int	main(int argc, char **argv, char **envp)
 		// t_print_tokens(tokens);
 		fix_tokens(tokens);
 		expand_tokens(env_list, tokens);
-		// printf("Command after expand:\n");
+		printf("Command after expand:\n");
 		t_print_tokens(tokens);
 		if (mainpars(tokens) == -1)
 			return (ft_fprintf(2, "parse error\n"), -1);
 		exec = commands_for_exec(tokens);
 		if (!exec)
 			return (ft_fprintf(2, "Execution command initialization error\n"), -1);
-		// i = 0;
-		// while (exec[i])
-		// {
-		// 	printf("%s------%d\n", exec[i]->cmds[0], exec[i]->in_fd);
-		// 	i++;
-		// }
-		// i = 0;
-		// while (tokens)
-		// {
-		// 	printf("%d -- %s\n", i, tokens->cmd);
-		// 	tokens = tokens->next;
-		// 	i++;
-		// }
+		i = 0;
+		while (exec[i])
+		{
+			printf("%s------%d\n", exec[i]->cmds[0], exec[i]->in_fd);
+			i++;
+		}
+		i = 0;
 		if (tokens != NULL)
 			free_tokens(&tokens);
 		free(test);
