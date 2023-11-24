@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 14:47:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/24 15:20:22 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:23:30 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ static char	*expand_question_mark(char *input, int *old_i);
 //*
 
 //! Implement $? once signals are handled
+//! Infrastructure for $? implemented, untested.
+//! The function referenced by expand_question mark is just an idea ->
+//! We either handle the exit code in the global (means no function necessary)
+//! Or we use a getter?setter function with a static variable
 
 /// @brief Expands all variables in the args
 /// @param arg input to expand
@@ -75,11 +79,11 @@ char	*expander(char *arg, t_env *env_list)
 // {
 // 	int		i;
 // 	char	*before_var;
-// 	int		start;
 // 	char	*after_var;
 // 	char	*var_val;
 
 // 	i = *old_i;
+// 	*(old_i + 1);
 // 	before_var = ft_substr(input, 0, i - 1);
 // 	if (before_var == NULL)
 // 		return (free(input), NULL);
