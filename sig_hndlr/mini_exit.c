@@ -6,7 +6,7 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:25:21 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/25 04:43:18 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/25 05:12:03 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ int	mini_exit(t_token *tokens)
 				ft_fprintf(2, "exit: too many arguments\n");
 				return (free_command(cmd), exit(1), 0);
 			}
-			if (atoi(cmd->cmd_name) == 0 && cmd->cmd_name[0] != '0')
+			if (ft_atoi(cmd->cmd_name) == 0 && cmd->cmd_name[0] != '0')
 			{
 				ft_fprintf(2, "exit: %s: numeric argument required\n", cmd->cmd_name);
 				return (free_command(cmd), exit(255), 0);
 			}
 			free_command(cmd);
-			return (exit(atoi(cmd->cmd_name)), 0);
+			return (exit(ft_atoi(cmd->cmd_name)), 0);
 		}
 	}
 	if (cmd == NULL)
