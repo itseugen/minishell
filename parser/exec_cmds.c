@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 04:21:25 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/23 11:05:33 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/25 04:57:14 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+/// @brief Counts the number of commands in a given token list.
+/// @param tokens
+/// @return (n_cmds) no. of commands
 int	cmd_counter(t_token *tokens)
 {
 	int	n_cmds;
@@ -29,6 +32,9 @@ int	cmd_counter(t_token *tokens)
 	return (n_cmds);
 }
 
+/// @brief Allocates an array of t_exec* pointers to represent individual commands for execution
+/// @param tokens
+/// @return table with the commands (the array of t_exec* pointers)
 t_exec	**commands_for_exec(t_token *tokens)
 {
 	int		n_cmds;
@@ -58,6 +64,9 @@ t_exec	**commands_for_exec(t_token *tokens)
 	return (exec);
 }
 
+/// @brief Populates a t_exec structure with information from a t_token structure
+/// @param exec
+/// @param tokens
 void	fill(t_exec *exec, t_token *tokens)
 {
 	exec->cmds = tokens->table->cmd;

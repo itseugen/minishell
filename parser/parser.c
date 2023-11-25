@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 04:13:05 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/23 11:03:28 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/25 04:55:51 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 *		- have a clean structure the executor can use (done)
 */
 
+/// @brief This is the main parser function that iterates through the token list and calls specific functions based on the type of operation in each token
+/// @param tokens
+/// @return 0
 int	mainpars(t_token *tokens)
 {
 	t_token	*head;
@@ -49,6 +52,9 @@ int	mainpars(t_token *tokens)
 	return (0);
 }
 
+/// @brief Creates a command structure (t_command) and populates it with information from the CMD token.
+/// @param tokens
+/// @return 0
 int	cmd_maker(t_token *tokens)
 {
 	t_command	*tab;
@@ -68,6 +74,9 @@ int	cmd_maker(t_token *tokens)
 	return (0);
 }
 
+/// @brief Handles redirection tokens and sets up the input and output file descriptors for a command.
+/// @param tokens
+/// @return
 int	red_maker(t_token *tokens)
 {
 	t_token	*tmp;
@@ -96,6 +105,11 @@ int	red_maker(t_token *tokens)
 	return (0);
 }
 
+/// @brief Extracts the input or output file name from the redirection token.
+/// @param str
+/// @param tmp
+/// @param flag
+/// @return 0
 int	in_out(char *str, t_token *tmp, int flag)
 {
 	int		i;
@@ -124,6 +138,10 @@ int	in_out(char *str, t_token *tmp, int flag)
 	return (0);
 }
 
+/// @brief Opens a file with specific flags based on the provided parameters.
+/// @param str
+/// @param flag
+/// @return fd
 int	ft_open(char *str, int flag)
 {
 	int	fd;
@@ -147,6 +165,3 @@ int	ft_open(char *str, int flag)
 		return (ft_fprintf(2, "Error opening output file\n"), -1);
 	return (fd);
 }
-
-
-// //! also if you want to comment functions use @brief instead of normal comments
