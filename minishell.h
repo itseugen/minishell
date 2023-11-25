@@ -6,7 +6,7 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/25 01:10:58 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/25 02:55:25 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ enum e_token
 
 # define STDIN 0
 # define STDOUT 1
+# define STDERR 2
 
 /* ************************************************************************** */
 /*                          Typedefs and globals                              */
@@ -179,7 +180,7 @@ void	ctrl_d(void);
 void	ctrl_bs(void);
 void	sig_type(int sig);
 void	clear_sigargs(void);
-int		custom_exit(t_token *tokens);
+int		mini_exit(t_token *tokens);
 void	free_command(t_command *cmd);
 
 /* ************************************************************************** */

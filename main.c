@@ -6,7 +6,7 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/25 01:11:13 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/25 04:18:51 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,15 @@ int	main(int argc, char **argv, char **envp)
 		if (mainpars(tokens) == -1)
 			return (ft_fprintf(2, "parse error\n"), -1);
 		exec = commands_for_exec(tokens);
+		mini_exit(tokens);
 		if (!exec)
 			return (ft_fprintf(2, "Execution command initialization error\n"), -1);
 		i = 0;
-		// while (exec[i])
-		// {
-		// 	printf("%s------%d\n", exec[i]->cmds[0], exec[i]->in_fd);
-		// 	i++;
-		// }
+		while (exec[i])
+		{
+			printf("%s------%d\n", exec[i]->cmds[0], exec[i]->in_fd);
+			i++;
+		}
 		i = 0;
 		if (tokens != NULL)
 			free_tokens(&tokens);
