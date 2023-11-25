@@ -6,7 +6,7 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/25 00:18:25 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/25 01:10:58 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@
 # include "libmock/mock_functions.h"
 
 # include <stdio.h>
+# include <signal.h>
 # include <stdbool.h>
+# include <termios.h>
+# include <errno.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <fcntl.h>
-# include <signal.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 
@@ -167,6 +169,19 @@ void	free_strings(void **strings);
 int		ft_isblank(char c);
 int		ft_isquote(char c);
 int		rem_quotes(char **split);
+
+/* ************************************************************************** */
+/*                                  Signals                                   */
+/* ************************************************************************** */
+
+void	ctrl_c(void);
+void	ctrl_d(void);
+void	ctrl_bs(void);
+void	sig_type(int sig);
+void	clear_sigargs(void);
+int		custom_exit(t_token *tokens);
+void	free_command(t_command *cmd);
+
 /* ************************************************************************** */
 /*                               test_fuctions                                */
 /* ************************************************************************** */

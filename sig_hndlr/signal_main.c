@@ -6,7 +6,7 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:45:48 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/25 00:17:28 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/25 01:10:15 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ctrl_c(void)
 {
 	write(1, "\n", 1);
 	rl_on_new_line();
-	rl_replace_line("", 1);
+	rl_replace_line("", 0);
 	rl_redisplay();
 }
 
@@ -37,6 +37,15 @@ void	sig_type(int sig)
 		ctrl_c();
 	else if (sig == SIGQUIT)
 		ctrl_bs();
+}
+
+void	clear_sigargs(void)
+{
+	struct termios	arg;
+
+	tcgetattr(1, &arg);
+	arg.c_lflag &= ~ECHOCTL;
+	tcsetattr(1, TCSAFLUSH, &arg);
 }
 
 // int	custom_exit(t_token *tokens)
