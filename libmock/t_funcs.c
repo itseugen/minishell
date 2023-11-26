@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_funcs.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 20:18:04 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/21 18:44:37 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/25 23:15:58 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,19 @@ void	*t_ft_calloc(size_t nmemb, size_t size)
 /// @param pipefd
 /// @throw pipe could still fail
 /// @return -1 on the FAILTIMEth call otherwise pipe
-int	t_pipe(int pipefd[2])
-{
-	static int	i = 1;
+// int	t_pipe(int pipefd[2])
+// {
+// 	static int	i = 1;
 
-	if (i == FAIL_TIME)
-		return (-1);
-	return (pipe(pipefd));
-}
+// 	if (i == FAIL_TIME)
+// 		return (-1);
+// 	return (pipe(pipefd));
+// }
 
 /// @brief Fails a call to open on the FAILTIMEth call
-/// @param pathname 
-/// @param flags 
-/// @param mode 
+/// @param pathname
+/// @param flags
+/// @param mode
 /// @return -1 on the FAILTIMEth call otherwise open
 int	t_open(const char *pathname, int flags, mode_t mode)
 {

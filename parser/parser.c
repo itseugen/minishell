@@ -6,14 +6,15 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 04:13:05 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/25 04:55:51 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/26 04:42:30 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+
 /*
-* The parser:
+*	The parser:
 * 1.	check for wrong pipes etc (I could also make a lexer expansion)
 *		to take care of such errors (done) -> (files in lexer_utils.c)
 *
@@ -27,7 +28,9 @@
 *		- have a clean structure the executor can use (done)
 */
 
-/// @brief This is the main parser function that iterates through the token list and calls specific functions based on the type of operation in each token
+/// @brief This is the main parser function that iterates
+/// through the token list and calls specific functions
+/// based on the type of operation in each token
 /// @param tokens
 /// @return 0
 int	mainpars(t_token *tokens)
@@ -52,7 +55,8 @@ int	mainpars(t_token *tokens)
 	return (0);
 }
 
-/// @brief Creates a command structure (t_command) and populates it with information from the CMD token.
+/// @brief Creates a command structure (t_command)
+/// and populates it with information from the CMD token.
 /// @param tokens
 /// @return 0
 int	cmd_maker(t_token *tokens)
@@ -63,18 +67,15 @@ int	cmd_maker(t_token *tokens)
 	if (!tab)
 		return (-1);
 	tab->cmd = my_split(tokens->cmd);
-	//! Malloc not protected
-	//! Why duplicate the string and not pass the pointer?
-	//Answer : passing the pointer was segfaulting so duplicating fixed that issue
 	tab->cmd_name = ft_strdup(tab->cmd[0]);
-	//! Malloc not protected
 	tab->in_fd = STDIN;
 	tab->out_fd = STDOUT;
 	tokens->table = tab;
 	return (0);
 }
 
-/// @brief Handles redirection tokens and sets up the input and output file descriptors for a command.
+/// @brief Handles redirection tokens and
+///sets up the input and output file descriptors for a command.
 /// @param tokens
 /// @return
 int	red_maker(t_token *tokens)
@@ -92,16 +93,17 @@ int	red_maker(t_token *tokens)
 	{
 		in_out(tokens->cmd, tmp, 0);
 		tmp->table->in_fd = ft_open(tmp->table->input_file, 0);
-		if (tmp->table->in_fd == -1)
-			return (-1);
 	}
 	if (tokens->cmd[0] == '>')
 	{
 		in_out(tokens->cmd, tmp, 1);
-		tmp->table->out_fd = ft_open(tmp->table->output_file, 1);
-		if (tmp->table->out_fd == -1)
-			return (-1);
+		if (tokens->cmd[1] == '>')
+			tmp->table->out_fd = ft_open(tmp->table->output_file, 2);
+		else
+			tmp->table->out_fd = ft_open(tmp->table->output_file, 1);
 	}
+	if (tmp->table->out_fd == -1 || tmp->table->in_fd == -1)
+		return (-1);
 	return (0);
 }
 
@@ -118,9 +120,10 @@ int	in_out(char *str, t_token *tmp, int flag)
 
 	i = 1;
 	j = 0;
+	if (str[i] == '>')
+		i = 2;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
-	//! Why malloc and not ft_calloc?
 	l = (char *)malloc(sizeof(char) * (word_len(str, i) + 1));
 	if (!l)
 		return (-1);
@@ -148,8 +151,6 @@ int	ft_open(char *str, int flag)
 
 	if (flag == 0)
 	{
-		//! Why access if you could try open anyway? Why call access twice? (F_OK | R_OK)
-		//Answer : we need to know if it's both readable and accessable for the input. It, would still be alright without it but it's better to have the check here.
 		if (access(str, F_OK) == 0 && access(str, R_OK) == 0)
 		{
 			fd = open(str, O_RDONLY);
@@ -160,6 +161,8 @@ int	ft_open(char *str, int flag)
 			return (ft_fprintf(2, "Wrong input file\n"), -1);
 	}
 	if (flag == 1)
+		fd = open(str, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	if (flag == 2)
 		fd = open(str, O_APPEND | O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd < 0)
 		return (ft_fprintf(2, "Error opening output file\n"), -1);

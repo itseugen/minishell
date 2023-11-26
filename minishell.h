@@ -6,7 +6,7 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/25 02:55:25 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/26 06:25:36 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@
 
 # include "libft/libft.h"
 # include "libmock/mock_functions.h"
+// # include "pipex.h"
 
 # include <stdio.h>
 # include <signal.h>
 # include <stdbool.h>
+# include <stdlib.h>
 # include <termios.h>
 # include <errno.h>
 # include <readline/readline.h>
@@ -94,6 +96,12 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
+
+void	executor(t_exec **exec, t_env *env);
+char	**get_env(t_env *env);
+char	**get_path(char	**envp);
+char	*correct(t_exec *exec, char **envp);
+void	ex(t_exec *exec, t_env *env, int tmp);
 /* ************************************************************************** */
 /*                                Executing                                   */
 /* ************************************************************************** */

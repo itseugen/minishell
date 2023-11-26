@@ -6,7 +6,7 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/25 04:44:15 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/26 06:48:44 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ int	main(int argc, char **argv, char **envp)
 		if (test != NULL && test[0] != '\0')
 			add_history(test);
 		tokens = tokenizer(test);
-		if (tokens == NULL)
-			printf("Error\n");
+		// if (tokens == NULL)
+		// 	printf("Error\n");
 		// t_print_tokens(tokens);
 		fix_tokens(tokens);
 		expand_tokens(env_list, tokens);
@@ -82,27 +82,20 @@ int	main(int argc, char **argv, char **envp)
 		if (mainpars(tokens) == -1)
 			return (ft_fprintf(2, "parse error\n"), -1);
 		exec = commands_for_exec(tokens);
-		// mini_exit(tokens);
 		if (!exec)
 			return (ft_fprintf(2, "Execution command initialization error\n"), -1);
-		i = 0;
-		while (exec[i])
-		{
-			printf("%s------%d\n", exec[i]->cmds[0], exec[i]->in_fd);
-			i++;
-		}
-		i = 0;
+		executor(exec, env_list);
+		// mini_exit(tokens);
 		if (tokens != NULL)
 			free_tokens(&tokens);
 		free(test);
-		//! now call parser
-		//! use ft_split_minishell2
-		//! use rem_quotes after
+		// //! now call parser
+		// //! use ft_split_minishell2
+		// //! use rem_quotes after
 		free(prompt);
 	}
 	free(prompt);
 	free_env_struct(&env_list);
-	system("leaks minishell");
 	return (0);
 }
 

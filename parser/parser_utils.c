@@ -6,7 +6,7 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 03:27:50 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/25 04:50:52 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/26 04:41:14 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,10 @@ static int	maker(char *str, int i, char **tmp, int x)
 	return (i);
 }
 
-/// @brief This is used when there are mixed spaces and tabs is the string for example "			ls -l 		 | wc >" which was complicated to handle with your split, so just wrote it as a util.
+/// @brief This is used when there are mixed spaces and tabs
+///		   is the string for example "			ls -l 		 | wc >"
+///		   which was complicated to handle with your split,
+///        so just wrote it as a util.
 /// @param str
 /// @return tmp
 char	**my_split(char *str)
