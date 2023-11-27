@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 13:30:19 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/23 19:30:40 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/27 13:55:08 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,7 @@
 static int	add_new(t_token **token_list);
 static char	*get_tok_str(int *old_i, char *input);
 static int	skip_quotes(char const *s, int i);
-
-//* The idea behind it is, to just split the string using my
-//* minishell split. For execve we can then just pass the split
-//* to the execve, same for the builtins (that have to be reworked slightly)
-//* (echo has to split the string itself to print the spaces correctly)
-//* For example cd takes a char **, checks if char **[2] == NULL
-//* Fails if it isnt otherwise just executes as usual with
-//* char **[1] (char **[0] should be "cd")
+static int	lexer_normal_string(int i, char *input, int *start);
 
 /// @brief Splits the input into tokens
 /// @param input the input to split
@@ -71,31 +64,29 @@ static char	*get_tok_str(int *old_i, char *input)
 		|| (input[i] == '>' && input[i + 1] == '<'))
 		return (NULL);
 	if (input[i] == '<' || input[i] == '>')
-	{
-		i++;
-		if (input[i] == '<' || input[i] == '>')
-			i++;
-		while (input[i] == ' ' && input[i] != '\0')
-			i++;
-		while (input[i] != ' ' && input[i] != '\0' && input[i] != '|')
-			i++;
-	}
+		i = lexer_redirects(i, input);
 	else
-	{
-		while (input[i] == ' ' && input[i] != '\0')
-			i++;
-		start = i;
-		while (input[i] != '\0' && input[i] != '|' && input[i] != ';'
-			&& input[i] != '<' && input[i] != '>')
-		{
-			i = skip_quotes(input, i);
-			if (i == -1)
-				return (ft_fprintf(2, "Unclosed quotes: aborting\n"), NULL);
-			i++;
-		}
-	}
+		i = lexer_normal_string(i, input, &start);
+	if (i == -1)
+		return (ft_fprintf(2, "Unclosed quotes: aborting\n"), NULL);
 	*old_i = i;
 	return (ft_substr(input, start, i - start));
+}
+
+static int	lexer_normal_string(int i, char *input, int *start)
+{
+	while (input[i] == ' ' && input[i] != '\0')
+		i++;
+	*(start) = i;
+	while (input[i] != '\0' && input[i] != '|' && input[i] != ';'
+		&& input[i] != '<' && input[i] != '>')
+	{
+		i = skip_quotes(input, i);
+		if (i == -1)
+			return (-1);
+		i++;
+	}
+	return (i);
 }
 
 static int	skip_quotes(char const *s, int i)
@@ -143,23 +134,4 @@ static int	add_new(t_token **token_list)
 		last_token->next = new_token;
 	}
 	return (0);
-}
-
-void	free_tokens(t_token **token_list)
-{
-	t_token	*cur_token;
-	t_token	*next_token;
-
-	if (*token_list == NULL)
-		return ;
-	cur_token = *token_list;
-	while (cur_token != NULL)
-	{
-		next_token = cur_token->next;
-		if (cur_token->cmd != NULL)
-			free(cur_token->cmd);
-		free(cur_token);
-		cur_token = next_token;
-	}
-	*token_list = NULL;
 }

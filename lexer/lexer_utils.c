@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 03:34:11 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/26 04:51:36 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/27 13:48:11 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,35 @@ void	fix_tokens(t_token *tokens)
 		}
 		tokens = tokens->next;
 	}
+}
+
+int	lexer_redirects(int i, char *input)
+{
+	i++;
+	if (input[i] == '<' || input[i] == '>')
+		i++;
+	while (input[i] == ' ' && input[i] != '\0')
+		i++;
+	while (input[i] != ' ' && input[i] != '\0' && input[i] != '|')
+		i++;
+	return (i);
+}
+
+void	free_tokens(t_token **token_list)
+{
+	t_token	*cur_token;
+	t_token	*next_token;
+
+	if (*token_list == NULL)
+		return ;
+	cur_token = *token_list;
+	while (cur_token != NULL)
+	{
+		next_token = cur_token->next;
+		if (cur_token->cmd != NULL)
+			free(cur_token->cmd);
+		free(cur_token);
+		cur_token = next_token;
+	}
+	*token_list = NULL;
 }

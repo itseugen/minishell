@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/27 13:37:47 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/27 13:46:31 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ void	assign_id(t_token *token_list);
 bool	is_builtin(char *cmd);
 int		pipe_checker(char *tmp, int i);
 void	fix_tokens(t_token *tokens);
+int		lexer_redirects(int i, char *input);
 
 /* ************************************************************************** */
 /*                                  Parser                                    */
