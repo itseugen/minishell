@@ -55,3 +55,4 @@ minishell
 libft
 .DS_Store
 valgrind*
+!rough_outline.txt
