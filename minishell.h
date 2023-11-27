@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/26 06:25:36 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/27 13:37:47 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,14 @@ enum e_token
 /*                          Typedefs and globals                              */
 /* ************************************************************************** */
 
-/// Example:
-/// Cmd = "<"
-/// Args = token->next
-/// operation = OPEN
-/// next = "wc";
 typedef struct s_command
 {
 	int		in_fd;
 	int		out_fd;
-	char	*cmd_name;		// Command or executable name
+	char	*cmd_name;
 	char	**cmd;
-	char	*input_file;		// Input file for redirection (NULL if not used)
-	char	*output_file;		// Output file for redirection (NULL if not used)
+	char	*input_file;
+	char	*output_file;
 }	t_command;
 
 typedef struct s_token
@@ -96,7 +91,6 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
-
 void	executor(t_exec **exec, t_env *env);
 char	**get_env(t_env *env);
 char	**get_path(char	**envp);
@@ -116,7 +110,6 @@ int		cmd_counter(t_token *tokens);
 /*                                builtins                                    */
 /* ************************************************************************** */
 
-// bool	is_builtin(char *str);
 int		execute_builtin(char *str, char *args, char **envp);
 int		builtin_env(t_env *env_list);
 int		builtin_pwd(t_env *env_list);
