@@ -16,3 +16,14 @@
 	My first thought is, that the builtins are called in a wrong way
 9. /usr/bin/env doesnt work (fix see 4.)
 10. just one space as input fails in fix tokens
+11. Here_doc doesnt work
+12. < testcmds.txt cat segfaults in red_maker
+12.1 All < segfault
+13. input with a space before a redirect symbol segfaults in fix_tokens
+14. >> doesnt work
+15. on Ctrl + C sometimes a second prompt appears (see cat or wc on their own)
+16. l"s" -"l"a doesn't work (it works with ft_split_minishell and remove_quotes which you don't use)
+	This issue extends to everything else ("pwd" also doesn't work, but it should)
+	remove quotes accordingly before executing
+	"l"'s' should also work p. e.
+
