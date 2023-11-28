@@ -90,6 +90,7 @@ bash: thiscommanddoesntexist: command not found -> 127
 5. expr $? + 5
 prints 132
 
+!!!As per subject we only need to save the LAST childs exit status
 expr $? + $?
 Sums up the exit status of the last two commands
 prints 0 or 254 or 127 depends on the last two commands.
@@ -104,6 +105,7 @@ Hello, World
 2. "cat lol.c | cat > lol.c"
 cat lol.c | cat > lol.c
 
+THIS ARE SHELL VARIABLES WE DO NOT NEED TO DO!!!
 3. name="John"
    echo "Hello, $name"
 Hello, John

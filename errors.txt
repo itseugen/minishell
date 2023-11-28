@@ -9,11 +9,12 @@
 	this could fix it depending on your executor
 5. exit fails (see 3.)
 6. echo doesnt remove quotes (it works with my basic executor) -> wrong parsing to builtin echo?
-7. /bin/pwd doesn't work anymore (fix see 4.)
+7. /bin/pwd doesn't work anymore (fix see 4., 19.)
 8. cd doesnt work anymore -> I'll try to fix it
 	Edit: After trying just the command after lexer and ft_split_minishell
 	it seems to work -> either it goes wrong in the parser, the executor or the fix_tokens
 	My first thought is, that the builtins are called in a wrong way
+	EDIT: see 19, builtins shouldnt be called in child processes
 9. /usr/bin/env doesnt work (fix see 4.)
 10. just one space as input fails in fix tokens
 11. Here_doc doesnt work
@@ -26,4 +27,9 @@
 	This issue extends to everything else ("pwd" also doesn't work, but it should)
 	remove quotes accordingly before executing
 	"l"'s' should also work p. e.
-
+17. expr "5 + 3" doest work as it should -> remove quotes after splitting
+18. $? doesnt get expanded -> signaling, code exists commented in expander
+19. export doesnt work -> as per top, consider that export might be called wrong
+	BUILTINS SHOULD NOT BE CALLED IN CHILD PROCESSES -> A Builtin in a child cannot modify the env
+20. SHLLVL doesnt update (not necessary to fix)
+21. grep doesnt work with quoted stuff -> REMOVE QUOTES (the function exists)
