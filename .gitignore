@@ -56,3 +56,4 @@ libft
 .DS_Store
 valgrind*
 !rough_outline.txt
+!errors.txt
