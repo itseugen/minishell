@@ -3,6 +3,9 @@
 		"iterator": "c",
 		"sstream": "c",
 		"readline.h": "c",
-		"history.h": "c"
+		"history.h": "c",
+		"__locale": "c",
+		"algorithm": "c",
+		"chrono": "c"
 	}
 }

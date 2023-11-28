@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 23:43:00 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/26 06:26:31 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/27 01:33:12 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,8 +133,8 @@ char	*correct(t_exec *exec, char **envp)
 
 void	ex(t_exec *exec, t_env *env, int tmp)
 {
-	char *path;
-	char **envp;
+	char	*path;
+	char	**envp;
 
 	envp = get_env(env);
 	path = correct(exec, envp);
