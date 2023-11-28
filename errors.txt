@@ -11,5 +11,8 @@
 6. echo doesnt remove quotes (it works with my basic executor) -> wrong parsing to builtin echo?
 7. /bin/pwd doesn't work anymore (fix see 4.)
 8. cd doesnt work anymore -> I'll try to fix it
+	Edit: After trying just the command after lexer and ft_split_minishell
+	it seems to work -> either it goes wrong in the parser, the executor or the fix_tokens
+	My first thought is, that the builtins are called in a wrong way
 9. /usr/bin/env doesnt work (fix see 4.)
 10. just one space as input fails in fix tokens
