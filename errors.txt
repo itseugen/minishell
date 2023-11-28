@@ -1,0 +1,15 @@
+1. no output if command doesnt exist -> fix in executor
+2. segfault on empty input -> segfaults in executor
+3. segfault on CTRL + D -> fix with signaling in exit function (see 5.)
+4. /bin/ls doesn't work -> fix in executor (dont search for path if path is given)
+	if (ft_strchr(cmd[0], '/') != NULL)
+		path = cmd[0];
+	else
+		path = get_cmd_path(cmd[0], envp);
+	this could fix it depending on your executor
+5. exit fails (see 3.)
+6. echo doesnt remove quotes (it works with my basic executor) -> wrong parsing to builtin echo?
+7. /bin/pwd doesn't work anymore (fix see 4.)
+8. cd doesnt work anymore -> I'll try to fix it
+9. /usr/bin/env doesnt work (fix see 4.)
+10. just one space as input fails in fix tokens
