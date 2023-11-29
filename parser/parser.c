@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 04:13:05 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/29 14:19:52 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 18:15:22 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ int	ft_open(char *str, int flag)
 	if (flag == 1)
 		fd = open(str, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (flag == 2)
-		fd = open(str, O_APPEND | O_CREAT | O_WRONLY | O_TRUNC, 0644);
+		fd = open(str, O_APPEND | O_CREAT | O_WRONLY, 0644);
 	if (fd < 0)
 		return (ft_fprintf(2, "Error opening output file\n"), -1);
 	return (fd);
