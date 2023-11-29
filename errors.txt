@@ -34,4 +34,3 @@
 20. SHLLVL doesnt update (not necessary to fix)
 21. grep doesnt work with quoted stuff -> REMOVE QUOTES (the function exists)
 22. History doesnt work (not necerssarily necessary)
-history needs to work as per eval sheet

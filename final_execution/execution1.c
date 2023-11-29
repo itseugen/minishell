@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execution.c                                        :+:      :+:    :+:   */
+/*   execution1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 23:43:00 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/29 06:05:00 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/29 07:09:33 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,83 +116,3 @@ void	ex(t_exec *exec, t_env *env, int tmp)
 		exit(EXIT_FAILURE);
 	}
 }
-
-// void	execute_last_command(t_exec **exec, t_env *env, int tmp, int i)
-// {
-//     pid_t	pid;
-
-//     pid = fork();
-//     if (pid == -1)
-//     {
-//         perror("fork");
-//         exit(EXIT_FAILURE);
-//     }
-//     if (pid == 0)
-//     {
-//         if (is_builtin(exec[i]->cmds[0]))
-//             execute_builtin(exec[i], env);
-//         else
-//             ex(exec[i], env, tmp);
-//         exit(1);
-//     }
-//     close(tmp);
-//     while (waitpid(pid, NULL, WUNTRACED) != -1)
-//         ;
-// }
-
-
-// void	execute_command(t_exec **exec, t_env *env, int *tmp, int *fd, int i)
-// {
-//     pid_t	pid;
-
-//     if (pipe(fd) == -1)
-//     {
-//         perror("pipe");
-//         exit(EXIT_FAILURE);
-//     }
-//     pid = fork();
-//     if (pid == -1)
-//     {
-//         perror("fork");
-//         exit(EXIT_FAILURE);
-//     }
-//     if (pid == 0)
-//     {
-//         close(fd[0]);
-//         if (dup2(fd[1], 1) == -1)
-//         {
-//             perror("dup2");
-//             exit(EXIT_FAILURE);
-//         }
-//         close(fd[1]);
-//         if (is_builtin(exec[i]->cmds[0]))
-//             execute_builtin(exec[i], env);
-//         else
-//             ex(exec[i], env, *tmp);
-//         exit(1);
-//     }
-//     close(fd[1]);
-//     close(*tmp);
-//     *tmp = fd[0];
-// }
-
-// int	execute_builtin(t_exec *exec, t_env *env)
-// {
-//     if (ft_strncmp(exec->cmds[0], "cd", 2) == 0)
-//         builtin_cd(exec, env);
-//     else if (ft_strncmp(exec->cmds[0], "echo", 4) == 0)
-//         builtin_echo(exec, env);
-// 	else if (ft_strncmp(exec->cmds[0], "pwd", 4) == 0)
-//         builtin_echo(exec, env);
-// 	else if (ft_strncmp(exec->cmds[0], "env", 4) == 0)
-//         builtin_pwd(env);
-// 	else if (ft_strncmp(exec->cmds[0], "export", 4) == 0)
-//         builtin_echo(exec, env);
-// 	else if (ft_strncmp(exec->cmds[0], "unset", 4) == 0)
-//         builtin_echo(exec, env);
-// 	else if (ft_strncmp(exec->cmds[0], "exit", 4) == 0)
-//         builtin_echo(exec, env);
-// 	else
-// 		return (-1);
-// 	return (0);
-// }
