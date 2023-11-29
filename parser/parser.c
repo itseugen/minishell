@@ -86,24 +86,30 @@ int	red_maker(t_token *tokens)
 	while (tmp)
 	{
 		tmp = tmp->prev;
-		if (tmp->operation == CMD)
-			break ;
+		if (tmp && tmp->operation == CMD)
+			break;
 	}
+	if (!tmp)
+		return (-1);
 	if (tokens->cmd[0] == '<')
 	{
-		in_out(tokens->cmd, tmp, 0);
+		if (in_out(tokens->cmd, tmp, 0) == -1)
+			return (-1);
 		tmp->table->in_fd = ft_open(tmp->table->input_file, 0);
+		if (tmp->table->in_fd == -1)
+			return (-1);
 	}
 	if (tokens->cmd[0] == '>')
 	{
-		in_out(tokens->cmd, tmp, 1);
+		if (in_out(tokens->cmd, tmp, 1) == -1)
+			return (-1);
 		if (tokens->cmd[1] == '>')
 			tmp->table->out_fd = ft_open(tmp->table->output_file, 2);
 		else
 			tmp->table->out_fd = ft_open(tmp->table->output_file, 1);
+		if (tmp->table->out_fd == -1)
+			return (-1);
 	}
-	if (tmp->table->out_fd == -1 || tmp->table->in_fd == -1)
-		return (-1);
 	return (0);
 }
 

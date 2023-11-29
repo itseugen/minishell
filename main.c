@@ -79,7 +79,10 @@ int	main(int argc, char **argv, char **envp)
 		// printf("Command after expand:\n");
 		// t_print_tokens(tokens);
 		if (mainpars(tokens) == -1)
-			return (ft_fprintf(2, "parse error\n"), -1);
+		{
+			ft_fprintf(2, "parse error\n");
+			continue;
+		}
 		exec = commands_for_exec(tokens);
 		if (!exec)
 			return (ft_fprintf(2, "Execution command initialization error\n"), -1);
