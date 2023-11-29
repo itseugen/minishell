@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 17:17:58 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 15:59:11 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:28:54 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	execute_builtin(char **split, t_env *env_list, char *cmd)
 		return (builtin_unset(split, env_list));
 	else if (ft_strncmp(split[0], "env", 4) == 0)
 		return (builtin_env(env_list));
-	// else if (ft_strncmp(split[0], "exit", 5) == 0)
-	// 	return (builtin_exit(envp));
+	else if (ft_strncmp(split[0], "exit", 5) == 0)
+		return (builtin_exit(split, env_list, NULL));
 	else
 		return (1);
 	return (0);

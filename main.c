@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 14:54:55 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:29:45 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,31 +47,28 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	char	*test;
-	// char	*prompt;
+	char	*line;
 	t_token	*tokens;
 	t_env	*env_list;
 	t_exec	**exec;
-	// int		i;
 
 	signal(SIGINT, sig_type);
 	signal(SIGQUIT, sig_type);
 	clear_sigargs();
-	// atexit(leaks);
 	(void)argc;
 	(void)argv;
 	exec = NULL;
-	// i = 0;
 	env_list = env_init(envp);
 	while (1)
 	{
-		test = readline("minish % ");
-		if (test == NULL) //Controll + D;
+		line = readline("minish % ");
+		if (line == NULL) //Controll + D;
 			break ;
-		if (test[0] == '\0')
+		if (line[0] == '\0')
 			continue ;
-		add_history(test);
-		tokens = tokenizer(test);
+		add_history(line);
+		tokens = tokenizer(line);
+		free(line);
 		if (tokens == NULL)
 		{
 			ft_fprintf(2, "Error in tokenizer\n");
@@ -82,28 +79,19 @@ int	main(int argc, char **argv, char **envp)
 			free_tokens(&tokens);
 			continue ;
 		}
-		// printf("Printing tokens:\n");
-		// t_print_tokens(tokens);
 		fix_tokens(tokens);
 		expand_tokens(env_list, tokens);
-		// printf("Command after expand:\n");
-		// t_print_tokens(tokens);
 		if (mainpars(tokens) == -1)
 		{
 			ft_fprintf(2, "parse error\n");
 			continue ;
 		}
 		exec = commands_for_exec(tokens);
+		free_tokens(&tokens);
 		if (!exec)
-			return (ft_fprintf(2, "Execution command initialization error\n"), -1);
+			return (ft_fprintf(2, "command initialization error\n"), -1);
 		executor(exec, env_list);
 		// mini_exit(tokens);
-		if (tokens != NULL)
-			free_tokens(&tokens);
-		free(test);
-		// //! now call parser
-		// //! use ft_split_minishell2
-		// //! use rem_quotes after
 	}
 	free_env_struct(&env_list);
 	return (0);
