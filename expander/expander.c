@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 14:47:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/24 22:37:47 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/29 17:10:41 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ char	*expander(char *arg, t_env *env_list)
 			i = skip_quotes(arg, i);
 		if (i == -1)
 			return (ft_fprintf(2, "malloc fail in expander\n"), NULL);
-		i++;
+		if (arg[i] != '$')
+			i++;
 	}
 	return (arg);
 }
