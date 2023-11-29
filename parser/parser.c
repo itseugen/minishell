@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 04:13:05 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/26 04:42:30 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/29 14:18:14 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,11 @@ int	cmd_maker(t_token *tokens)
 	tab = (t_command *)malloc(sizeof(t_command));
 	if (!tab)
 		return (-1);
-	tab->cmd = my_split(tokens->cmd);
+	// tab->cmd = my_split(tokens->cmd);
+	tab->cmd = ft_split_minishell(tokens->cmd, ' ');
+	rem_quotes(tab->cmd);
+	if (tab->cmd == NULL)
+		return (1);
 	tab->cmd_name = ft_strdup(tab->cmd[0]);
 	tab->in_fd = STDIN;
 	tab->out_fd = STDOUT;
