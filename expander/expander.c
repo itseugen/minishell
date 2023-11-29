@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 14:47:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 18:42:38 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 18:49:50 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,7 @@
 static char	*expand_var(char *input, int *old_i, t_env *env_list);
 static int	skip_quotes(char *s, int i);
 static char	*expand_var_return(int i, t_env *env_list, char **split);
-// static char	*expand_question_mark(char *input, int *old_i);
-
-//* Variables can contain alphanumeric + _
-//* Variables can't start with a number
-//*
+static char	*expand_question_mark(char *input, int *old_i);
 
 //! Implement $? once signals are handled
 //! Infrastructure for $? implemented, untested.
