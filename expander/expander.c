@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 14:47:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 17:10:41 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:26:07 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static char	*expand_var(char *input, int *old_i, t_env *env_list);
 static int	skip_quotes(char *s, int i);
+static char	*expand_var_return(int i, t_env *env_list, char **split);
 // static char	*expand_question_mark(char *input, int *old_i);
 
 //* Variables can contain alphanumeric + _
@@ -122,6 +123,20 @@ static char	*expand_var(char *input, int *old_i, t_env *env_list)
 		i++;
 	ft_strlcpy(var_name, input + start, i - start + 1);
 	*old_i = i;
+	return (expand_var_return(i, env_list,
+			(char *[]){before_var, var_name, input}));
+}
+
+static char	*expand_var_return(int i, t_env *env_list, char **split)
+{
+	char	*before_var;
+	char	*var_name;
+	char	*input;
+	char	*after_var;
+
+	before_var = split[0];
+	var_name = split[1];
+	input = split[2];
 	if (get_env_var(var_name, env_list) == NULL)
 	{
 		after_var = ft_strjoin(before_var, input + i);
