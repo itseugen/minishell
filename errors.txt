@@ -1,6 +1,6 @@
 FIXED 1. empty input segfault
 FIXED if readline input = \n -> break
-2. <| segfaults in execution.c (53:22)
+FIXED 2. <| segfaults in execution.c (53:22)
 3. builtins called incorrectly
 4. $? doesnt work
 FIXED 5. Ctrl + D segfaults
