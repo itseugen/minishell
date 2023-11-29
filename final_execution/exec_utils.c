@@ -3,40 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 05:53:45 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/29 05:55:01 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/29 15:06:27 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-char	**get_env(t_env *env)
-{
-	char	**envp;
-	t_env	*head;
-	int		i;
-
-	head = env;
-	i = 0;
-	while (env)
-	{
-		env = env->next;
-		i++;
-	}
-	envp = (char **)malloc(sizeof(char *) * (i + 1));
-	i = 0;
-	env = head;
-	while (env)
-	{
-		envp[i] = ft_strdup(env->var);
-		i++;
-		env = env->next;
-	}
-	envp[i] = 0;
-	return (envp);
-}
 
 char	**get_path(char	**envp)
 {

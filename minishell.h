@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 06:22:21 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/29 15:06:47 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ void	execute_command(t_exec *exec, t_env *env, int *tmp, int *fd);
 void	handle_dup(int *tmp);
 void	close_fds(t_exec **exec, int i);
 char	*get_cmd_path(char *cmd, char **path);
-char	**get_env(t_env *env);
 char	**get_path(char	**envp);
 char	*correct(t_exec *exec, char **envp);
 void	ex(t_exec *exec, t_env *env, int tmp);
