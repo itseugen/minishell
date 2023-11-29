@@ -12,4 +12,5 @@ FIXED 5. Ctrl + D segfaults
 11. < doesnt work (if it doesnt have a command in front)
 FIXED 12. "l"s doesnt work
 FIXEDISH (doesnt execute, gives no error) 13. space before < means segfault
-14. Can't call echo with the unsplit string
+FIXED 14. Can't call echo with the unsplit string (echo works differently now)
+15. $HOME$USER doesnt get expanded correctly
