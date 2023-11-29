@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:02:45 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 14:53:04 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 19:14:39 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	expand_tokens(t_env *env_list, t_token *tokens)
 	current = tokens;
 	while (current != NULL)
 	{
-		current->cmd = expander(current->cmd, env_list);
+		current->cmd = expander(current->cmd, env_list, 0, false);
 		if (current->cmd == NULL)
 			return (1);
 		current = current->next;

@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 14:47:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 18:49:50 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 19:17:15 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,8 @@ static char	*expand_question_mark(char *input, int *old_i);
 /// @param arg input to expand
 /// @param envp finding the environent variables
 /// @return
-char	*expander(char *arg, t_env *env_list)
+char	*expander(char *arg, t_env *env_list, int i, bool in_quotes)
 {
-	int		i;
-	bool	in_quotes;
-
-	i = 0;
-	in_quotes = false;
 	while (arg[i] != '\0')
 	{
 		if (ft_strchr(arg, '$') == NULL)
@@ -47,13 +42,8 @@ char	*expander(char *arg, t_env *env_list)
 			while (ft_isalnum(arg[i]) != 0 || arg[i] == '_')
 				i++;
 		}
-		else if (arg[i] == '"')
-		{
-			if (in_quotes == false)
-				in_quotes = true;
-			else
-				in_quotes = false;
-		}
+		if (arg[i] == '"')
+			in_quotes = set_in_quotes(in_quotes);
 		else if (arg[i] == '\'' && in_quotes == false)
 			i = skip_quotes(arg, i);
 		if (i == -1)

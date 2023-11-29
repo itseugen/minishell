@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 18:05:15 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 19:14:17 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,55 +86,3 @@ static t_token	*get_and_tokenize(t_env *env_list)
 		return (free(line), free_tokens(&tokens), NULL);
 	return (tokens);
 }
-
-// int	main(int argc, char **argv, char **envp)
-// {
-// 	char	*line;
-// 	t_token	*tokens;
-// 	t_env	*env_list;
-// 	t_exec	**exec;
-
-// 	signal(SIGINT, sig_type);
-// 	signal(SIGQUIT, sig_type);
-// 	clear_sigargs();
-// 	(void)argc;
-// 	(void)argv;
-// 	exec = NULL;
-// 	env_list = env_init(envp);
-// 	while (1)
-// 	{
-// 		line = readline("minish % ");
-// 		if (line == NULL) //Controll + D;
-// 			break ;
-// 		if (line[0] == '\0')
-// 			continue ;
-// 		add_history(line);
-// 		tokens = tokenizer(line);
-// 		free(line);
-// 		if (tokens == NULL)
-// 		{
-// 			ft_fprintf(2, "Error in tokenizer\n");
-// 			continue ;
-// 		}
-// 		if (tokens->cmd[0] == '\0')
-// 		{
-// 			free_tokens(&tokens);
-// 			continue ;
-// 		}
-// 		fix_tokens(tokens);
-// 		expand_tokens(env_list, tokens);
-// 		if (mainpars(tokens) == -1)
-// 		{
-// 			ft_fprintf(2, "parse error\n");
-// 			continue ;
-// 		}
-// 		exec = commands_for_exec(tokens);
-// 		free_tokens(&tokens);
-// 		if (!exec)
-// 			return (ft_fprintf(2, "command initialization error\n"), -1);
-// 		executor(exec, env_list);
-// 	}
-// 	clear_history();
-// 	free_env_struct(&env_list);
-// 	return (0);
-// }

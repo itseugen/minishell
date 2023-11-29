@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 17:28:58 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 19:14:43 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,8 +153,9 @@ int		in_out(char *str, t_token *tmp, int flag);
 /*                                  Expander                                  */
 /* ************************************************************************** */
 
-char	*expander(char *arg, t_env *env_list);
+char	*expander(char *arg, t_env *env_list, int i, bool in_quotes);
 int		expand_tokens(t_env *env_list, t_token *tokens);
+bool	set_in_quotes(bool in_quotes);
 
 /* ************************************************************************** */
 /*                                 Environment                                */
