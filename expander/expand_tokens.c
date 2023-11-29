@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:02:45 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/21 18:32:31 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 14:53:04 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	t_print_tokens(t_token *tokens)
 	current = tokens;
 	while (current != NULL)
 	{
-		printf("Command: %s. ID: %d\n", current->cmd, current->operation);
+		printf("Command: .%s. ID: %d\n", current->cmd, current->operation);
 		current = current->next;
 	}
 }
