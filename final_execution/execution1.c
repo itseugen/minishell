@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 23:43:00 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/29 15:36:39 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:41:44 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,12 @@ void	execute_command(t_exec *exec, t_env *env, int *tmp, int *fd)
 			exit(EXIT_FAILURE);
 		}
 		close(fd[1]);
+		if (is_builtin(exec->cmds[0]) == true)
+		{
+			if (execute_builtin(exec->cmds, env, NULL) == 1)
+				exit(1);
+			exit(0);
+		}
 		ex(exec, env, *tmp);
 		exit(1);
 	}
