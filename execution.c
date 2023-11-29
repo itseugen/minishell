@@ -177,33 +177,32 @@ void	execute_last_command(t_exec **exec, t_env *env, int tmp, int i)
         ;
 }
 
-void	execute_command(t_exec **exec, t_env *env, int *tmp, int *fd, int i)
+void execute_command(t_exec *exec, t_env *env, int *tmp, int *fd)
 {
-    pid_t	pid;
+    pid_t pid;
 
-    if (pipe(fd) == -1)
-    {
+    if (pipe(fd) == -1) {
         perror("pipe");
         exit(EXIT_FAILURE);
     }
+
     pid = fork();
-    if (pid == -1)
-    {
+    if (pid == -1) {
         perror("fork");
         exit(EXIT_FAILURE);
     }
-    if (pid == 0)
-    {
+
+    if (pid == 0) {
         close(fd[0]);
-        if (dup2(fd[1], 1) == -1)
-        {
+        if (dup2(fd[1], 1) == -1) {
             perror("dup2");
             exit(EXIT_FAILURE);
         }
         close(fd[1]);
-        ex(exec[i], env, *tmp);
+        ex(exec, env, *tmp);
         exit(1);
     }
+
     close(fd[1]);
     close(*tmp);
     *tmp = fd[0];
@@ -280,7 +279,7 @@ void	executor(t_exec **exec, t_env *env)
         }
         else
         {
-            execute_command(exec, env, &tmp, fd, i);
+            execute_command(exec[i], env, &tmp, fd);
         }
         close_fds(exec, i);
         i++;

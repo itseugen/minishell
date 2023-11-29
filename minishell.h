@@ -93,7 +93,7 @@ typedef struct s_env
 
 void	executor(t_exec **exec, t_env *env);
 void	execute_last_command(t_exec **exec, t_env *env, int tmp, int i);
-void	execute_command(t_exec **exec, t_env *env, int *tmp, int *fd, int i);
+void 	execute_command(t_exec *exec, t_env *env, int *tmp, int *fd);
 void	handle_dup(int *tmp);
 void	close_fds(t_exec **exec, int i);
 char	*get_cmd_path(char *cmd, char **path);
