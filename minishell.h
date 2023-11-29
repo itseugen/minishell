@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/27 13:46:31 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 06:05:37 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,20 +91,21 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
+
+/* ************************************************************************** */
+/*                                Executing                                   */
+/* ************************************************************************** */
+
 void	executor(t_exec **exec, t_env *env);
 void	execute_last_command(t_exec **exec, t_env *env, int tmp, int i);
-void 	execute_command(t_exec *exec, t_env *env, int *tmp, int *fd);
+void	execute_command(t_exec *exec, t_env *env, int *tmp, int *fd);
 void	handle_dup(int *tmp);
 void	close_fds(t_exec **exec, int i);
 char	*get_cmd_path(char *cmd, char **path);
-
 char	**get_env(t_env *env);
 char	**get_path(char	**envp);
 char	*correct(t_exec *exec, char **envp);
 void	ex(t_exec *exec, t_env *env, int tmp);
-/* ************************************************************************** */
-/*                                Executing                                   */
-/* ************************************************************************** */
 
 t_exec	**commands_for_exec(t_token *tokens);
 int		execute_cmd(char **cmd, char **envp);

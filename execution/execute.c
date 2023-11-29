@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 15:26:58 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/10/31 17:01:38 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 06:03:55 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,23 @@
 /// @param cmd NULL terminated array of strings
 /// @param envp the envp
 /// @return 1 on fail, 0 on success
-int	execute_cmd(char **cmd, char **envp)
-{
-	char	*path;
+// int	execute_cmd(char **cmd, char **envp)
+// {
+// 	char	*path;
 
-	path = get_cmd_path(cmd[0], envp);
-	if (path == NULL)
-		return (perror("no path"), 1);
-	if (execve(path, cmd, envp) == -1)
-		return (free(path), ft_fprintf(STDERR_FILENO,
-				"minishell: cmd not found: %s\n", cmd[0]), 1);
-	free(path);
-	return (0);
-}
+// 	path = get_cmd_path(cmd[0], envp);
+// 	if (path == NULL)
+// 		return (perror("no path"), 1);
+// 	if (execve(path, cmd, envp) == -1)
+// 		return (free(path), ft_fprintf(STDERR_FILENO,
+// 				"minishell: cmd not found: %s\n", cmd[0]), 1);
+// 	free(path);
+// 	return (0);
+// }
 
 /// @brief Gets the Path variable, calls another func
 /// @param cmd the identifier of the cmd array
-/// @param envp 
+/// @param envp
 /// @return returns the path to the command or NULL
 // static char	*get_cmd_path(char *cmd, char **envp)
 // {
@@ -62,8 +62,8 @@ int	execute_cmd(char **cmd, char **envp)
 // }
 
 /// @brief Searches the path variable to a path to command
-/// @param path 
-/// @param cmd 
+/// @param path
+/// @param cmd
 /// @return Path to command or NULL
 // static char	*get_cmd(char *path, char *cmd)
 // {

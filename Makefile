@@ -6,7 +6,7 @@
 #    By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 13:58:27 by eweiberl          #+#    #+#              #
-#    Updated: 2023/11/27 01:21:57 by adhaka           ###   ########.fr        #
+#    Updated: 2023/11/29 06:08:30 by adhaka           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ LINKS += -L./libmock -lmock
 
 SOURCE = main.c
 SOURCE += setup/get_prompt.c
-SOURCE += execution/execute.c
+SOURCE += final_execution/execution1.c final_execution/exec_utils.c final_execution/exec_utils2.c
 SOURCE += builtins/env.c builtins/pwd.c builtins/cd.c builtins/is_builtin.c builtins/echo.c
 SOURCE += builtins/unset.c builtins/export.c
 SOURCE += operations/pipe.c
@@ -29,7 +29,6 @@ SOURCE += utils/ft_split_minishell.c utils/ft_is.c utils/rem_quotes.c
 SOURCE += lexer/check_token.c lexer/lexer.c lexer/lexer_utils.c
 SOURCE += expander/expander.c expander/expand_tokens.c
 SOURCE += parser/parser.c parser/parser_utils.c parser/exec_cmds.c
-SOURCE += execution.c
 SOURCE += environment/env_init.c environment/env_utils.c environment/env_operations.c
 SOURCE += sig_hndlr/signal_main.c sig_hndlr/mini_exit.c
 SOURCE += environment/env_get_envp.c

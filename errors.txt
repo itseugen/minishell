@@ -16,7 +16,7 @@
 	My first thought is, that the builtins are called in a wrong way
 	EDIT: see 19, builtins shouldnt be called in child processes
 9. /usr/bin/env doesnt work (fix see 4.)
-10. just one space as input fails in fix tokens
+10. just one space as input fails in fix tokens (might not be in fix_tokens) need to find a fix to it.
 11. Here_doc doesnt work
 12. < testcmds.txt cat segfaults in red_maker
 12.1 All < segfault
