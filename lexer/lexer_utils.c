@@ -33,18 +33,23 @@ int	pipe_checker(char *tmp, int i)
 
 void	fix_tokens(t_token *tokens)
 {
-	while (tokens)
-	{
-		if (ft_strlen(tokens->cmd) == 0)
-		{
-			tokens->prev->next = tokens->next;
-			tokens->next->prev = tokens->prev;
-			if (tokens->cmd)
-				free(tokens->cmd);
-			free(tokens);
-		}
-		tokens = tokens->next;
-	}
+    t_token *next;
+
+    while (tokens)
+    {
+        next = tokens->next;
+        if (ft_strlen(tokens->cmd) == 0)
+        {
+            if (tokens->prev)
+                tokens->prev->next = tokens->next;
+            if (tokens->next)
+                tokens->next->prev = tokens->prev;
+            if (tokens->cmd)
+                free(tokens->cmd);
+            free(tokens);
+        }
+        tokens = next;
+    }
 }
 
 int	lexer_redirects(int i, char *input)

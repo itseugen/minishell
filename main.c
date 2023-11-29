@@ -52,7 +52,7 @@ int	main(int argc, char **argv, char **envp)
 	t_token	*tokens;
 	t_env	*env_list;
 	t_exec	**exec;
-	int		i;
+	// int		i;
 
 	signal(SIGINT, sig_type);
 	signal(SIGQUIT, sig_type);
@@ -61,7 +61,7 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	exec = NULL;
-	i = 0;
+	// i = 0;
 	env_list = env_init(envp);
 	while (1)
 	{

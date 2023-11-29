@@ -46,7 +46,7 @@
 // 	if (ft_strncmp(str, "cd", 3) == 0)
 // 		return (builtin_cd(args));
 // 	// else if (ft_strncmp(str, "echo", 5) == 0)
-// 	// 	return (builtin_echo(str, args));
+// 		return (builtin_echo(str, args));
 // 	else if (ft_strncmp(str, "pwd", 4) == 0)
 // 		return (builtin_pwd(envp));
 // 	// else if (ft_strncmp(str, "export", 7) == 0)

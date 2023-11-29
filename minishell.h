@@ -92,6 +92,12 @@ typedef struct s_env
 }	t_env;
 
 void	executor(t_exec **exec, t_env *env);
+void	execute_last_command(t_exec **exec, t_env *env, int tmp, int i);
+void	execute_command(t_exec **exec, t_env *env, int *tmp, int *fd, int i);
+void	handle_dup(int *tmp);
+void	close_fds(t_exec **exec, int i);
+char	*get_cmd_path(char *cmd, char **path);
+
 char	**get_env(t_env *env);
 char	**get_path(char	**envp);
 char	*correct(t_exec *exec, char **envp);
