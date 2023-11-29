@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 15:37:24 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:30:18 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ int		builtin_cd(char **cmds, t_env *env_list);
 int		builtin_echo(char **split, char *str);
 int		builtin_export(char **split, t_env *env_list);
 int		builtin_unset(char **split, t_env *env_list);
+int		builtin_exit(char **split, t_env *env_list,t_exec **executable);
 
 /* ************************************************************************** */
 /*                                  Lexer                                     */
