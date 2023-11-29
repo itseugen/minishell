@@ -6,12 +6,16 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:23:40 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 16:00:00 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 19:53:17 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+/// @brief prints the input to the terminal
+/// @param split The arguments and what should be printed
+/// @param str a remainder of an old version, should be NULL
+/// @return 1 on fail, otherwise 0
 int	builtin_echo(char **split, char *str)
 {
 	int	i;

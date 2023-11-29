@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 14:47:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 19:17:15 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 19:47:37 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@ static char	*expand_var(char *input, int *old_i, t_env *env_list);
 static int	skip_quotes(char *s, int i);
 static char	*expand_var_return(int i, t_env *env_list, char **split);
 static char	*expand_question_mark(char *input, int *old_i);
-
-//! Implement $? once signals are handled
-//! Infrastructure for $? implemented, untested.
-//! The function referenced by expand_question mark is just an idea ->
-//! We either handle the exit code in the global (means no function necessary)
-//! Or we use a getter?setter function with a static variable
 
 /// @brief Expands all variables in the args
 /// @param arg input to expand
@@ -54,6 +48,18 @@ char	*expander(char *arg, t_env *env_list, int i, bool in_quotes)
 	return (arg);
 }
 
+/*
+* In the below function, replace the ft_itoa(0) with
+* ft_itoa(some_function_that_returns_the_exit_code_of_the_last_pipe)
+! If you dont know how to store the value, look at slack
+! I would suggest the getter/setter aproach with a static variable.
+! IF you do this, make sure to init it to 0 in the main (in the setup function)
+*/
+
+/// @brief Expands the $?
+/// @param input the input string
+/// @param old_i position in the string
+/// @return the input with the $? replaced
 static char	*expand_question_mark(char *input, int *old_i)
 {
 	int		i;

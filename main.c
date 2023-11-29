@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 19:14:17 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 19:56:01 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ int	main(int argc, char **argv, char **envp)
 	return (clear_history(), free_env_struct(&env_list), 0);
 }
 
+/// @brief Sets the signals, checks the env_list
+/// @param argc 
+/// @param argv 
+/// @param env_list the list to check
+/// @return 1 if the env_init failed, otherwise 0
 static int	setup(int argc, char **argv, t_env *env_list)
 {
 	signal(SIGINT, sig_type);
@@ -58,6 +63,9 @@ static int	setup(int argc, char **argv, t_env *env_list)
 	return (0);
 }
 
+/// @brief Gives the prompt, tokenizes the line, expands
+/// @param env_list the env_list to expand variables
+/// @return the tokens, NULL on Error/malloc fail
 static t_token	*get_and_tokenize(t_env *env_list)
 {
 	char	*line;

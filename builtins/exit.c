@@ -6,12 +6,27 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:08:44 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 16:38:03 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 19:51:26 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+/*
+* In this function: add a function that frees the executable.
+* make sure this free_exec function frees the struct completely
+* and also frees the char **args etc.
+! In execute_command AND execute_last_cmd replace NULL with the
+! t_exec struct so it can be freed accordingly
+! Also put the free_exec function at the bottom
+! of the while loop in main!
+*/
+
+/// @brief Exits the shell, if called in a child, exits the child
+/// @param split the arguments to the function
+/// @param env_list the environment list
+/// @param executable the executable to free
+/// @return exits with 0, or the exit code given as argument
 int	builtin_exit(char **split, t_env *env_list, t_exec **executable)
 {
 	int	exit_code;
