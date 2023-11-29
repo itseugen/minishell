@@ -6,7 +6,7 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 06:05:37 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/29 06:22:21 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 # include "libft/libft.h"
 # include "libmock/mock_functions.h"
-// # include "pipex.h"
 
 # include <stdio.h>
 # include <signal.h>
