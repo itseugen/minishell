@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 23:43:00 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/29 15:05:29 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:36:39 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ void	execute_last_command(t_exec **exec, t_env *env, int tmp, int i)
 {
 	pid_t	pid;
 
+	if (is_builtin(exec[i]->cmds[0]) == true)
+	{
+		execute_builtin(exec[i]->cmds, env, NULL);
+		return ;
+	}
 	pid = fork();
 	if (pid == -1)
 	{
