@@ -6,7 +6,7 @@
 #    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 13:58:27 by eweiberl          #+#    #+#              #
-#    Updated: 2023/11/29 18:50:30 by eweiberl         ###   ########.fr        #
+#    Updated: 2023/11/29 18:53:09 by eweiberl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SOURCE += builtins/unset.c builtins/export.c builtins/exit.c
 SOURCE += operations/pipe.c
 SOURCE += utils/ft_split_minishell.c utils/ft_is.c utils/rem_quotes.c
 SOURCE += lexer/check_token.c lexer/lexer.c lexer/lexer_utils.c
-SOURCE += expander/expander.c expander/expand_tokens.c expander/expand_utils.c
+SOURCE += expander/expander.c expander/expand_tokens.c expander/expander_utils.c
 SOURCE += parser/parser.c parser/parser_utils.c parser/exec_cmds.c
 SOURCE += environment/env_init.c environment/env_utils.c environment/env_operations.c
 SOURCE += sig_hndlr/signal_main.c sig_hndlr/mini_exit.c
