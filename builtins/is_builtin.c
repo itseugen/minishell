@@ -6,58 +6,53 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 17:17:58 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/09 17:11:37 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:29:28 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-/// @brief Checks if the str is a builtin function and executes
-/// @param str 
-/// @return false if it isnt, true if it is
-// bool	is_builtin(char *str)
-// {
-// 	if (str == NULL)
-// 		return (false);
-// 	if (ft_strncmp(str, "cd", 3) == 0)
-// 		return (true);
-// 	// else if (ft_strncmp(str, "echo", 5) == 0)
-// 	// 	return (true);
-// 	else if (ft_strncmp(str, "pwd", 4) == 0)
-// 		return (true);
-// 	// else if (ft_strncmp(str, "export", 7) == 0)
-// 	// 	return (true);
-// 	// else if (ft_strncmp(str, "unset", 6) == 0)
-// 	// 	return (true);
-// 	else if (ft_strncmp(str, "env", 4) == 0)
-// 		return (true);
-// 	// else if (ft_strncmp(str, "exit", 5) == 0)
-// 	// 	return (true);
-// 	else
-// 		return (false);
-// 	return (true);
-// }
+int	execute_builtin(char **split, t_env *env_list, char *cmd)
+{
+	if (split[0] == NULL)
+		return (1);
+	if (ft_strncmp(split[0], "cd", 3) == 0)
+		return (builtin_cd(split, env_list));
+	else if (ft_strncmp(split[0], "echo", 5) == 0)
+		return (builtin_echo(split, cmd));
+	else if (ft_strncmp(split[0], "pwd", 4) == 0)
+		return (builtin_pwd(env_list));
+	else if (ft_strncmp(split[0], "export", 7) == 0)
+		return (builtin_export(split, env_list));
+	else if (ft_strncmp(split[0], "unset", 6) == 0)
+		return (builtin_unset(split, env_list));
+	else if (ft_strncmp(split[0], "env", 4) == 0)
+		return (builtin_env(env_list));
+	// else if (ft_strncmp(split[0], "exit", 5) == 0)
+	// 	return (builtin_exit(envp));
+	else
+		return (1);
+	return (0);
+}
 
-//! Old function, needs to be redone!!!
-// int	execute_builtin(char *str, char *args, char **envp)
-// {
-// 	if (str == NULL)
-// 		return (1);
-// 	if (ft_strncmp(str, "cd", 3) == 0)
-// 		return (builtin_cd(args));
-// 	// else if (ft_strncmp(str, "echo", 5) == 0)
-// 		return (builtin_echo(str, args));
-// 	else if (ft_strncmp(str, "pwd", 4) == 0)
-// 		return (builtin_pwd(envp));
-// 	// else if (ft_strncmp(str, "export", 7) == 0)
-// 	// 	return (builtin_export(envp));
-// 	// else if (ft_strncmp(str, "unset", 6) == 0)
-// 	// 	return (builtin_unset(envp));
-// 	else if (ft_strncmp(str, "env", 4) == 0)
-// 		return (builtin_env(envp));
-// 	// else if (ft_strncmp(str, "exit", 5) == 0)
-// 	// 	return (builtin_exit(envp));
-// 	else
-// 		return (1);
-// 	return (0);
-// }
+/// @brief Returns true if the cmd is a builtin
+/// @param cmd the command to check
+/// @return true if it is a builtin, otherwise false
+bool	is_builtin(char *cmd)
+{
+	if (ft_strncmp(cmd, "cd", 3) == 0)
+		return (true);
+	if (ft_strncmp(cmd, "echo", 5) == 0)
+		return (true);
+	if (ft_strncmp(cmd, "pwd", 4) == 0)
+		return (true);
+	if (ft_strncmp(cmd, "export", 7) == 0)
+		return (true);
+	if (ft_strncmp(cmd, "unset", 6) == 0)
+		return (true);
+	if (ft_strncmp(cmd, "env", 4) == 0)
+		return (true);
+	if (ft_strncmp(cmd, "exit", 5) == 0)
+		return (true);
+	return (false);
+}
