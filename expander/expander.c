@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 14:47:20 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 17:26:07 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 18:42:38 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,6 @@ char	*expander(char *arg, t_env *env_list)
 	{
 		if (ft_strchr(arg, '$') == NULL)
 			return (arg);
-		// if (arg[i] == '$' && arg[i + 1] == '?')
-		// {
-		// 	i++;
-		// 	arg = expand_question_mark(arg, &i);
-		// 	if (arg == NULL)
-		// 		return (ft_fprintf(2, "malloc fail in expander\n"), NULL);
-		// 	while (ft_isalnum(arg[i]) != 0 || arg[i] == '_')
-		// 		i++;
-		// }
 		if (arg[i] == '$')
 		{
 			i++;
@@ -77,54 +68,54 @@ char	*expander(char *arg, t_env *env_list)
 	return (arg);
 }
 
-// static char	*expand_question_mark(char *input, int *old_i)
-// {
-// 	int		i;
-// 	char	*before_var;
-// 	char	*after_var;
-// 	char	*var_val;
+static char	*expand_question_mark(char *input, int *old_i)
+{
+	int		i;
+	char	*before_var;
+	char	*after_var;
+	char	*var_val;
 
-// 	i = *old_i;
-// 	*(old_i + 1);
-// 	before_var = ft_substr(input, 0, i - 1);
-// 	if (before_var == NULL)
-// 		return (free(input), NULL);
-// 	var_val = ft_itoa(get_exit_code());
-// 	if (var_val == NULL)
-// 		return (free(before_var), free(input), NULL);
-// 	after_var = ft_strjoin(before_var, var_val);
-// 	free(before_var);
-// 	before_var = input;
-// 	input = ft_strjoin(after_var, input + i + 1);
-// 	return (free(after_var), free(before_var), free(var_val), input);
-// }
+	i = *old_i;
+	before_var = ft_substr(input, 0, i - 1);
+	if (before_var == NULL)
+		return (free(input), NULL);
+	var_val = ft_itoa(0);
+	if (var_val == NULL)
+		return (free(before_var), free(input), NULL);
+	after_var = ft_strjoin(before_var, var_val);
+	free(before_var);
+	before_var = input;
+	input = ft_strjoin(after_var, input + i + 1);
+	return (free(after_var), free(before_var), free(var_val), input);
+}
 
 static char	*expand_var(char *input, int *old_i, t_env *env_list)
 {
 	int		i;
-	char	*before_var;
+	char	*b_var;
 	char	var_name[256];
 	int		start;
 	char	*after_var;
 
 	i = *old_i;
+	if (input[i] == '?')
+		return (expand_question_mark(input, old_i));
 	if (input[i] != '_' && ft_isalnum(input[i]) == 0)
 		return (input);
-	before_var = ft_substr(input, 0, i - 1);
+	b_var = ft_substr(input, 0, i - 1);
 	if (ft_isdigit(input[i]) != 0)
 	{
-		after_var = ft_strjoin(before_var, input + i + 1);
-		return (free(before_var), free(input), after_var);
+		after_var = ft_strjoin(b_var, input + i + 1);
+		return (free(b_var), free(input), after_var);
 	}
-	if (before_var == NULL)
+	if (b_var == NULL)
 		return (free(input), NULL);
 	start = i;
 	while (input[i] != '\0' && (ft_isalnum(input[i]) != 0 || input[i] == '_'))
 		i++;
 	ft_strlcpy(var_name, input + start, i - start + 1);
 	*old_i = i;
-	return (expand_var_return(i, env_list,
-			(char *[]){before_var, var_name, input}));
+	return (expand_var_return(i, env_list, (char *[]){b_var, var_name, input}));
 }
 
 static char	*expand_var_return(int i, t_env *env_list, char **split)
