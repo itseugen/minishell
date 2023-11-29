@@ -1,7 +1,7 @@
 FIXED 1. empty input segfault
 FIXED if readline input = \n -> break
 FIXED 2. <| segfaults in execution.c (53:22)
-3. builtins called incorrectly
+FIXED 3. builtins called incorrectly
 4. $? doesnt work
 FIXED 5. Ctrl + D segfaults
 6. append doesnt work
@@ -11,4 +11,5 @@ FIXED 5. Ctrl + D segfaults
 10. < testcmds.txt  cat gives parse error
 11. < doesnt work (if it doesnt have a command in front)
 FIXED 12. "l"s doesnt work
-13. space before < means segfault
+FIXEDISH (doesnt execute, gives no error) 13. space before < means segfault
+14. Can't call echo with the unsplit string
