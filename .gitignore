@@ -58,3 +58,4 @@ valgrind*
 !rough_outline.txt
 !errors.txt
 !test_case*
+!parsing_doc.txt
