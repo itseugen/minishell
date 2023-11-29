@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 14:39:58 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 14:54:55 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,19 @@ int	main(int argc, char **argv, char **envp)
 			break ;
 		if (test[0] == '\0')
 			continue ;
-		if (test != NULL && test[0] != '\0')
-			add_history(test);
+		add_history(test);
 		tokens = tokenizer(test);
-		// if (tokens == NULL)
-		// 	printf("Error\n");
+		if (tokens == NULL)
+		{
+			ft_fprintf(2, "Error in tokenizer\n");
+			continue ;
+		}
+		if (tokens->cmd[0] == '\0')
+		{
+			free_tokens(&tokens);
+			continue ;
+		}
+		// printf("Printing tokens:\n");
 		// t_print_tokens(tokens);
 		fix_tokens(tokens);
 		expand_tokens(env_list, tokens);
