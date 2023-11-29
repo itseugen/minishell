@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 16:29:45 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:37:58 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ int	main(int argc, char **argv, char **envp)
 		if (!exec)
 			return (ft_fprintf(2, "command initialization error\n"), -1);
 		executor(exec, env_list);
-		// mini_exit(tokens);
 	}
+	clear_history();
 	free_env_struct(&env_list);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:08:44 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 16:31:15 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:38:03 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	builtin_exit(char **split, t_env *env_list, t_exec **executable)
 	}
 	free_env_struct(&env_list);
 	// free_exec();
+	clear_history();
 	(void)executable;
 	exit(exit_code);
 }
