@@ -6,11 +6,13 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 17:17:58 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 15:29:28 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:59:11 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+static void	str_to_lower(char *cmd);
 
 int	execute_builtin(char **split, t_env *env_list, char *cmd)
 {
@@ -40,6 +42,7 @@ int	execute_builtin(char **split, t_env *env_list, char *cmd)
 /// @return true if it is a builtin, otherwise false
 bool	is_builtin(char *cmd)
 {
+	str_to_lower(cmd);
 	if (ft_strncmp(cmd, "cd", 3) == 0)
 		return (true);
 	if (ft_strncmp(cmd, "echo", 5) == 0)
@@ -55,4 +58,16 @@ bool	is_builtin(char *cmd)
 	if (ft_strncmp(cmd, "exit", 5) == 0)
 		return (true);
 	return (false);
+}
+
+static void	str_to_lower(char *cmd)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (cmd[i] != '\0')
+	{
+		cmd[i] = ft_tolower(cmd[i]);
+		i++;
+	}
 }
