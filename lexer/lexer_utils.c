@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 03:34:11 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/27 13:48:11 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:14:42 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,23 @@ int	pipe_checker(char *tmp, int i)
 
 void	fix_tokens(t_token *tokens)
 {
-    t_token *next;
+	t_token	*next;
 
-    while (tokens)
-    {
-        next = tokens->next;
-        if (ft_strlen(tokens->cmd) == 0)
-        {
-            if (tokens->prev)
-                tokens->prev->next = tokens->next;
-            if (tokens->next)
-                tokens->next->prev = tokens->prev;
-            if (tokens->cmd)
-                free(tokens->cmd);
-            free(tokens);
-        }
-        tokens = next;
-    }
+	while (tokens)
+	{
+		next = tokens->next;
+		if (ft_strlen(tokens->cmd) == 0)
+		{
+			if (tokens->prev)
+				tokens->prev->next = tokens->next;
+			if (tokens->next)
+				tokens->next->prev = tokens->prev;
+			if (tokens->cmd)
+				free(tokens->cmd);
+			free(tokens);
+		}
+		tokens = next;
+	}
 }
 
 int	lexer_redirects(int i, char *input)
