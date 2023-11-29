@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/28 16:03:35 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 14:39:58 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 int	main(int argc, char **argv, char **envp)
 {
 	char	*test;
-	char	*prompt;
+	// char	*prompt;
 	t_token	*tokens;
 	t_env	*env_list;
 	t_exec	**exec;
@@ -65,9 +65,11 @@ int	main(int argc, char **argv, char **envp)
 	env_list = env_init(envp);
 	while (1)
 	{
-		prompt = get_prompt();
-		test = readline(prompt);
-		// Split test or whatever its called with minishellsplit, tokenize, execute after
+		test = readline("minish % ");
+		if (test == NULL) //Controll + D;
+			break ;
+		if (test[0] == '\0')
+			continue ;
 		if (test != NULL && test[0] != '\0')
 			add_history(test);
 		tokens = tokenizer(test);
@@ -81,7 +83,7 @@ int	main(int argc, char **argv, char **envp)
 		if (mainpars(tokens) == -1)
 		{
 			ft_fprintf(2, "parse error\n");
-			continue;
+			continue ;
 		}
 		exec = commands_for_exec(tokens);
 		if (!exec)
@@ -94,9 +96,7 @@ int	main(int argc, char **argv, char **envp)
 		// //! now call parser
 		// //! use ft_split_minishell2
 		// //! use rem_quotes after
-		free(prompt);
 	}
-	free(prompt);
 	free_env_struct(&env_list);
 	return (0);
 }
