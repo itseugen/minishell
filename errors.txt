@@ -1,14 +1,14 @@
-1. empty input segfault
-	if readline input = \n -> break
+FIXED 1. empty input segfault
+FIXED if readline input = \n -> break
 2. <| segfaults in execution.c (53:22)
 3. builtins called incorrectly
 4. $? doesnt work
-5. Ctrl + D segfaults
+FIXED 5. Ctrl + D segfaults
 6. append doesnt work
 7. here_doc doesnt work
 8. sleep 10 | ls doesnt work
 9. exit isnt implemented
 10. < testcmds.txt  cat gives parse error
 11. < doesnt work (if it doesnt have a command in front)
-12. "l"s doesnt work
+FIXED 12. "l"s doesnt work
 13. space before < means segfault
