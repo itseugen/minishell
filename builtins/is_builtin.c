@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 17:17:58 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 16:28:54 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:33:56 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static void	str_to_lower(char *cmd);
 
-int	execute_builtin(char **split, t_env *env_list, char *cmd)
+int	execute_builtin(char **split, t_env *env_list, t_exec **exec)
 {
 	if (split[0] == NULL)
 		return (1);
 	if (ft_strncmp(split[0], "cd", 3) == 0)
 		return (builtin_cd(split, env_list));
 	else if (ft_strncmp(split[0], "echo", 5) == 0)
-		return (builtin_echo(split, cmd));
+		return (builtin_echo(split, NULL));
 	else if (ft_strncmp(split[0], "pwd", 4) == 0)
 		return (builtin_pwd(env_list));
 	else if (ft_strncmp(split[0], "export", 7) == 0)
@@ -31,7 +31,7 @@ int	execute_builtin(char **split, t_env *env_list, char *cmd)
 	else if (ft_strncmp(split[0], "env", 4) == 0)
 		return (builtin_env(env_list));
 	else if (ft_strncmp(split[0], "exit", 5) == 0)
-		return (builtin_exit(split, env_list, NULL));
+		return (builtin_exit(split, env_list, exec));
 	else
 		return (1);
 	return (0);

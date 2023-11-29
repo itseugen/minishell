@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 16:30:18 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:34:07 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int		cmd_counter(t_token *tokens);
 /*                                builtins                                    */
 /* ************************************************************************** */
 
-int		execute_builtin(char **split, t_env *env_list, char *cmd);
+int		execute_builtin(char **split, t_env *env_list, t_exec **exec);
 bool	is_builtin(char *cmd);
 int		builtin_env(t_env *env_list);
 int		builtin_pwd(t_env *env_list);
@@ -123,7 +123,7 @@ int		builtin_cd(char **cmds, t_env *env_list);
 int		builtin_echo(char **split, char *str);
 int		builtin_export(char **split, t_env *env_list);
 int		builtin_unset(char **split, t_env *env_list);
-int		builtin_exit(char **split, t_env *env_list,t_exec **executable);
+int		builtin_exit(char **split, t_env *env_list, t_exec **executable);
 
 /* ************************************************************************** */
 /*                                  Lexer                                     */
