@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 04:21:25 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/30 16:36:09 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:36:24 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	fill(t_exec *exec, t_token *tokens)
 /// @param exec
 void	free_exec_array(t_exec **exec)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (exec[i] != NULL)
