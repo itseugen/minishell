@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:45:48 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/30 07:22:39 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/30 14:48:06 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ void	sig_type(int sig)
 		ctrl_c();
 	else if (sig == SIGQUIT)
 		ctrl_bs();
+}
+
+void	block_signal(void)
+{
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 /// @brief handler fucntion for signals,

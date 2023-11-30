@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/30 07:34:07 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/30 14:48:36 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,7 @@ void	ctrl_c(void);
 void	ctrl_bs(void);
 void	sig_type(int sig);
 void	clear_sigargs(void);
+void	block_signal(void);
 
 /* ************************************************************************** */
 /*                               test_fuctions                                */

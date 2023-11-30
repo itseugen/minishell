@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/30 07:18:05 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/30 14:50:20 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ int	main(int argc, char **argv, char **envp)
 		exit(1);
 	while (1)
 	{
+		signal(SIGINT, sig_type);
+		signal(SIGQUIT, sig_type);
+		clear_sigargs();
 		tokens = get_and_tokenize(env_list);
 		if (tokens == NULL)
 			continue ;

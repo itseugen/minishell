@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 23:43:00 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/30 08:43:26 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/30 14:51:46 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	execute_last_command(t_exec **exec, t_env *env, int tmp, int i)
 		execute_builtin(exec[i]->cmds, env, exec);
 		return ;
 	}
+	block_signal();
 	pid = fork();
 	if (pid == -1)
 	{
@@ -30,6 +31,8 @@ void	execute_last_command(t_exec **exec, t_env *env, int tmp, int i)
 	}
 	else if (pid == 0)
 	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		ex(exec[i], env, tmp);
 		exit(EXIT_FAILURE);
 	}
@@ -55,6 +58,7 @@ void	execute_command(t_exec *exec, t_env *env, int *tmp, int *fd)
 		perror("pipe");
 		exit(EXIT_FAILURE);
 	}
+	block_signal();
 	pid = fork();
 	if (pid == -1)
 	{
@@ -63,6 +67,8 @@ void	execute_command(t_exec *exec, t_env *env, int *tmp, int *fd)
 	}
 	if (pid == 0)
 	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		close(fd[0]);
 		if (dup2(fd[1], 1) == -1)
 		{
@@ -141,6 +147,6 @@ void	ex(t_exec *exec, t_env *env, int tmp)
 		ft_putstr_fd(exec->cmds[0], 2);
 		ft_putstr_fd(": command does not exist\n", 2);
 		free(envp);
-		exit(EXIT_FAILURE);
+		exit(127);
 	}
 }
