@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 04:13:05 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/30 17:25:37 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/30 20:49:06 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,23 @@ int	mainpars(t_token *tokens)
 	head = tokens;
 	while (head)
 	{
-		if (head->operation == CMD)
+		if (head->operation == CMD && !head->table)
 		{
 			if (cmd_maker(head) == -1)
 				return (-1);
 		}
 		else if (head->operation == REDIRECT)
 		{
-			if (red_maker(head) == -1)
-				return (-1);
+			if (!head->prev)
+			{
+				if (red_maker(head, 1) == -1)
+					return (-1);
+			}
+			else
+			{
+				if (red_maker(head, 0) == -1)
+					return (-1);
+			}
 		}
 		head = head->next;
 	}
@@ -66,6 +74,7 @@ int	cmd_maker(t_token *tokens)
 	tab = (t_command *)ft_calloc(1, sizeof(t_command));
 	if (!tab)
 		return (-1);
+	// tab->cmd = my_split(tokens->cmd);
 	tab->cmd = ft_split_minishell(tokens->cmd, ' ');
 	rem_quotes(tab->cmd);
 	if (tab->cmd == NULL)
@@ -77,26 +86,43 @@ int	cmd_maker(t_token *tokens)
 	return (0);
 }
 
+
+int	cmd_maker2(t_token *tokens)
+{
+	t_command	*tab;
+
+	tab = (t_command *)ft_calloc(1, sizeof(t_command));
+	if (!tab)
+		return (-1);
+	// tab->cmd = my_split(tokens->cmd);
+	tab->cmd = ft_split_minishell(tokens->cmd, ' ');
+	rem_quotes(tab->cmd);
+	if (tab->cmd == NULL)
+		return (1);
+	tab->cmd_name = ft_strdup(tab->cmd[0]);
+	tab->in_fd = STDIN;
+	tab->out_fd = STDOUT;
+	tokens->table = tab;
+	return (0);
+}
 /// @brief Handles redirection tokens and
 ///sets up the input and output file descriptors for a command.
 /// @param tokens
 /// @return
-int	red_maker(t_token *tokens)
+
+
+
+int	red_maker2(t_token *tokens)
 {
-	t_token	*tmp;
+	t_token *tmp;
 
 	tmp = tokens;
-	while (tmp)
-	{
-		tmp = tmp->prev;
-		if (tmp && tmp->operation == CMD)
-			break ;
-	}
-	if (!tmp)
+	if (tmp->next)
+		tmp = tmp->next;
+	else if (!tmp->next)
 		return (-1);
-	//! FOR HERE_DOC: If you cant call it normally: open a hidden file here and
-	//! Write the contents of the heredoc to the file, and then open it like a normal infile
-	if (tokens->cmd[0] == '<' || tokens->cmd[1] != '<')
+	cmd_maker2(tmp);
+	if (tokens->cmd[0] == '<')
 	{
 		if (in_out(tokens->cmd, tmp, 0) == -1)
 			return (-1);
@@ -114,6 +140,46 @@ int	red_maker(t_token *tokens)
 			tmp->table->out_fd = ft_open(tmp->table->output_file, 1);
 		if (tmp->table->out_fd == -1)
 			return (-1);
+	}
+	return (0);
+}
+
+int	red_maker(t_token *tokens, int flag)
+{
+	t_token	*tmp;
+
+	tmp = tokens;
+	if (flag)
+		red_maker2(tokens);
+	else
+	{
+		while (tmp)
+		{
+			tmp = tmp->prev;
+			if (tmp && tmp->operation == CMD)
+				break ;
+		}
+		if (!tmp)
+			return (-1);
+		if (tokens->cmd[0] == '<')
+		{
+			if (in_out(tokens->cmd, tmp, 0) == -1)
+				return (-1);
+			tmp->table->in_fd = ft_open(tmp->table->input_file, 0);
+			if (tmp->table->in_fd == -1)
+				return (-1);
+		}
+		if (tokens->cmd[0] == '>')
+		{
+			if (in_out(tokens->cmd, tmp, 1) == -1)
+				return (-1);
+			if (tokens->cmd[1] == '>')
+				tmp->table->out_fd = ft_open(tmp->table->output_file, 2);
+			else
+				tmp->table->out_fd = ft_open(tmp->table->output_file, 1);
+			if (tmp->table->out_fd == -1)
+				return (-1);
+		}
 	}
 	return (0);
 }
