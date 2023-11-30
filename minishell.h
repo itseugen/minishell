@@ -148,6 +148,8 @@ int		ft_open(char *str, int flag);
 int		cmd_maker(t_token *tokens);
 int		red_maker(t_token *tokens);
 int		in_out(char *str, t_token *tmp, int flag);
+void	free_exec_array(t_exec **exec);
+void	free_exec(t_exec *exec);
 
 /* ************************************************************************** */
 /*                                  Expander                                  */

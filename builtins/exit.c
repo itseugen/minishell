@@ -50,7 +50,8 @@ int	builtin_exit(char **split, t_env *env_list, t_exec **executable)
 			ft_fprintf(2, "exit: %s: too many arguments\n", split[i]);
 	}
 	free_env_struct(&env_list);
-	// free_exec();
+	if (executable != NULL)
+		free_exec_array(executable);
 	clear_history();
 	(void)executable;
 	exit(exit_code);

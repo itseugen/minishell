@@ -50,7 +50,7 @@ t_exec	**commands_for_exec(t_token *tokens)
 		{
 			exec[i] = (t_exec *)malloc(sizeof(t_exec));
 			if (!exec[i])
-				return (free_strings((void **)exec), NULL);
+				return (free_exec_array(exec), NULL);
 			fill(exec[i], tokens);
 			i++;
 		}
@@ -69,6 +69,36 @@ void	fill(t_exec *exec, t_token *tokens)
 	exec->cmds = tokens->table->cmd;
 	exec->in_fd = tokens->table->in_fd;
 	exec->out_fd = tokens->table->out_fd;
+}
+
+/// @brief Frees the array of t_exec* pointers
+/// @param exec
+void	free_exec_array(t_exec **exec)
+{
+	int i;
+
+	i = 0;
+	while (exec[i] != NULL)
+	{
+		free_exec(exec[i]);
+		i++;
+	}
+	free(exec);
+}
+	
+void free_exec(t_exec *exec)
+{
+    if (exec->cmds != NULL)
+    {
+        int i = 0;
+        while (exec->cmds[i] != NULL)
+        {
+            free(exec->cmds[i]);
+            i++;
+        }
+        free(exec->cmds);
+    }
+    free(exec);
 }
 
 	// i = 0;

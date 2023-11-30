@@ -39,6 +39,7 @@ int	main(int argc, char **argv, char **envp)
 		if (!exec)
 			return (ft_fprintf(2, "command initialization error\n"), -1);
 		executor(exec, env_list);
+		free_exec_array(exec);
 	}
 	return (clear_history(), free_env_struct(&env_list), 0);
 }
