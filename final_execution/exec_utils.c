@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 05:53:45 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/30 15:12:42 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:16:57 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ char	**get_path(char	**envp)
 			break ;
 		}
 		i++;
+	}
+	if (tmp == NULL)
+	{
+		ft_putstr_fd("Error: PATH variable is unset.\n", STDERR_FILENO);
+		return (NULL);
 	}
 	path = ft_split(tmp + 5, ':');
 	free(tmp);
