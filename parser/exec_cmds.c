@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 04:21:25 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/30 16:36:24 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:57:50 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ t_exec	**commands_for_exec(t_token *tokens)
 
 	n_cmds = cmd_counter(tokens);
 	i = 0;
-	exec = malloc(sizeof(t_exec *) * n_cmds + 1);
+	exec = ft_calloc(n_cmds + 1, sizeof(t_exec *));
 	if (!exec)
 		return (NULL);
 	while (tokens)
 	{
 		if (tokens->operation == CMD)
 		{
-			exec[i] = (t_exec *)malloc(sizeof(t_exec));
+			exec[i] = (t_exec *)ft_calloc(1, sizeof(t_exec));
 			if (!exec[i])
 				return (free_exec_array(exec), NULL);
 			fill(exec[i], tokens);
@@ -78,12 +78,15 @@ void	free_exec_array(t_exec **exec)
 	int	i;
 
 	i = 0;
+	if (exec == NULL)
+		return ;
 	while (exec[i] != NULL)
 	{
 		free_exec(exec[i]);
 		i++;
 	}
 	free(exec);
+	exec = NULL;
 }
 
 void	free_exec(t_exec *exec)
