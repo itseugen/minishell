@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 03:34:11 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/29 17:14:42 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/30 17:38:38 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,16 @@ void	free_tokens(t_token **token_list)
 		next_token = cur_token->next;
 		if (cur_token->cmd != NULL)
 			free(cur_token->cmd);
+		if (cur_token->table != NULL)
+		{
+			if (cur_token->table->cmd_name != NULL)
+				free(cur_token->table->cmd_name);
+			if (cur_token->table->input_file != NULL)
+				free(cur_token->table->input_file);
+			if (cur_token->table->output_file != NULL)
+				free(cur_token->table->output_file);
+			free(cur_token->table);
+		}
 		free(cur_token);
 		cur_token = next_token;
 	}
