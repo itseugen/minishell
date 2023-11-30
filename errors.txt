@@ -16,3 +16,4 @@ FIXED 14. Can't call echo with the unsplit string (echo works differently now)
 FIXED 15. $HOME$USER doesnt get expanded correctly
 FIXED 16. IF Path is unset, error message is missing
 FIXED 17. ; segfaults
+18. cat Makefile < input.txt wc SEGFAULTS
