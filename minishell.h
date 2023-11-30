@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/30 14:48:36 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/30 17:02:42 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,6 @@ int		cmd_maker(t_token *tokens);
 int		red_maker(t_token *tokens);
 int		in_out(char *str, t_token *tmp, int flag);
 void	free_exec_array(t_exec **exec);
-void	free_exec(t_exec *exec);
 
 /* ************************************************************************** */
 /*                                  Expander                                  */

@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 04:21:25 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/30 16:57:50 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/30 17:02:24 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,29 +82,14 @@ void	free_exec_array(t_exec **exec)
 		return ;
 	while (exec[i] != NULL)
 	{
-		free_exec(exec[i]);
+		if (exec[i]->cmds != NULL)
+			free_strings((void **)exec[i]->cmds);
 		i++;
 	}
 	free(exec);
 	exec = NULL;
 }
 
-void	free_exec(t_exec *exec)
-{
-	int	i;
-
-	if (exec->cmds != NULL)
-	{
-		i = 0;
-		while (exec->cmds[i] != NULL)
-		{
-			free(exec->cmds[i]);
-			i++;
-		}
-		free(exec->cmds);
-	}
-	free(exec);
-}
 
 	// i = 0;
 	// while (exec[i])
