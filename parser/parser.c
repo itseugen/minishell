@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 04:13:05 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/30 16:34:22 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/30 17:17:46 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,9 @@ int	red_maker(t_token *tokens)
 	}
 	if (!tmp)
 		return (-1);
-	if (tokens->cmd[0] == '<')
+	//! FOR HERE_DOC: If you cant call it normally: open a hidden file here and
+	//! Write the contents of the heredoc to the file, and then open it like a normal infile
+	if (tokens->cmd[0] == '<' || tokens->cmd[1] != '<')
 	{
 		if (in_out(tokens->cmd, tmp, 0) == -1)
 			return (-1);

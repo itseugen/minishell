@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/30 17:07:11 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/30 17:22:53 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,11 @@ static t_token	*get_and_tokenize(t_env *env_list)
 	if (prompt == NULL)
 		return (ft_fprintf(2, "prompt: malloc fail\n"), NULL);
 	line = readline(prompt);
+	free(prompt);
 	if (line == NULL)
-	{
 		free_env_struct(&env_list);
+	if (line == NULL)
 		exit(0);
-	}
 	if (line[0] == '\0')
 		return (NULL);
 	add_history(line);

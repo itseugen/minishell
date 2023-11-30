@@ -17,3 +17,24 @@ FIXED 15. $HOME$USER doesnt get expanded correctly
 FIXED 16. IF Path is unset, error message is missing
 FIXED 17. ; segfaults
 FIXED 18. cat Makefile < input.txt wc SEGFAULTS
+
+==14098== 16 bytes in 1 blocks are definitely lost in loss record 25 of 114
+==14098==    at 0x10012D775: malloc (in /Users/eweiberl/.brew/Cellar/valgrind/HEAD-8c360fc/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==14098==    by 0x100001063: ft_calloc (in ./minishell)
+==14098==    by 0x100006FBA: commands_for_exec (in ./minishell)
+==14098==    by 0x100002BE5: main (in ./minishell)
+==14098== 
+==14098== 43 (40 direct, 3 indirect) bytes in 1 blocks are definitely lost in loss record 39 of 114
+==14098==    at 0x10012D775: malloc (in /Users/eweiberl/.brew/Cellar/valgrind/HEAD-8c360fc/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==14098==    by 0x100001063: ft_calloc (in ./minishell)
+==14098==    by 0x1000064FA: cmd_maker (in ./minishell)
+==14098==    by 0x100006465: mainpars (in ./minishell)
+==14098==    by 0x100002BCE: main (in ./minishell)
+==14098== 
+==14098== 62 (40 direct, 22 indirect) bytes in 1 blocks are definitely lost in loss record 43 of 114
+==14098==    at 0x10012D775: malloc (in /Users/eweiberl/.brew/Cellar/valgrind/HEAD-8c360fc/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==14098==    by 0x100001063: ft_calloc (in ./minishell)
+==14098==    by 0x1000064FA: cmd_maker (in ./minishell)
+==14098==    by 0x100006465: mainpars (in ./minishell)
+==14098==    by 0x100002BA9: main (in ./minishell)
+==14098== 
