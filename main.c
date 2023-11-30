@@ -6,15 +6,17 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/30 16:55:22 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/30 17:07:11 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 int	g_last_exit_status = 0;
+
 static int		setup(int argc, char **argv, t_env *env_list);
 static t_token	*get_and_tokenize(t_env *env_list);
+static void		signals_main(void);
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -27,17 +29,14 @@ int	main(int argc, char **argv, char **envp)
 		exit(1);
 	while (1)
 	{
-		signal(SIGINT, sig_type);
-		signal(SIGQUIT, sig_type);
-		clear_sigargs();
+		signals_main();
 		tokens = get_and_tokenize(env_list);
 		if (tokens == NULL)
 			continue ;
 		if (mainpars(tokens) == -1)
-		{
 			ft_fprintf(2, "parse error\n");
+		if (mainpars(tokens) == -1)
 			continue ;
-		}
 		exec = commands_for_exec(tokens);
 		free_tokens(&tokens);
 		if (!exec)
@@ -55,9 +54,7 @@ int	main(int argc, char **argv, char **envp)
 /// @return 1 if the env_init failed, otherwise 0
 static int	setup(int argc, char **argv, t_env *env_list)
 {
-	signal(SIGINT, sig_type);
-	signal(SIGQUIT, sig_type);
-	clear_sigargs();
+	signals_main();
 	(void)argc;
 	(void)argv;
 	if (env_list == NULL)
@@ -98,4 +95,11 @@ static t_token	*get_and_tokenize(t_env *env_list)
 	if (expand_tokens(env_list, tokens) == 1)
 		return (free(line), free_tokens(&tokens), NULL);
 	return (tokens);
+}
+
+static void	signals_main(void)
+{
+	signal(SIGINT, sig_type);
+	signal(SIGQUIT, sig_type);
+	clear_sigargs();
 }
