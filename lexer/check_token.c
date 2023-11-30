@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:43:15 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 15:30:01 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:03:24 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	assign_id(t_token *token_list)
 			current->operation = HERE_DOC;
 		else if (current->cmd[0] == '<' || current->cmd[0] == '>')
 			current->operation = REDIRECT;
-		else if (current->cmd[0] == ';')
-			current->operation = SEMICOLON;
+		// else if (current->cmd[0] == ';')
+		// 	current->operation = SEMICOLON;
 		else
 			current->operation = CMD;
 		current = current->next;

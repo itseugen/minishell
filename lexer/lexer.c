@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 13:30:19 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/27 13:55:08 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:04:25 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static char	*get_tok_str(int *old_i, char *input)
 			return (NULL);
 		return ((*old_i)++, ft_strdup("|"));
 	}
-	if (input[i] == ';')
-		return ((*old_i)++, ft_strdup(";"));
+	// if (input[i] == ';')
+	// 	return ((*old_i)++, ft_strdup(";"));
 	if ((input[i] == '<' && input[i + 1] == '>')
 		|| (input[i] == '>' && input[i + 1] == '<'))
 		return (NULL);
@@ -78,7 +78,7 @@ static int	lexer_normal_string(int i, char *input, int *start)
 	while (input[i] == ' ' && input[i] != '\0')
 		i++;
 	*(start) = i;
-	while (input[i] != '\0' && input[i] != '|' && input[i] != ';'
+	while (input[i] != '\0' && input[i] != '|'
 		&& input[i] != '<' && input[i] != '>')
 	{
 		i = skip_quotes(input, i);
