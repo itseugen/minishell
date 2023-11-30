@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:08:44 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 19:51:26 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/30 07:23:58 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,5 @@ int	builtin_exit(char **split, t_env *env_list, t_exec **executable)
 	if (executable != NULL)
 		free_exec_array(executable);
 	clear_history();
-	(void)executable;
 	exit(exit_code);
 }

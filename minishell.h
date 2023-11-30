@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 19:14:43 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/30 07:34:07 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ void	free_exec(t_exec *exec);
 char	*expander(char *arg, t_env *env_list, int i, bool in_quotes);
 int		expand_tokens(t_env *env_list, t_token *tokens);
 bool	set_in_quotes(bool in_quotes);
-int 	get_exit_signal(void);
+int		get_exit_signal(void);
 
 /* ************************************************************************** */
 /*                                 Environment                                */
@@ -189,12 +189,9 @@ int		rem_quotes(char **split);
 /* ************************************************************************** */
 
 void	ctrl_c(void);
-void	ctrl_d(void);
 void	ctrl_bs(void);
 void	sig_type(int sig);
 void	clear_sigargs(void);
-int		mini_exit(t_token *tokens);
-void	free_command(t_command *cmd);
 
 /* ************************************************************************** */
 /*                               test_fuctions                                */

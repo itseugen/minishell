@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/29 19:56:01 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/30 07:18:05 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int g_last_exit_status = 0;
+int	g_last_exit_status = 0;
 static int		setup(int argc, char **argv, t_env *env_list);
 static t_token	*get_and_tokenize(t_env *env_list);
 
@@ -46,8 +46,8 @@ int	main(int argc, char **argv, char **envp)
 }
 
 /// @brief Sets the signals, checks the env_list
-/// @param argc 
-/// @param argv 
+/// @param argc
+/// @param argv
 /// @param env_list the list to check
 /// @return 1 if the env_init failed, otherwise 0
 static int	setup(int argc, char **argv, t_env *env_list)

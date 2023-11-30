@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+         #
+#    By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 13:58:27 by eweiberl          #+#    #+#              #
-#    Updated: 2023/11/29 18:53:09 by eweiberl         ###   ########.fr        #
+#    Updated: 2023/11/30 07:15:09 by adhaka           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SOURCE += lexer/check_token.c lexer/lexer.c lexer/lexer_utils.c
 SOURCE += expander/expander.c expander/expand_tokens.c expander/expander_utils.c
 SOURCE += parser/parser.c parser/parser_utils.c parser/exec_cmds.c
 SOURCE += environment/env_init.c environment/env_utils.c environment/env_operations.c
-SOURCE += sig_hndlr/signal_main.c sig_hndlr/mini_exit.c
+SOURCE += sig_hndlr/signal_main.c
 SOURCE += environment/env_get_envp.c
 
 LIBFT_GIT = https://github.com/itseugen/c_library

@@ -6,7 +6,7 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:45:48 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/29 06:22:12 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/11/30 07:22:39 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,8 @@ void	ctrl_c(void)
 {
 	write(1, "\n", 1);
 	rl_on_new_line();
-	// rl_replace_line("", 1);
+	rl_replace_line("", 1);
 	rl_redisplay();
-}
-
-/// @brief handler fucntion for ctrl + d signal,
-			//exits the shell by sending EOF.
-/// @param (void)
-/// @return No return value
-void	ctrl_d(void)
-{
-	mini_exit(NULL);
 }
 
 /// @brief handler function for ctrl + \,
