@@ -15,4 +15,4 @@ FIXEDISH (doesnt execute, gives no error) 13. space before < means segfault
 FIXED 14. Can't call echo with the unsplit string (echo works differently now)
 FIXED 15. $HOME$USER doesnt get expanded correctly
 16. IF Path is unset, error message is missing
-17. ; segfaults
+FIXED 17. ; segfaults
