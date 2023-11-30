@@ -14,27 +14,40 @@
 
 void	execute_last_command(t_exec **exec, t_env *env, int tmp, int i)
 {
-	pid_t	pid;
+    pid_t	pid;
 
-	if (is_builtin(exec[i]->cmds[0]) == true)
-	{
-		execute_builtin(exec[i]->cmds, env, NULL);
-		return ;
-	}
-	pid = fork();
-	if (pid == -1)
-	{
-		perror("fork");
-		exit(EXIT_FAILURE);
-	}
-	if (pid == 0)
-	{
-		ex(exec[i], env, tmp);
-		exit(1);
-	}
-	close(tmp);
-	while (waitpid(pid, NULL, WUNTRACED) != -1)
-		;
+    if (is_builtin(exec[i]->cmds[0]) == true)
+    {
+        execute_builtin(exec[i]->cmds, env, NULL);
+        return ;
+    }
+    pid = fork();
+    if (pid == -1)
+    {
+        perror("fork");
+        exit(EXIT_FAILURE);
+    }
+    else if (pid == 0)
+    {
+        ex(exec[i], env, tmp);
+        exit(EXIT_FAILURE);
+    }
+    else
+    {
+        int status;
+        waitpid(pid, &status, 0);
+        if (WIFEXITED(status))
+        {
+            g_last_exit_status = WEXITSTATUS(status);
+        }
+        else
+        {
+            g_last_exit_status = 1;
+        }
+    }
+    close(tmp);
+    while (waitpid(pid, NULL, WUNTRACED) != -1)
+        ;
 }
 
 void	execute_command(t_exec *exec, t_env *env, int *tmp, int *fd)

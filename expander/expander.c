@@ -71,7 +71,7 @@ static char	*expand_question_mark(char *input, int *old_i)
 	before_var = ft_substr(input, 0, i - 1);
 	if (before_var == NULL)
 		return (free(input), NULL);
-	var_val = ft_itoa(0);
+	var_val = ft_itoa(get_exit_signal());
 	if (var_val == NULL)
 		return (free(before_var), free(input), NULL);
 	after_var = ft_strjoin(before_var, var_val);

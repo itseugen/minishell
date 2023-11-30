@@ -12,6 +12,7 @@
 
 #include "minishell.h"
 
+int g_last_exit_status = 0;
 static int		setup(int argc, char **argv, t_env *env_list);
 static t_token	*get_and_tokenize(t_env *env_list);
 

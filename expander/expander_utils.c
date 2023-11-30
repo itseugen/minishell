@@ -23,3 +23,8 @@ bool	set_in_quotes(bool in_quotes)
 		in_quotes = false;
 	return (in_quotes);
 }
+
+int get_exit_signal(void)
+{
+    return g_last_exit_status;
+}

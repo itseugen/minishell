@@ -54,6 +54,7 @@ enum e_token
 # define STDOUT 1
 # define STDERR 2
 
+extern int	g_last_exit_status;
 /* ************************************************************************** */
 /*                          Typedefs and globals                              */
 /* ************************************************************************** */
@@ -158,6 +159,7 @@ void	free_exec(t_exec *exec);
 char	*expander(char *arg, t_env *env_list, int i, bool in_quotes);
 int		expand_tokens(t_env *env_list, t_token *tokens);
 bool	set_in_quotes(bool in_quotes);
+int 	get_exit_signal(void);
 
 /* ************************************************************************** */
 /*                                 Environment                                */
