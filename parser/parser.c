@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 04:13:05 by adhaka            #+#    #+#             */
-/*   Updated: 2023/12/01 07:10:29 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/12/01 07:14:26 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int	cmd_maker(t_token *tokens)
 	return (0);
 }
 
-
 int	cmd_maker2(t_token *tokens)
 {
 	t_command	*tab;
@@ -94,7 +93,7 @@ int	cmd_maker2(t_token *tokens)
 
 int	red_maker2(t_token *tokens)
 {
-	t_token *tmp;
+	t_token	*tmp;
 
 	tmp = tokens;
 	if (tmp->next)
@@ -129,4 +128,3 @@ int	red_maker(t_token *tokens, int flag)
 	}
 	return (0);
 }
-
