@@ -6,19 +6,13 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 14:47:33 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/12/01 05:27:03 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/12/01 06:48:33 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 static int	read_terminal(t_env *env_list, int fd, char *delim);
-
-//! Note: While heredocs should be expanded, the env get expanded even in ''
-//! While imo dont have to implement it, if we want to, we just copy the expandr
-//!and change it to expand always
-
-//! Expand only AFTER comparing to delimiter
 
 /// @brief handle a heredoc and provides it to the pipe provided
 /// @param env_list the env_list

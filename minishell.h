@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/12/01 05:38:42 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/12/01 06:46:34 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,11 @@ int		red_maker(t_token *tokens, int flag);
 int		red_maker2(t_token *tokens);
 int		in_out(char *str, t_token *tmp, int flag);
 void	free_exec_array(t_exec **exec);
+int		in_out(char *str, t_token *tmp, int flag);
+int		handling(t_token *tokens);
+int		ft_open(char *str, int flag);
+int		h_doc(t_token *tokens, t_env *env);
+int		qcheck(t_token *tokens);
 
 /* ************************************************************************** */
 /*                                  Expander                                  */
