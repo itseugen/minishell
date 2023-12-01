@@ -6,7 +6,7 @@
 #    By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 13:58:27 by eweiberl          #+#    #+#              #
-#    Updated: 2023/11/30 07:15:09 by adhaka           ###   ########.fr        #
+#    Updated: 2023/12/01 04:24:13 by adhaka           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ LINKS += -L./libft -lft
 LINKS += -L./libmock -lmock
 
 SOURCE = main.c
+SOURCE += execution/here_doc.c
 SOURCE += setup/get_prompt.c
 SOURCE += final_execution/execution1.c final_execution/exec_utils.c final_execution/exec_utils2.c
 SOURCE += builtins/env.c builtins/pwd.c builtins/cd.c builtins/is_builtin.c builtins/echo.c

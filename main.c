@@ -6,7 +6,7 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/30 20:00:53 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/12/01 04:24:14 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ int	g_last_exit_status = 0;
 static int		setup(int argc, char **argv, t_env *env_list);
 static t_token	*get_and_tokenize(t_env *env_list);
 static void		signals_main(void);
+static int		execute_main(t_token *tokens, t_env *env_list);
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_token	*tokens;
 	t_env	*env_list;
-	t_exec	**exec;
 
 	env_list = env_init(envp);
 	if (setup(argc, argv, env_list) == 1)
@@ -33,16 +33,13 @@ int	main(int argc, char **argv, char **envp)
 		tokens = get_and_tokenize(env_list);
 		if (tokens == NULL)
 			continue ;
-		if (mainpars(tokens) == -1)
+		if (mainpars(tokens, env_list) == -1)
+		{
 			ft_fprintf(2, "parse error\n");
-		if (mainpars(tokens) == -1)
 			continue ;
-		exec = commands_for_exec(tokens);
-		free_tokens(&tokens);
-		if (!exec)
-			return (ft_fprintf(2, "command initialization error\n"), -1);
-		executor(exec, env_list);
-		free_exec_array(exec);
+		}
+		if (execute_main(tokens, env_list) == 1)
+			return (clear_history(), 1);
 	}
 	return (clear_history(), free_env_struct(&env_list), 0);
 }
@@ -102,4 +99,22 @@ static void	signals_main(void)
 	signal(SIGINT, sig_type);
 	signal(SIGQUIT, sig_type);
 	clear_sigargs();
+}
+
+static int	execute_main(t_token *tokens, t_env *env_list)
+{
+	t_exec	**exec;
+
+	exec = NULL;
+	exec = commands_for_exec(tokens);
+	free_tokens(&tokens);
+	if (!exec)
+		return (ft_fprintf(2, "command initialization error\n"), 1);
+	if (exec != NULL)
+	{
+		if (exec[0] != NULL)
+			executor(exec, env_list);
+	}
+	free_exec_array(exec);
+	return (0);
 }

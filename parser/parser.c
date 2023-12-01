@@ -6,7 +6,7 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 04:13:05 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/30 20:49:06 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/12/01 04:24:13 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,140 @@
 /// based on the type of operation in each token
 /// @param tokens
 /// @return 0
-int	mainpars(t_token *tokens)
+
+// char  *add_input(char *s1, char *s2, int flag)
+// {
+// 	char	*str;
+// 	size_t	len;
+// 	int		i;
+// 	int		j;
+
+// 	j = 0;
+// 	i = 0;
+// 	len = ft_strlen(s1) + ft_strlen(s2) + 1;
+// 	str = ft_calloc(1, len);
+// 	if (flag)
+// 	{
+// 		while (s2 && s2[i])
+// 		{
+// 			str[i] = s2[i];
+// 			i++;
+// 		}
+// 	}
+// 	while (s1 && s1[j])
+// 	{
+// 		str[i++] = s1[j++];
+// 	}
+// 	free(s1);
+// 	str[i] = '\0';
+// 	return (str);
+// }
+
+// char *get_delim(char *str)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (str[i] == ' ')
+// 		i++;
+
+// }
+
+// static int	h_doc(t_token *tokens)
+// {
+
+// 	return (0);
+// }
+
+int	handling(t_token *tokens)
+{
+	t_token	*tmp;
+
+	tmp = tokens;
+	while (tmp->prev)
+	{
+		if (tmp->prev->operation == REDIRECT)
+			tmp = tmp->prev;
+		else if (tmp->prev->operation == CMD)
+		{
+			tmp = tmp->prev;
+			break ;
+		}
+	}
+	if (tmp->operation == CMD && tmp->next != NULL)
+	{
+		if (red_maker(tokens, 0) == -1)
+			return (-1);
+	}
+	else if (tmp->next != NULL)
+	{
+		if (red_maker(tokens, 1) == -1)
+			return (-1);
+	}
+	return (0);
+}
+
+static int h_doc(t_env *env, t_token *tokens)
+{
+	int		i;
+	int		j;
+	char	*l;
+	char	*str;
+
+	i = 2;
+	j = 0;
+	str = ft_strdup(tokens->cmd);
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	l = (char *)malloc(sizeof(char) * (word_len(str, i) + 1));
+	if (!l)
+		return (-1);
+	while (str[i] && !((str[i] >= 9 && str[i] <= 13) || str[i] == 32))
+	{
+		l[j] = str[i];
+		i++;
+		j++;
+	}
+	l[j] = '\0';
+	free(str);
+	here_doc(env, l);
+	return (0);
+}
+
+static int	qcheck(t_token *tokens)
+{
+	int		i;
+	t_token	*head;
+
+	i = 0;
+	head = tokens;
+	while (head)
+	{
+		head = head->next;
+		i++;
+	}
+	if (((tokens->operation != CMD)
+			&& (tokens->operation != HERE_DOC)) && i == 1)
+	{
+		if (tokens->operation == REDIRECT)
+		{
+			if (tokens->cmd[0] == '<')
+				ft_open(tokens->cmd, 0);
+			else
+				ft_open(tokens->cmd, 1);
+		}
+		return (-1);
+	}
+	return (0);
+}
+
+int	mainpars(t_token *tokens, t_env *env)
 {
 	t_token	*head;
 
 	head = tokens;
+	if (qcheck(tokens) == -1)
+		return (-1);
 	while (head)
 	{
 		if (head->operation == CMD && !head->table)
@@ -47,16 +176,13 @@ int	mainpars(t_token *tokens)
 		}
 		else if (head->operation == REDIRECT)
 		{
-			if (!head->prev)
-			{
-				if (red_maker(head, 1) == -1)
-					return (-1);
-			}
-			else
-			{
-				if (red_maker(head, 0) == -1)
-					return (-1);
-			}
+			if (handling(head) == -1)
+				return (-1);
+		}
+		else if (head->operation == HERE_DOC)
+		{
+			if (h_doc(env, tokens) == -1)
+				return (-1);
 		}
 		head = head->next;
 	}
@@ -109,8 +235,6 @@ int	cmd_maker2(t_token *tokens)
 ///sets up the input and output file descriptors for a command.
 /// @param tokens
 /// @return
-
-
 
 int	red_maker2(t_token *tokens)
 {
