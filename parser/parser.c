@@ -6,7 +6,7 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 04:13:05 by adhaka            #+#    #+#             */
-/*   Updated: 2023/12/01 04:24:13 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/12/01 05:28:42 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	handling(t_token *tokens)
 	return (0);
 }
 
-static int h_doc(t_env *env, t_token *tokens)
+static int h_doc(t_token *tokens, t_env *env)
 {
 	int		i;
 	int		j;
@@ -129,7 +129,7 @@ static int h_doc(t_env *env, t_token *tokens)
 	}
 	l[j] = '\0';
 	free(str);
-	here_doc(env, l);
+	tokens->tmp = here_doc(env, l);
 	return (0);
 }
 
@@ -181,7 +181,7 @@ int	mainpars(t_token *tokens, t_env *env)
 		}
 		else if (head->operation == HERE_DOC)
 		{
-			if (h_doc(env, tokens) == -1)
+			if (h_doc(tokens, env) == -1)
 				return (-1);
 		}
 		head = head->next;
@@ -321,7 +321,7 @@ int	in_out(char *str, t_token *tmp, int flag)
 
 	i = 1;
 	j = 0;
-	if (str[i] == '>')
+	if (str[i] == '>' || str[i] == '<')
 		i = 2;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;

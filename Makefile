@@ -6,7 +6,7 @@
 #    By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 13:58:27 by eweiberl          #+#    #+#              #
-#    Updated: 2023/12/01 04:24:13 by adhaka           ###   ########.fr        #
+#    Updated: 2023/12/01 04:35:08 by adhaka           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,6 @@ SOURCE += setup/get_prompt.c
 SOURCE += final_execution/execution1.c final_execution/exec_utils.c final_execution/exec_utils2.c
 SOURCE += builtins/env.c builtins/pwd.c builtins/cd.c builtins/is_builtin.c builtins/echo.c
 SOURCE += builtins/unset.c builtins/export.c builtins/exit.c
-SOURCE += operations/pipe.c
 SOURCE += utils/ft_split_minishell.c utils/ft_is.c utils/rem_quotes.c
 SOURCE += lexer/check_token.c lexer/lexer.c lexer/lexer_utils.c
 SOURCE += expander/expander.c expander/expand_tokens.c expander/expander_utils.c

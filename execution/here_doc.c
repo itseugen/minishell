@@ -6,7 +6,7 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 14:47:33 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/12/01 04:24:14 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/12/01 05:27:03 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,15 @@ int	here_doc(t_env *env_list, char *delim)
 	fd = open(".hd.txt", O_CREAT | O_WRONLY | O_TRUNC, 0666);
 	if (fd == -1)
 		return (ft_putstr_fd("<<: open failed\n", 2), 1);
-	unlink("..hd.txt");
 	if (read_terminal(env_list, fd, delim) != 0)
 	{
 		close(fd);
 		ft_putstr_fd("<<: malloc failed while reaing the termial\n", 2);
 		return (1);
 	}
+	close(fd);
+	fd = open(".hd.txt", O_RDONLY);
+	unlink(".hd.txt");
 	return (fd);
 }
 

@@ -6,7 +6,7 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/12/01 04:24:13 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/12/01 05:28:42 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_token
 	char			*cmd;
 	int				operation;
 	t_command		*table;
+	int				tmp;
 	struct s_token	*next;
 	struct s_token	*prev;
 }	t_token;
@@ -108,7 +109,7 @@ void	ex(t_exec *exec, t_env *env, int tmp);
 t_exec	**commands_for_exec(t_token *tokens);
 int		execute_cmd(char **cmd, char **envp);
 int		here_doc(t_env *env_list, char *delim);
-void	fill(t_exec *exec, t_token *tokens);
+void	fill(t_exec *exec, t_token *tokens, int n_tokens);
 int		cmd_counter(t_token *tokens);
 
 /* ************************************************************************** */
