@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 04:21:25 by adhaka            #+#    #+#             */
-/*   Updated: 2023/12/01 06:19:25 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/12/01 06:40:01 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	fill(t_exec *exec, t_token *tokens, int n_tokens)
 	exec->out_fd = tokens->table->out_fd;
 	if (n_tokens == 3)
 	{
-		if (tokens->prev->prev->operation == HERE_DOC)
+		if (tokens->prev != NULL && tokens->prev->prev->operation == HERE_DOC)
 			exec->in_fd = tokens->prev->prev->tmp;
 	}
 	if (n_tokens == 2)
