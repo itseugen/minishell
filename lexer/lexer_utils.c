@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 03:34:11 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/30 17:38:38 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/11/30 22:08:35 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int	lexer_redirects(int i, char *input)
 {
 	i++;
 	if (input[i] == '<' || input[i] == '>')
+		i++;
+	if (input[i] == '<')
 		i++;
 	while (input[i] == ' ' && input[i] != '\0')
 		i++;

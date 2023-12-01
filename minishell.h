@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/30 17:02:42 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/12/01 05:28:42 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_token
 	char			*cmd;
 	int				operation;
 	t_command		*table;
+	int				tmp;
 	struct s_token	*next;
 	struct s_token	*prev;
 }	t_token;
@@ -107,8 +108,8 @@ void	ex(t_exec *exec, t_env *env, int tmp);
 
 t_exec	**commands_for_exec(t_token *tokens);
 int		execute_cmd(char **cmd, char **envp);
-int		here_doc(t_env *env_list, int *pipe_fd, char **split);
-void	fill(t_exec *exec, t_token *tokens);
+int		here_doc(t_env *env_list, char *delim);
+void	fill(t_exec *exec, t_token *tokens, int n_tokens);
 int		cmd_counter(t_token *tokens);
 
 /* ************************************************************************** */
@@ -142,12 +143,14 @@ int		lexer_redirects(int i, char *input);
 /*                                  Parser                                    */
 /* ************************************************************************** */
 
-int		mainpars(t_token *tokens);
+int		mainpars(t_token *tokens, t_env *env);
 char	**my_split(char *str);
 int		word_len(char *str, int i);
 int		ft_open(char *str, int flag);
 int		cmd_maker(t_token *tokens);
-int		red_maker(t_token *tokens);
+int		cmd_maker2(t_token *tokens);
+int		red_maker(t_token *tokens, int flag);
+int		red_maker2(t_token *tokens);
 int		in_out(char *str, t_token *tmp, int flag);
 void	free_exec_array(t_exec **exec);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 13:30:19 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/11/30 15:04:25 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/12/01 05:28:42 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ static char	*get_tok_str(int *old_i, char *input)
 			return (NULL);
 		return ((*old_i)++, ft_strdup("|"));
 	}
-	// if (input[i] == ';')
-	// 	return ((*old_i)++, ft_strdup(";"));
 	if ((input[i] == '<' && input[i + 1] == '>')
 		|| (input[i] == '>' && input[i + 1] == '<'))
 		return (NULL);

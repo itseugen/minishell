@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 04:21:25 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/30 17:02:24 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/12/01 05:28:43 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,33 @@ int	cmd_counter(t_token *tokens)
 	return (n_cmds);
 }
 
+
 /// @brief Allocates an array of t_exec* pointer
 ///		   to represent individual commands for execution
 /// @param tokens
 /// @return table with the commands (the array of t_exec* pointers)
+static int	token_counter(t_token *tokens)
+{
+	t_token	*head;
+	int		i;
+
+	i = 0;
+	head = tokens;
+	while (head)
+	{
+		head = head->next;
+		i++;
+	}
+	return (i);
+}
 t_exec	**commands_for_exec(t_token *tokens)
 {
 	int		n_cmds;
 	int		i;
 	t_exec	**exec;
+	int		n_tokens;
 
+	n_tokens = token_counter(tokens);
 	n_cmds = cmd_counter(tokens);
 	i = 0;
 	exec = ft_calloc(n_cmds + 1, sizeof(t_exec *));
@@ -51,7 +68,7 @@ t_exec	**commands_for_exec(t_token *tokens)
 			exec[i] = (t_exec *)ft_calloc(1, sizeof(t_exec));
 			if (!exec[i])
 				return (free_exec_array(exec), NULL);
-			fill(exec[i], tokens);
+			fill(exec[i], tokens, n_tokens);
 			i++;
 		}
 		tokens = tokens->next;
@@ -60,15 +77,26 @@ t_exec	**commands_for_exec(t_token *tokens)
 	return (exec);
 }
 
+
 /// @brief Populates a t_exec
 /// structure with information from a t_token structure
 /// @param exec
 /// @param tokens
-void	fill(t_exec *exec, t_token *tokens)
+void	fill(t_exec *exec, t_token *tokens, int n_tokens)
 {
 	exec->cmds = tokens->table->cmd;
 	exec->in_fd = tokens->table->in_fd;
 	exec->out_fd = tokens->table->out_fd;
+	if (n_tokens == 3)
+	{
+		if (tokens->prev->prev->operation == HERE_DOC)
+			exec->in_fd = tokens->prev->prev->tmp;
+	}
+	if (n_tokens == 2)
+	{
+		if (tokens->prev->operation == HERE_DOC)
+			exec->in_fd = tokens->prev->tmp;
+	}
 }
 
 /// @brief Frees the array of t_exec* pointers
