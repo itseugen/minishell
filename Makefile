@@ -6,14 +6,14 @@
 #    By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 13:58:27 by eweiberl          #+#    #+#              #
-#    Updated: 2023/12/01 05:44:53 by adhaka           ###   ########.fr        #
+#    Updated: 2023/12/01 06:01:48 by adhaka           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 
 LINKS = -lreadline
 LINKS += -L./libft -lft
