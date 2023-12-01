@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 04:21:25 by adhaka            #+#    #+#             */
-/*   Updated: 2023/12/01 07:07:44 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/12/01 07:14:57 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ t_exec	**commands_for_exec(t_token *tokens)
 	return (exec);
 }
 
-
 /// @brief Populates a t_exec
 /// structure with information from a t_token structure
 /// @param exec
@@ -118,11 +117,3 @@ void	free_exec_array(t_exec **exec)
 	free(exec);
 	exec = NULL;
 }
-
-
-	// i = 0;
-	// while (exec[i])
-	// {
-	// 	printf("%s------%d\n", exec[i]->cmds[0], exec[i]->in_fd);
-	// 	i++;
-	// }
