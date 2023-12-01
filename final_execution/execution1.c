@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 23:43:00 by adhaka            #+#    #+#             */
-/*   Updated: 2023/12/01 06:01:27 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/12/01 06:31:16 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ void	ex(t_exec *exec, t_env *env, int tmp)
 		ft_putstr_fd(exec->cmds[0], 2);
 		ft_putstr_fd(": command does not exist\n", 2);
 		free(envp);
-		free_exec_array(&exec);
+		// free_exec_array(&exec);
 		exit(127);
 	}
 }
