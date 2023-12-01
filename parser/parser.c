@@ -6,7 +6,7 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 04:13:05 by adhaka            #+#    #+#             */
-/*   Updated: 2023/12/01 06:54:45 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/12/01 07:10:29 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,25 +102,8 @@ int	red_maker2(t_token *tokens)
 	else if (!tmp->next)
 		return (-1);
 	cmd_maker2(tmp);
-	if (tokens->cmd[0] == '<')
-	{
-		if (in_out(tokens->cmd, tmp, 0) == -1)
-			return (-1);
-		tmp->table->in_fd = ft_open(tmp->table->input_file, 0);
-		if (tmp->table->in_fd == -1)
-			return (-1);
-	}
-	if (tokens->cmd[0] == '>')
-	{
-		if (in_out(tokens->cmd, tmp, 1) == -1)
-			return (-1);
-		if (tokens->cmd[1] == '>')
-			tmp->table->out_fd = ft_open(tmp->table->output_file, 2);
-		else
-			tmp->table->out_fd = ft_open(tmp->table->output_file, 1);
-		if (tmp->table->out_fd == -1)
-			return (-1);
-	}
+	if (red_maker_extension(tokens, tmp) == -1)
+		return (-1);
 	return (0);
 }
 
@@ -141,25 +124,8 @@ int	red_maker(t_token *tokens, int flag)
 		}
 		if (!tmp)
 			return (-1);
-		if (tokens->cmd[0] == '<')
-		{
-			if (in_out(tokens->cmd, tmp, 0) == -1)
-				return (-1);
-			tmp->table->in_fd = ft_open(tmp->table->input_file, 0);
-			if (tmp->table->in_fd == -1)
-				return (-1);
-		}
-		if (tokens->cmd[0] == '>')
-		{
-			if (in_out(tokens->cmd, tmp, 1) == -1)
-				return (-1);
-			if (tokens->cmd[1] == '>')
-				tmp->table->out_fd = ft_open(tmp->table->output_file, 2);
-			else
-				tmp->table->out_fd = ft_open(tmp->table->output_file, 1);
-			if (tmp->table->out_fd == -1)
-				return (-1);
-		}
+		if (red_maker_extension(tokens, tmp) == -1)
+			return (-1);
 	}
 	return (0);
 }

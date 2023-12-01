@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 04:21:25 by adhaka            #+#    #+#             */
-/*   Updated: 2023/12/01 06:40:01 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/12/01 07:07:44 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	fill(t_exec *exec, t_token *tokens, int n_tokens)
 	}
 	if (n_tokens == 2)
 	{
-		if (tokens->prev->operation == HERE_DOC)
+		if (tokens->prev != NULL && tokens->prev->operation == HERE_DOC)
 			exec->in_fd = tokens->prev->tmp;
 	}
 }

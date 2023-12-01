@@ -6,7 +6,7 @@
 #    By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/21 13:58:27 by eweiberl          #+#    #+#              #
-#    Updated: 2023/12/01 06:47:44 by adhaka           ###   ########.fr        #
+#    Updated: 2023/12/01 07:01:05 by adhaka           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SOURCE += builtins/unset.c builtins/export.c builtins/exit.c
 SOURCE += utils/ft_split_minishell.c utils/ft_is.c utils/rem_quotes.c
 SOURCE += lexer/check_token.c lexer/lexer.c lexer/lexer_utils.c
 SOURCE += expander/expander.c expander/expand_tokens.c expander/expander_utils.c
-SOURCE += parser/parser.c parser/parser_utils.c parser/exec_cmds.c parser/parser_utils2.c
+SOURCE += parser/parser.c parser/parser_utils.c parser/exec_cmds.c parser/parser_utils2.c parser/parser_utils3.c
 SOURCE += environment/env_init.c environment/env_utils.c environment/env_operations.c
 SOURCE += sig_hndlr/signal_main.c
 SOURCE += environment/env_get_envp.c
