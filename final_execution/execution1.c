@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 23:43:00 by adhaka            #+#    #+#             */
-/*   Updated: 2023/12/01 07:26:48 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/12/01 07:29:43 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ void	ex(t_exec *exec, t_env *env, int tmp)
 		ft_putstr_fd(exec->cmds[0], 2);
 		ft_putstr_fd(": command does not exist\n", 2);
 		free(envp);
+		free(path);
 		exit(127);
 	}
 }

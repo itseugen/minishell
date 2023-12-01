@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 05:53:45 by adhaka            #+#    #+#             */
-/*   Updated: 2023/12/01 07:15:47 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/12/01 07:31:25 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ char	*get_cmd_path(char *cmd, char **path)
 		correct_path = NULL;
 		i++;
 	}
+	free_strings((void **)path);
 	return (correct_path);
 }
 
