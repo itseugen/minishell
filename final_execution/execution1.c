@@ -6,17 +6,20 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 23:43:00 by adhaka            #+#    #+#             */
-/*   Updated: 2023/12/01 06:31:16 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/12/01 07:26:48 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+static void	wait_for_children(int status);
 
 void	execute_last_command(t_exec **exec, t_env *env, int tmp, int i)
 {
 	pid_t	pid;
 	int		status;
 
+	status = 0;
 	if (is_builtin(exec[i]->cmds[0]) == true)
 	{
 		execute_builtin(exec[i]->cmds, env, exec);
@@ -30,20 +33,9 @@ void	execute_last_command(t_exec **exec, t_env *env, int tmp, int i)
 		exit(EXIT_FAILURE);
 	}
 	else if (pid == 0)
-	{
-		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_DFL);
-		ex(exec[i], env, tmp);
-		exit(EXIT_FAILURE);
-	}
+		execute_last_child(exec, env, tmp, i);
 	else
-	{
-		waitpid(pid, &status, 0);
-		if (WIFEXITED(status))
-			g_last_exit_status = WEXITSTATUS(status);
-		else
-			g_last_exit_status = 1;
-	}
+		execute_last_parent(pid, status);
 	close(tmp);
 	while (waitpid(pid, NULL, WUNTRACED) != -1)
 		;
@@ -66,25 +58,7 @@ void	execute_command(t_exec *exec, t_env *env, int *tmp, int *fd)
 		exit(EXIT_FAILURE);
 	}
 	if (pid == 0)
-	{
-		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_DFL);
-		close(fd[0]);
-		if (dup2(fd[1], 1) == -1)
-		{
-			perror("dup2");
-			exit(EXIT_FAILURE);
-		}
-		close(fd[1]);
-		if (is_builtin(exec->cmds[0]) == true)
-		{
-			if (execute_builtin(exec->cmds, env, &exec) == 1)
-				exit(1);
-			exit(0);
-		}
-		ex(exec, env, *tmp);
-		exit(1);
-	}
+		execute_child(fd, exec, env, tmp);
 	close(fd[1]);
 	close(*tmp);
 	*tmp = fd[0];
@@ -97,6 +71,7 @@ void	executor(t_exec **exec, t_env *env)
 	int	fd[2];
 	int	status;
 
+	status = 0;
 	handle_dup(&tmp);
 	i = 0;
 	while (1)
@@ -114,6 +89,11 @@ void	executor(t_exec **exec, t_env *env)
 		close_fds(exec, i);
 		i++;
 	}
+	wait_for_children(status);
+}
+
+static void	wait_for_children(int status)
+{
 	while (waitpid(-1, &status, 0) > 0)
 	{
 		if (WIFEXITED(status))
@@ -147,7 +127,6 @@ void	ex(t_exec *exec, t_env *env, int tmp)
 		ft_putstr_fd(exec->cmds[0], 2);
 		ft_putstr_fd(": command does not exist\n", 2);
 		free(envp);
-		// free_exec_array(&exec);
 		exit(127);
 	}
 }

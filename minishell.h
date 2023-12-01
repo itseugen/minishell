@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:13 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/12/01 07:00:55 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/12/01 07:25:20 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,9 @@ int		execute_cmd(char **cmd, char **envp);
 int		here_doc(t_env *env_list, char *delim);
 void	fill(t_exec *exec, t_token *tokens, int n_tokens);
 int		cmd_counter(t_token *tokens);
+void	execute_child(int *fd, t_exec *exec, t_env *env, int *tmp);
+void	execute_last_child(t_exec **exec, t_env *env, int tmp, int i);
+void	execute_last_parent(pid_t pid, int status);
 
 /* ************************************************************************** */
 /*                                builtins                                    */

@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 05:53:45 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/30 15:16:57 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/12/01 07:15:47 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ char	*correct(t_exec *exec, char **envp)
 		else
 			return (NULL);
 	}
-
 	path = get_path(envp);
 	correct_path = get_cmd_path(exec->cmds[0], path);
 	return (correct_path);
