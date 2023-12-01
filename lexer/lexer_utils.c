@@ -6,7 +6,7 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 03:34:11 by adhaka            #+#    #+#             */
-/*   Updated: 2023/11/30 22:08:35 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/12/01 05:49:08 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void	free_tokens(t_token **token_list)
 		{
 			if (cur_token->table->cmd_name != NULL)
 				free(cur_token->table->cmd_name);
+			if (cur_token->table->cmd != NULL)
+				free_strings((void **)cur_token->table->cmd);
 			if (cur_token->table->input_file != NULL)
 				free(cur_token->table->input_file);
 			if (cur_token->table->output_file != NULL)

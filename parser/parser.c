@@ -6,7 +6,7 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 04:13:05 by adhaka            #+#    #+#             */
-/*   Updated: 2023/12/01 05:28:42 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/12/01 05:44:17 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,10 +197,9 @@ int	cmd_maker(t_token *tokens)
 {
 	t_command	*tab;
 
-	tab = (t_command *)ft_calloc(1, sizeof(t_command));
+	tab = (t_command *)malloc(sizeof(t_command));
 	if (!tab)
 		return (-1);
-	// tab->cmd = my_split(tokens->cmd);
 	tab->cmd = ft_split_minishell(tokens->cmd, ' ');
 	rem_quotes(tab->cmd);
 	if (tab->cmd == NULL)
@@ -217,10 +216,9 @@ int	cmd_maker2(t_token *tokens)
 {
 	t_command	*tab;
 
-	tab = (t_command *)ft_calloc(1, sizeof(t_command));
+	tab = (t_command *)malloc(sizeof(t_command));
 	if (!tab)
 		return (-1);
-	// tab->cmd = my_split(tokens->cmd);
 	tab->cmd = ft_split_minishell(tokens->cmd, ' ');
 	rem_quotes(tab->cmd);
 	if (tab->cmd == NULL)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 04:21:25 by adhaka            #+#    #+#             */
-/*   Updated: 2023/12/01 05:28:43 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/12/01 05:38:41 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	cmd_counter(t_token *tokens)
 	return (n_cmds);
 }
 
-
 /// @brief Allocates an array of t_exec* pointer
 ///		   to represent individual commands for execution
 /// @param tokens
@@ -48,6 +47,7 @@ static int	token_counter(t_token *tokens)
 	}
 	return (i);
 }
+
 t_exec	**commands_for_exec(t_token *tokens)
 {
 	int		n_cmds;

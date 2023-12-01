@@ -6,7 +6,7 @@
 /*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:20:10 by eweiberl          #+#    #+#             */
-/*   Updated: 2023/12/01 05:28:43 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/12/01 05:51:57 by adhaka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int argc, char **argv, char **envp)
 		if (execute_main(tokens, env_list) == 1)
 			return (clear_history(), 1);
 	}
-	return (clear_history(), free_env_struct(&env_list), 0);
+	return (clear_history(), free_env_struct(&env_list), 1);
 }
 
 /// @brief Sets the signals, checks the env_list
