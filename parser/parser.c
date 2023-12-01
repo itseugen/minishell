@@ -6,7 +6,7 @@
 /*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 04:13:05 by adhaka            #+#    #+#             */
-/*   Updated: 2023/12/01 06:29:43 by eweiberl         ###   ########.fr       */
+/*   Updated: 2023/12/01 06:48:05 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,7 +216,7 @@ int	cmd_maker2(t_token *tokens)
 {
 	t_command	*tab;
 
-	tab = (t_command *)malloc(sizeof(t_command));
+	tab = (t_command *)ft_calloc(1, sizeof(t_command));
 	if (!tab)
 		return (-1);
 	tab->cmd = ft_split_minishell(tokens->cmd, ' ');
@@ -323,7 +323,7 @@ int	in_out(char *str, t_token *tmp, int flag)
 		i = 2;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
-	l = (char *)malloc(sizeof(char) * (word_len(str, i) + 1));
+	l = (char *)ft_calloc((word_len(str, i) + 1), sizeof(char));
 	if (!l)
 		return (-1);
 	while (str[i] && !((str[i] >= 9 && str[i] <= 13) || str[i] == 32))
