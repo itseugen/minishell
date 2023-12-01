@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 04:21:25 by adhaka            #+#    #+#             */
-/*   Updated: 2023/12/01 05:58:30 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/12/01 06:12:35 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void	free_exec_array(t_exec **exec)
 	{
 		if (exec[i]->cmds != NULL)
 			free_strings((void **)exec[i]->cmds);
+		free(exec[i]);
 		i++;
 	}
 	free(exec);

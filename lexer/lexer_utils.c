@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adhaka <adhaka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eweiberl <eweiberl@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 03:34:11 by adhaka            #+#    #+#             */
-/*   Updated: 2023/12/01 05:49:08 by adhaka           ###   ########.fr       */
+/*   Updated: 2023/12/01 06:09:34 by eweiberl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,6 @@ void	free_tokens(t_token **token_list)
 		{
 			if (cur_token->table->cmd_name != NULL)
 				free(cur_token->table->cmd_name);
-			if (cur_token->table->cmd != NULL)
-				free_strings((void **)cur_token->table->cmd);
 			if (cur_token->table->input_file != NULL)
 				free(cur_token->table->input_file);
 			if (cur_token->table->output_file != NULL)
